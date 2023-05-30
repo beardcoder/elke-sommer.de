@@ -1,0 +1,27 @@
+{
+  "tabWidth": 2,
+  "wrapAttributes": "auto",
+  "sortTailwindcssClasses": true,
+  "plugins": [
+    "@shufo/prettier-plugin-blade",
+    "@prettier/plugin-php",
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "overrides": [
+    {
+      "files": ["*.php"],
+      "options": {
+        "singleQuote": true,
+        "parser": "php"
+      }
+    },
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "tabWidth": 2,
+        "parser": "blade"
+      }
+    }
+  ]
+}
