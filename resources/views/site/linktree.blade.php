@@ -40,7 +40,7 @@
             </svg>
           </a>
         </div>
-        <div class="align-center flex justify-center space-x-4 pt-2">
+        <div class="align-center flex flex-row justify-center space-x-4 pt-2">
           @foreach ($item->links as $link)
             <a href="{!! $link['url'] !!}" target="_blank"
               class="block w-full rounded border px-8 py-3 font-semibold dark:border-gray-100 dark:text-gray-100">{!! $link['title'] !!}</a>
