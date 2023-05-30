@@ -13,10 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('linktree', [
+  \App\Http\Controllers\PageDisplayController::class,
+  'linktree',
+])->name('frontend.linktree');
+
+Route::get('vcard', [
+  \App\Http\Controllers\VCardController::class,
+  'index',
+])->name('frontend.vcard');
+
 Route::get('/', [
   \App\Http\Controllers\PageDisplayController::class,
   'home',
 ])->name('frontend.home');
+
 Route::get('{slug}', [
   \App\Http\Controllers\PageDisplayController::class,
   'show',

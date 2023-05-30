@@ -1,6 +1,5 @@
 {
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "concurrently npm:dev:*",
     "dev:laravel": "php artisan serve",

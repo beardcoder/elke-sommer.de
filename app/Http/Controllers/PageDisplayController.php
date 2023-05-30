@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use A17\Twill\Facades\TwillAppSettings;
+use App\Models\Linktree;
 use App\Repositories\PageRepository;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -29,6 +30,16 @@ class PageDisplayController extends Controller
       if ($frontPage->published) {
         return view('site.page', ['item' => $frontPage]);
       }
+    }
+
+    abort(404);
+  }
+  public function linktree(): View
+  {
+    /** @var \App\Models\Page $frontPage */
+    $linktree = Linktree::all()[0];
+    if ($linktree) {
+      return view('site.linktree', ['item' => $linktree]);
     }
 
     abort(404);

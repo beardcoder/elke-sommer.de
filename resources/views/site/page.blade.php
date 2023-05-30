@@ -1,12 +1,6 @@
-<!doctype html>
-<html lang="en">
+@extends('site.layouts.page')
 
-<head>
-  <title>Demo page</title>
-  @vite('resources/css/app.css')
-</head>
-
-<body>
+@section('content')
   <div class="space-y-12">
     <header class="p-4">
       <div class="container mx-auto flex h-16 justify-between">
@@ -419,7 +413,4 @@
       </div>
     </footer>
   </div>
-  @vite(['resources/js/app.js'])
-</body>
-
-</html>
+@stop

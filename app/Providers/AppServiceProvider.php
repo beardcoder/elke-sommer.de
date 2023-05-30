@@ -33,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
             ->title('Navigation'),
         ])
     );
+    TwillNavigation::addLink(
+      NavigationLink::make()
+        ->forSingleton('linktree')
+        ->title('Linktree')
+    );
     TwillAppSettings::registerSettingsGroup(
       SettingsGroup::make()
         ->name('homepage')
