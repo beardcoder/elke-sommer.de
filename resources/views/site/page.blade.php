@@ -1,5 +1,9 @@
 @extends('site.layouts.page')
 
+@section('meta')
+  {!! seo($item ?? null) !!}
+@endsection
+
 @section('content')
   <div class="space-y-12">
     <header class="p-4">
