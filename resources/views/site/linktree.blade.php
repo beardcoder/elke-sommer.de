@@ -6,11 +6,11 @@
 @endphp
 
 @section('content')
-  <div class="flex h-full items-center justify-center">
+  <div class="flex h-full items-center justify-center dark:bg-gray-800">
     <div
       class="flex max-w-lg flex-col justify-center rounded-xl p-6 shadow-md dark:bg-gray-900 dark:text-gray-100 sm:px-12">
       {!! $image->render(['class' => 'w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square']) !!}
-      <div class="space-y-4 divide-y divide-gray-700 text-center">
+      <div class="space-y-4 text-center">
         <div class="my-2 space-y-1">
           <h2 class="text-xl font-semibold sm:text-2xl">{!! $item->name !!}</h2>
           <p class="px-5 text-xs dark:text-gray-400 sm:text-base">{!! $item->description !!}</p>

@@ -37,7 +37,4 @@ php artisan migrate --force
 # Exit maintenance mode
 php artisan up
 
-# generate sitemap
-php artisan sitemap:generate
-
 echo "Deployment finished!"
