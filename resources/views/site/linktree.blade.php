@@ -45,6 +45,9 @@
             <a href="{!! $link['url'] !!}" target="_blank"
               class="block w-full rounded border px-8 py-3 font-semibold dark:border-gray-100 dark:text-gray-100">{!! $link['title'] !!}</a>
           @endforeach
+          <a href="{{ route('frontend.vcard') }}"
+            class="block w-full rounded border px-8 py-3 font-semibold dark:border-gray-100 dark:text-gray-100">Kontakt
+            Speichern</a>
         </div>
       </div>
     </div>
