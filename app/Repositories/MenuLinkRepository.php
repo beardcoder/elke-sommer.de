@@ -10,6 +10,8 @@ class MenuLinkRepository extends ModuleRepository
 {
   use HandleNesting;
 
+  protected $relatedBrowsers = ['page'];
+
   public function __construct(MenuLink $model)
   {
     $this->model = $model;

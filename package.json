@@ -10,6 +10,7 @@
   "devDependencies": {
     "@prettier/plugin-php": "^0.19.5",
     "@shufo/prettier-plugin-blade": "^1.8.12",
+    "@tailwindcss/typography": "^0.5.9",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",

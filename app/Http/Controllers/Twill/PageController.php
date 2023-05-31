@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Twill;
 
 use A17\Twill\Models\Contracts\TwillModelContract;
+use A17\Twill\Services\Forms\Fields\BlockEditor;
+use A17\Twill\Services\Forms\Fieldset;
 use A17\Twill\Services\Listings\Columns\Text;
 use A17\Twill\Services\Listings\TableColumns;
 use A17\Twill\Services\Forms\Fields\Input;
@@ -33,6 +35,12 @@ class PageController extends BaseModuleController
       Input::make()
         ->name('description')
         ->label('Description')
+    );
+    $form->addFieldset(
+      Fieldset::make()
+        ->id('content')
+        ->title('Inhalt')
+        ->fields([BlockEditor::make()])
     );
 
     return $form;

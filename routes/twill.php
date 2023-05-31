@@ -9,3 +9,5 @@ TwillRoutes::module('pages');
 TwillRoutes::module('pages');
 TwillRoutes::module('menuLinks');
 TwillRoutes::singleton('linktree');
+TwillRoutes::module('menuLinks');
+TwillRoutes::module('menuLinks');
