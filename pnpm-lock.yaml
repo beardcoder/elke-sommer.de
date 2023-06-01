@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@fontsource/montserrat':
+    specifier: ^5.0.2
+    version: 5.0.2
+  '@fontsource/pt-serif':
+    specifier: ^5.0.2
+    version: 5.0.2
+
 devDependencies:
   '@prettier/plugin-php':
     specifier: ^0.19.5
@@ -378,6 +386,14 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fontsource/montserrat@5.0.2:
+    resolution: {integrity: sha512-pU5i2L3j1zWHmCxspsmgV46X+HE7XaT2rbpnsmYpmS8lSuSyiZhuwCzjU4To2+P3dxZj9WrJ9TcU26UcU8fhfg==}
+    dev: false
+
+  /@fontsource/pt-serif@5.0.2:
+    resolution: {integrity: sha512-wTdmuELpzeY9lxarHd87Wwq2doOB03m66i7v7E5vSVRLue/S/0Qj3G0lHVUtugBG7k+v/XJ2xTmMwF/+ANDTug==}
+    dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
     resolution: {integrity: sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ==}

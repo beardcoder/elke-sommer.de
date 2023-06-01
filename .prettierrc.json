@@ -1,6 +1,12 @@
 {
   "tabWidth": 2,
   "wrapAttributes": "auto",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
   "sortTailwindcssClasses": true,
   "plugins": [
     "@shufo/prettier-plugin-blade",

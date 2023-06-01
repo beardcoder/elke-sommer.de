@@ -10,3 +10,4 @@
   <main class="space-y-12">
     {!! $item->renderBlocks() !!}
   </main>
+@endsection

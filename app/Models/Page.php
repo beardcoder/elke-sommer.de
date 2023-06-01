@@ -24,21 +24,4 @@ class Page extends Model implements Sortable
   {
     return new SEOData(title: $this->title, description: $this->description);
   }
-
-  public $mediasParams = [
-    'cover' => [
-      'default' => [
-        [
-          'name' => 'default',
-          'ratio' => 16 / 10,
-        ],
-      ],
-      'mobile' => [
-        [
-          'name' => 'mobile',
-          'ratio' => 10 / 16,
-        ],
-      ],
-    ],
-  ];
 }

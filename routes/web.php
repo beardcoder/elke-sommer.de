@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,7 @@ Route::get('{slug}', [
   \App\Http\Controllers\PageDisplayController::class,
   'show',
 ])->name('frontend.page');
+
+Route::post('/mail', [\App\Http\Controllers\MailController::class, 'contact'])
+  ->middleware(ProtectAgainstSpam::class)
+  ->name('mail.contact');

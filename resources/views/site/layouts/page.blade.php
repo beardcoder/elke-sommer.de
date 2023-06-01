@@ -11,8 +11,8 @@
   @vite('resources/css/app.css')
 </head>
 
-<body class="h-full">
-  <header class="absolute top-0 z-20 w-full p-4">
+<body class="h-full font-sans">
+  <header class="relative top-0 z-40 w-full p-4">
     <div class="container mx-auto flex h-16 justify-between">
       <a rel="noopener noreferrer" href="{{ route('frontend.home') }}" aria-label="Zur Startseite" title="Zur Startseite"
         class="flex items-center p-2">

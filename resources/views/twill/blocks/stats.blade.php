@@ -1,5 +1,5 @@
 @twillBlockTitle('Stats')
-@twillBlockIcon('text')
+@twillBlockIcon('star-feature')
 @twillBlockGroup('app')
 
 <x-twill::input name="title" label="Title" />
