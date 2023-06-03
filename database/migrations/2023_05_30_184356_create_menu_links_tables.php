@@ -18,7 +18,7 @@ class CreateMenuLinksTables extends Migration
         ->nullable();
 
       $table
-        ->integer('title')
+        ->text('title')
         ->unsigned()
         ->nullable();
 
