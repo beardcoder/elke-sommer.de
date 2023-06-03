@@ -17,6 +17,10 @@ module.exports = {
       colors: {
         primary: colors.indigo,
       },
+      borderRadius: {
+        '5xl': '2rem',
+        '10xl': '15rem',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

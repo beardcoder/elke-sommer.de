@@ -13,7 +13,7 @@
           {!! $block->input('text') !!}
         </div>
       </div>
-      {!! $image->render(['class' => 'my-6']) !!}
+      {!! $image->render(['class' => 'my-6 rounded-tl-10xl rounded-br-10xl']) !!}
     </div>
     @if (Session::has('success'))
       <div class="flex items-center justify-between self-start border-l-8 border-primary-500 p-6 sm:py-8">

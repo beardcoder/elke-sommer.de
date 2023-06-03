@@ -18,19 +18,21 @@
   ]);
 @endphp
 
-<section class="relative -mt-24 overflow-hidden pb-24 pt-24 md:pb-32 md:pt-32">
-  <div class="absolute top-0 h-full w-full">
-    {!! $image->render([
-        'loading' => 'eager',
-        'class' => 'aspect-[10/16] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/10]',
-    ]) !!}
-  </div>
-  <div class="container relative mx-auto flex max-w-7xl flex-col px-4 py-8 md:px-10 lg:px-32">
-    <h1 class="font-header text-4xl font-bold leading-none sm:text-5xl lg:text-8xl">
-      {!! $block->input('title') !!}
-    </h1>
-    <p class="mb-12 mt-8 max-w-md text-lg">
-      {!! $block->input('text') !!}
-    </p>
+<section class="relative -mt-24 overflow-hidden pt-24">
+  <div class="container relative mx-auto flex flex-col items-center px-4 py-8 md:px-10 lg:flex-row lg:px-0">
+    <div class="z-10 lg:absolute lg:w-1/2">
+      <h1 class="font-header text-4xl font-bold leading-none sm:text-4xl md:text-6xl">
+        {!! $block->input('title') !!}
+      </h1>
+      <p class="mb-12 mt-8 max-w-md text-lg">
+        {!! $block->input('text') !!}
+      </p>
+    </div>
+    <div class="w-full rounded lg:ml-auto lg:w-2/3">
+      {!! $image->render([
+          'loading' => 'eager',
+          'class' => 'aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/10] rounded-tl-10xl rounded-br-10xl',
+      ]) !!}
+    </div>
   </div>
 </section>
