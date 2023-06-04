@@ -1,5 +1,6 @@
 @php
   $image = TwillImage::make($block, 'form')->crop('default');
+  $formId = uniqid('form-');
 @endphp
 <section class="py-6">
   <div
@@ -20,8 +21,8 @@
         {{ Session::get('success') }}
       </div>
     @else
-      <form class="space-y-6" action="{{ route('mail.contact') }}" method="POST" x-data x-validate
-        @submit="$validate.submit">
+      <form class="space-y-6" id="{{ $formId }}" action="{{ route('mail.contact') }}" method="POST" x-data
+        x-validate x-on:submit="$validate.submit">
         @csrf
         <x-honeypot />
         <div>
@@ -52,10 +53,13 @@
               data-error-msg="Bitte die Datenschutzerklärung lesen und bestätigen" />
           </div>
         @endif
-        <button class="w-full rounded bg-primary-500 p-3 text-sm font-bold uppercase tracking-wide text-white"
-          type="submit">
-          {{ $block->input('button') }}
-        </button>
+        <div x-data="{ tooltip: () => !$validate.isComplete('{{ $formId }}') ? 'Bitte das Formular ausfüllen zum absenden' : '' }" x-tooltip="tooltip">
+          <button
+            class="w-full rounded bg-primary-500 p-3 text-sm font-bold uppercase tracking-wide text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+            type="submit" x-bind:disabled="!$validate.isComplete('{{ $formId }}')">
+            {{ $block->input('button') }}
+          </button>
+          <div>
       </form>
     @endif
 

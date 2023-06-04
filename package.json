@@ -26,6 +26,8 @@
     "@colinaut/alpinejs-plugin-simple-validate": "^1.7.16",
     "@fontsource/montserrat": "^5.0.2",
     "@fontsource/pt-serif": "^5.0.2",
-    "alpinejs": "^3.12.2"
+    "@ryangjchandler/alpine-tooltip": "^1.2.0",
+    "alpinejs": "^3.12.2",
+    "tippy.js": "^6.3.7"
   }
 }
