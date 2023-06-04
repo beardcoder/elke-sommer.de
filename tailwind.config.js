@@ -18,8 +18,8 @@ module.exports = {
         primary: colors.indigo,
       },
       borderRadius: {
-        '5xl': '2rem',
-        '10xl': '15rem',
+        '5xl': '6rem',
+        '10xl': '12rem',
       },
     },
   },

@@ -5,24 +5,19 @@
         <x-sign />
       </div>
       <ul class="flex flex-wrap items-center space-x-4 sm:space-x-8">
-        <li>
-          <a rel="noopener noreferrer" href="#">Terms of Use</a>
-        </li>
-        <li>
-          <a rel="noopener noreferrer" href="#">Privacy</a>
-        </li>
+        @foreach ($links as $link)
+          <li class="flex">
+            <a href="{{ route('frontend.page', [$link->slug]) }}">{{ $link->title }}</a>
+          </li>
       </ul>
+      @endforeach
     </div>
     <ul class="flex flex-wrap space-x-4 pl-3 sm:space-x-8">
-      <li>
-        <a rel="noopener noreferrer" href="#">Instagram</a>
-      </li>
-      <li>
-        <a rel="noopener noreferrer" href="#">Facebook</a>
-      </li>
-      <li>
-        <a rel="noopener noreferrer" href="#">Twitter</a>
-      </li>
+      @foreach ($social_links as $link)
+        <li>
+          <a rel="noopener noreferrer" target="_blank" href="{{ $link->input('url') }}">{{ $link->input('title') }}</a>
+        </li>
+      @endforeach
     </ul>
   </div>
 </footer>

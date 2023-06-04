@@ -1,4 +1,6 @@
 @twillBlockTitle('Stats Item')
+@twillRepeaterTitle('Stats Element')
+@twillRepeaterTrigger('Element hinzufügen')
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
