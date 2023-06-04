@@ -16,4 +16,5 @@
 ]" />
 
 <x-twill::medias name="form" label="Bild" />
+<x-twill::browser module-name="pages" name="privacy" label="Datenschutz Seite" :max="1" />
 <x-twill::input name="button" label="Button Text" />

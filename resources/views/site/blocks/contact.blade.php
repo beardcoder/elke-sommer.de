@@ -20,22 +20,38 @@
         {{ Session::get('success') }}
       </div>
     @else
-      <form class="space-y-6" novalidate="" action="{{ route('mail.contact') }}" method="POST">
+      <form class="space-y-6" action="{{ route('mail.contact') }}" method="POST" x-data x-validate
+        @submit="$validate.submit">
         @csrf
         <x-honeypot />
         <div>
-          <label class="text-sm" for="name">Name</label>
-          <input class="w-full rounded bg-neutral-100 p-3" id="name" name="name" placeholder="" type="text"
+          <label class="text-sm" for="name">Name *</label>
+          <input class="w-full rounded bg-neutral-100 p-3" id="name" name="name" placeholder=""
+            data-error-msg="Bitte sage mir deinen Namit damit ich weiß wie ich dich ansprechen kann" type="text"
             required>
         </div>
         <div>
-          <label class="text-sm" for="email">Email</label>
-          <input class="w-full rounded bg-neutral-100 p-3" id="email" name="email" type="email" required>
+          <label class="text-sm" for="email">Email *</label>
+          <input class="w-full rounded bg-neutral-100 p-3" data-error-msg="Bitte eine gültige E-Mail Adresse eingeben"
+            x-validate.email id="email" name="email" type="email" required>
         </div>
         <div>
-          <label class="text-sm" for="message">Nachricht</label>
-          <textarea class="w-full rounded bg-neutral-100 p-3" id="message" name="message" rows="3"></textarea>
+          <label class="text-sm" for="message">Nachricht *</label>
+          <textarea class="w-full rounded bg-neutral-100 p-3" id="message" name="message" required
+            data-error-msg="Bitte schreibe mir wie ich dir helfen kann" rows="3"></textarea>
         </div>
+        @if (count($block->getRelated('privacy')) >= 1)
+          <div class="flex flex-row flex-wrap">
+            <label class="order-2 text-sm" for="privacy">
+              <span>Ich habe die</span>
+              <a target="_blank" href="{{ route('frontend.page', [$block->getRelated('privacy')[0]->slug]) }}"
+                class="underline">Datenschatzerklärung</a>
+              <span>gelesen *</span>
+            </label>
+            <input required type="checkbox" class="order-1 mr-2" id="privacy" name="privacy"
+              data-error-msg="Bitte die Datenschutzerklärung lesen und bestätigen" />
+          </div>
+        @endif
         <button class="w-full rounded bg-primary-500 p-3 text-sm font-bold uppercase tracking-wide text-white"
           type="submit">
           {{ $block->input('button') }}
