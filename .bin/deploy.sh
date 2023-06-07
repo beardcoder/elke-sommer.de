@@ -39,6 +39,9 @@ php artisan view:cache
 # Run database migrations
 php artisan migrate --force
 
+# generate sitemap
+php artisan sitemap:generate
+
 # Exit maintenance mode
 php artisan up
 
