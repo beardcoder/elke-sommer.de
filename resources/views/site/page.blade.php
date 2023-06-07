@@ -3,7 +3,7 @@
 @extends('site.layouts.page')
 
 @section('meta')
-  {!! seo($item ?? null) !!}
+  {!! seo()->for($item) !!}
 @endsection
 
 @section('content')

@@ -5,6 +5,10 @@
   $image->srcSetWidths([128, 256]);
 @endphp
 
+@section('meta')
+  {!! seo()->for($item) !!}
+@endsection
+
 @section('content')
   <div class="flex h-full items-center justify-center p-8 dark:bg-gray-800">
     <div

@@ -6,10 +6,12 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Model;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Linktree extends Model
 {
-  use HasMedias, HasFiles, HasRevisions;
+  use HasMedias, HasFiles, HasRevisions, HasSEO;
 
   protected $casts = [
     'links' => 'array',
@@ -36,4 +38,9 @@ class Linktree extends Model
       ],
     ],
   ];
+
+  public function getDynamicSEOData(): SEOData
+  {
+    return new SEOData(title: $this->title, description: $this->description);
+  }
 }
