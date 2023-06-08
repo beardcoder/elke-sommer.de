@@ -22,4 +22,3 @@
   </main>
 
   <x-footer />
-@endsection
