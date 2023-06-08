@@ -16,6 +16,12 @@ return [
             'ratio' => 10 / 16,
           ],
         ],
+        'hero_small' => [
+          [
+            'name' => 'Hero Small',
+            'ratio' => 16 / 12,
+          ],
+        ],
       ],
       'form' => [
         'default' => [
