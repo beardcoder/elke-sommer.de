@@ -23,3 +23,16 @@ h6 {
 [x-cloak] {
   display: none !important;
 }
+
+body {
+  hyphens: auto;
+}
+
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
