@@ -22,6 +22,8 @@ php artisan clear-compiled
 # Clear the old view cache
 php artisan view:clear
 
+php artisan optimize:clear
+
 # Recreate cache
 php artisan optimize
 

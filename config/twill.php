@@ -2,6 +2,7 @@
 
 return [
   'block_editor' => [
+    'use_twill_blocks' => [],
     'crops' => [
       'cover' => [
         'default' => [
@@ -22,6 +23,14 @@ return [
           [
             'name' => 'default',
             'ratio' => 1 / 1,
+          ],
+        ],
+      ],
+      'cover_small' => [
+        'default' => [
+          [
+            'name' => 'default',
+            'ratio' => 16 / 12,
           ],
         ],
       ],

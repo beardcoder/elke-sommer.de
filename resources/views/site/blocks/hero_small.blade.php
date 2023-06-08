@@ -8,7 +8,7 @@
         {{ $block->input('text') }}</p>
     </div>
     <div class="hidden lg:col-span-5 lg:mt-0 lg:flex">
-      {!! TwillImage::make($block, 'cover')->crop('default')->width(643)->height(482)->render() !!}
+      {!! TwillImage::make($block, 'cover_small')->crop('default')->width(640)->height(480)->render(['loading' => 'eager', 'layout' => 'constrained']) !!}
     </div>
   </div>
 </section>
