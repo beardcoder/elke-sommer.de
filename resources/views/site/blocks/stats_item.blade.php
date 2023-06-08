@@ -5,7 +5,7 @@
       clip-rule="evenodd"></path>
   </svg>
   <h3 class="my-3 w-full text-center font-header text-2xl font-semibold">{!! $block->input('title') !!}</h3>
-  <div class="prose space-y-1 leading-snug">
+  <div class="format space-y-1 leading-snug">
     {!! $block->input('text') !!}
   </div>
 </div>

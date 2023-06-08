@@ -44,8 +44,11 @@ devDependencies:
     specifier: ^1.4.0
     version: 1.4.0
   concurrently:
-    specifier: ^8.0.1
-    version: 8.0.1
+    specifier: ^8.1.0
+    version: 8.1.0
+  flowbite-typography:
+    specifier: ^1.0.3
+    version: 1.0.3(tailwindcss@3.3.2)
   laravel-vite-plugin:
     specifier: ^0.7.8
     version: 0.7.8(vite@4.3.9)
@@ -860,8 +863,8 @@ packages:
       yargs: 17.7.2
     dev: false
 
-  /concurrently@8.0.1:
-    resolution: {integrity: sha512-Sh8bGQMEL0TAmAm2meAXMjcASHZa7V0xXQVDBLknCPa9TPtkY9yYs+0cnGGgfdkW0SV1Mlg+hVGfXcoI8d3MJA==}
+  /concurrently@8.1.0:
+    resolution: {integrity: sha512-0AB6eOAtaW/r/kX2lCdolaWtT191ICeuJjEJvI9hT3zbPFuZ/iZaJwMRKwbuwADome7OKxk73L7od+fsveZ7tA==}
     engines: {node: ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -1087,6 +1090,17 @@ packages:
     engines: {node: '>= 0.12'}
     dependencies:
       user-home: 2.0.0
+    dev: true
+
+  /flowbite-typography@1.0.3(tailwindcss@3.3.2):
+    resolution: {integrity: sha512-UbdQFIIOb7xx2TS+QQrqr79B6ZSkSZurxYWzV0npth6Wns3/j7KfeDJoH9QFU+Zs7zjrvejNtyzgzWLWyCrdiA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      tailwindcss: 3.3.2
     dev: true
 
   /follow-redirects@1.15.2:

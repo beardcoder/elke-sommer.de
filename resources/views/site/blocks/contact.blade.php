@@ -10,7 +10,7 @@
         <h2 class="font-header text-4xl font-bold leading-tight lg:text-5xl">
           {{ $block->input('title') }}
         </h2>
-        <div class="prose text-gray-400">
+        <div class="format text-gray-400">
           {!! $block->input('text') !!}
         </div>
       </div>
