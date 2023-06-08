@@ -7,6 +7,7 @@ module.exports = {
     './resources/**/*.blade.php',
     './resources/**/*.js',
     './resources/**/*.vue',
+    './node_modules/flowbite/**/*.js',
   ],
   theme: {
     extend: {
@@ -23,5 +24,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('flowbite-typography')],
+  plugins: [require('flowbite-typography'), require('flowbite/plugin')],
 }
