@@ -7,7 +7,12 @@
         {{ $block->input('text') }}</p>
     </div>
     <div class="lg:col-span-5 lg:mt-0 lg:flex">
-      {!! TwillImage::make($block, 'cover_small')->crop('default')->width(640)->height(480)->render(['loading' => 'eager', 'layout' => 'constrained']) !!}
+      {!! TwillImage::make($block, 'cover_small')->crop('default')->width(640)->height(480)->render([
+              'loading' => 'eager',
+              'layout' => 'constrained',
+              'class',
+              'lg:rounded-tl-10xl lg:rounded-br-10xl rounded-tl-5xl rounded-br-5xl',
+          ]) !!}
     </div>
   </div>
 </section>
