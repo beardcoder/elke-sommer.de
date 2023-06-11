@@ -21,7 +21,7 @@
 <section class="relative -mt-24 overflow-hidden pt-24">
   <div class="container relative mx-auto flex flex-col items-center px-4 py-8 md:px-10 lg:flex-row lg:px-0">
     <div class="z-10 lg:absolute lg:w-1/2">
-      <h1 class="font-header text-4xl font-bold leading-none sm:text-4xl md:text-6xl">
+      <h1 class="font-header text-4xl font-bold sm:text-4xl md:text-6xl md:leading-none">
         {!! $block->input('title') !!}
       </h1>
       <p class="mb-12 mt-8 max-w-md text-lg">
