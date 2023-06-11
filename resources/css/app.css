@@ -16,7 +16,7 @@ h6 {
 .format h4,
 .format h5,
 .format h6 {
-  @apply mt-8;
+  @apply !mt-8;
 }
 
 .error-msg[hidden] {
