@@ -26,27 +26,25 @@
         @csrf
         <x-honeypot />
         <div>
-          <label
+          <label class="mb-2 block text-sm font-medium text-gray-900" for="name">Name *</label>
+          <input
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-            for="name">Name *</label>
-          <input class="mb-2 block text-sm font-medium text-gray-900" id="name" name="name" placeholder=""
+            id="name" name="name" placeholder=""
             data-error-msg="Bitte sage mir deinen Namit damit ich weiß wie ich dich ansprechen kann" type="text"
             required>
         </div>
         <div>
-          <label
+          <label class="mb-2 block text-sm font-medium text-gray-900" for="email">Email *</label>
+          <input
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-            for="email">Email *</label>
-          <input class="mb-2 block text-sm font-medium text-gray-900"
             data-error-msg="Bitte eine gültige E-Mail Adresse eingeben" x-validate.email id="email" name="email"
             type="email" required>
         </div>
         <div>
-          <label
+          <label class="mb-2 block text-sm font-medium text-gray-900" for="message">Nachricht *</label>
+          <textarea
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-            for="message">Nachricht *</label>
-          <textarea class="mb-2 block text-sm font-medium text-gray-900" id="message" name="message" required
-            data-error-msg="Bitte schreibe mir wie ich dir helfen kann" rows="3"></textarea>
+            id="message" name="message" required data-error-msg="Bitte schreibe mir wie ich dir helfen kann" rows="3"></textarea>
         </div>
         @if (count($block->getRelated('privacy')) >= 1)
           <div class="flex flex-row flex-wrap">
