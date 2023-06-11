@@ -6,7 +6,7 @@
       <p class="mb-6 max-w-2xl font-light text-gray-500 md:text-lg lg:mb-8 lg:text-xl">
         {{ $block->input('text') }}</p>
     </div>
-    <div class="hidden lg:col-span-5 lg:mt-0 lg:flex">
+    <div class="lg:col-span-5 lg:mt-0 lg:flex">
       {!! TwillImage::make($block, 'cover_small')->crop('default')->width(640)->height(480)->render(['loading' => 'eager', 'layout' => 'constrained']) !!}
     </div>
   </div>

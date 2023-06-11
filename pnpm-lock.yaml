@@ -9,11 +9,11 @@ dependencies:
     specifier: ^1.7.16
     version: 1.7.16
   '@fontsource/montserrat':
-    specifier: ^5.0.2
-    version: 5.0.2
+    specifier: ^5.0.3
+    version: 5.0.3
   '@fontsource/pt-serif':
-    specifier: ^5.0.2
-    version: 5.0.2
+    specifier: ^5.0.3
+    version: 5.0.3
   '@ryangjchandler/alpine-tooltip':
     specifier: ^1.2.0
     version: 1.2.0
@@ -26,8 +26,8 @@ dependencies:
 
 devDependencies:
   '@prettier/plugin-php':
-    specifier: ^0.19.5
-    version: 0.19.5(prettier@2.8.8)
+    specifier: ^0.19.6
+    version: 0.19.6(prettier@2.8.8)
   '@shufo/prettier-plugin-blade':
     specifier: ^1.8.12
     version: 1.8.12
@@ -44,8 +44,8 @@ devDependencies:
     specifier: ^1.4.0
     version: 1.4.0
   concurrently:
-    specifier: ^8.1.0
-    version: 8.1.0
+    specifier: ^8.2.0
+    version: 8.2.0
   flowbite:
     specifier: ^1.6.5
     version: 1.6.5
@@ -411,12 +411,12 @@ packages:
     dev: true
     optional: true
 
-  /@fontsource/montserrat@5.0.2:
-    resolution: {integrity: sha512-pU5i2L3j1zWHmCxspsmgV46X+HE7XaT2rbpnsmYpmS8lSuSyiZhuwCzjU4To2+P3dxZj9WrJ9TcU26UcU8fhfg==}
+  /@fontsource/montserrat@5.0.3:
+    resolution: {integrity: sha512-HxbmY6UeFmwwaqLg3vdkre2U0YgACood2cllKC2ohJdwP9YAieJltodOAcgY0lwvpTAeadW8FlvKFWQIPcS4cg==}
     dev: false
 
-  /@fontsource/pt-serif@5.0.2:
-    resolution: {integrity: sha512-wTdmuELpzeY9lxarHd87Wwq2doOB03m66i7v7E5vSVRLue/S/0Qj3G0lHVUtugBG7k+v/XJ2xTmMwF/+ANDTug==}
+  /@fontsource/pt-serif@5.0.3:
+    resolution: {integrity: sha512-MU1K19WBSofmmwoau6dQzWKAKYPpaepIxsFQJo1sOPYmV/81qOKX5YgC0bgT8sVAvI8UclQoxse0LE02Jr70VA==}
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -489,14 +489,14 @@ packages:
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  /@prettier/plugin-php@0.19.5(prettier@2.8.8):
-    resolution: {integrity: sha512-AnmiB76G7qX2d7FbvGgABc3l4dVshOlBqxajiHe8nfMVTzmge7xDhiC28aP8OZafhIRksLKNRB1ZEemfN+j5pg==}
+  /@prettier/plugin-php@0.19.6(prettier@2.8.8):
+    resolution: {integrity: sha512-MFaBfdxfTbGNwClJ/EZd2ROTa/Bd7EV+ff2KG769I9RsmNcVWcHARIYlSlJqFGgSbumOm+Ylm6RIXdxb5kG+OA==}
     peerDependencies:
       prettier: ^1.15.0 || ^2.0.0
     dependencies:
       linguist-languages: 7.21.0
       mem: 8.1.1
-      php-parser: 3.1.4
+      php-parser: 3.1.5
       prettier: 2.8.8
     dev: true
 
@@ -679,7 +679,7 @@ packages:
     engines: {node: '>= 14.0.0'}
     hasBin: true
     dependencies:
-      '@prettier/plugin-php': 0.19.5(prettier@2.8.8)
+      '@prettier/plugin-php': 0.19.6(prettier@2.8.8)
       '@shufo/tailwindcss-class-sorter': 2.0.0
       aigle: 1.14.1
       ajv: 8.12.0
@@ -865,8 +865,8 @@ packages:
       yargs: 17.7.2
     dev: false
 
-  /concurrently@8.1.0:
-    resolution: {integrity: sha512-0AB6eOAtaW/r/kX2lCdolaWtT191ICeuJjEJvI9hT3zbPFuZ/iZaJwMRKwbuwADome7OKxk73L7od+fsveZ7tA==}
+  /concurrently@8.2.0:
+    resolution: {integrity: sha512-nnLMxO2LU492mTUj9qX/az/lESonSZu81UznYDoXtz1IQf996ixVqPAgHXwvHiHCAef/7S8HIK+fTFK7Ifk8YA==}
     engines: {node: ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -875,7 +875,7 @@ packages:
       lodash: 4.17.21
       rxjs: 7.8.1
       shell-quote: 1.8.1
-      spawn-command: 0.0.2-1
+      spawn-command: 0.0.2
       supports-color: 8.1.1
       tree-kill: 1.2.2
       yargs: 17.7.2
@@ -1611,6 +1611,10 @@ packages:
     resolution: {integrity: sha512-WUEfH4FWsVItqgOknM67msDdcUAfgPJsHhPNl6EPXzWtX+PfdY282m4i8YIJ9ALUEhf+qGDajdmW+VYqSd7Deg==}
     dev: true
 
+  /php-parser@3.1.5:
+    resolution: {integrity: sha512-jEY2DcbgCm5aclzBdfW86GM6VEIWcSlhTBSHN1qhJguVePlYe28GhwS0yoeLYXpM2K8y6wzLwrbq814n2PHSoQ==}
+    dev: true
+
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
@@ -1908,8 +1912,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /spawn-command@0.0.2:
+    resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
+    dev: true
+
   /spawn-command@0.0.2-1:
     resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
+    dev: false
 
   /string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
