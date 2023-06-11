@@ -20,7 +20,7 @@ return [
     | Tells if LQIP should be used if it is available.
     |
     */
-  'lqip' => true,
+  'lqip' => false,
 
   /*
     |--------------------------------------------------------------------------
