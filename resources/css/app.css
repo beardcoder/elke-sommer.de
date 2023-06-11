@@ -11,6 +11,14 @@ h6 {
   @apply hyphens-none font-header;
 }
 
+.format h2,
+.format h3,
+.format h4,
+.format h5,
+.format h6 {
+  @apply mt-8;
+}
+
 .error-msg[hidden] {
   opacity: 0;
   height: 0px;
