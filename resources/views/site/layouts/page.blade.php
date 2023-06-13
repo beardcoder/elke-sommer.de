@@ -23,6 +23,11 @@
   @yield('content')
 
   @vite(['resources/js/app.js'])
+
+  @production
+    <script async src="https://offen.letsbenow.de/script.js" data-account-id="2929a821-254a-45c8-8582-97af688ca90f">
+    </script>
+  @endproduction
 </body>
 
 </html>
