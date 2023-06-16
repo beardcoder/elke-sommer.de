@@ -20,7 +20,8 @@
     "ralphjsmit/laravel-seo": "^1.4",
     "spatie/laravel-backup": "^8.1",
     "spatie/laravel-honeypot": "^4.3",
-    "spatie/laravel-sitemap": "^6.3"
+    "spatie/laravel-sitemap": "^6.3",
+    "telegram-bot/api": "^2.4"
   },
   "require-dev": {
     "laravel/sail": "^1.18",

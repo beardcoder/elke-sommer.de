@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use A17\Twill\Facades\TwillAppSettings;
 use App\Mail\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
   public function contact(Request $request)
   {
     if (TwillAppSettings::get('homepage.email.receiver')) {
-      \Mail::to(TwillAppSettings::get('homepage.email.receiver'))->send(
+      Mail::to(TwillAppSettings::get('homepage.email.receiver'))->send(
         new Contact(
           $request->get('name'),
           $request->get('email'),

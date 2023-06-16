@@ -1,6 +1,14 @@
 <?php
 
 return [
+  'capsules' => [
+    'list' => [
+      [
+        'name' => 'Appointments',
+        'enabled' => true,
+      ],
+    ],
+  ],
   'block_editor' => [
     'use_twill_blocks' => [],
     'crops' => [

@@ -39,6 +39,12 @@ class AppServiceProvider extends ServiceProvider
         ->title('Linktree')
     );
 
+    TwillNavigation::addLink(
+      NavigationLink::make()
+        ->forModule('appointments')
+        ->title('Veranstaltungen')
+    );
+
     TwillAppSettings::registerSettingsGroup(
       SettingsGroup::make()
         ->name('homepage')

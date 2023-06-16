@@ -22,4 +22,4 @@
   </main>
 
   <x-footer />
-@endsection
+@stop

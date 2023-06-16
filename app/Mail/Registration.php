@@ -2,22 +2,25 @@
 
 namespace App\Mail;
 
+use App\Twill\Capsules\Appointments\Models\Appointment;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Contact extends Mailable
+class Registration extends Mailable
 {
   use Queueable, SerializesModels;
 
   /**
    * Create a new message instance.
    */
-  public function __construct(private $name, private $email, private $text)
-  {
+  public function __construct(
+    private string $name,
+    private string $email,
+    private Appointment $appointment
+  ) {
     //
   }
 
@@ -27,7 +30,7 @@ class Contact extends Mailable
   public function envelope(): Envelope
   {
     return new Envelope(
-      subject: '[Nachricht] ' . $this->name,
+      subject: '[Anmeldung] ' . $this->name,
       replyTo: $this->email
     );
   }
@@ -38,11 +41,11 @@ class Contact extends Mailable
   public function content(): Content
   {
     return new Content(
-      view: 'mail.contact',
+      view: 'mail.registration',
       with: [
         'name' => $this->name,
         'email' => $this->email,
-        'text' => $this->text,
+        'appointment' => $this->appointment,
       ]
     );
   }

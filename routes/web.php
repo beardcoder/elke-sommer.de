@@ -37,3 +37,10 @@ Route::get('{slug}', [
 Route::post('/mail', [\App\Http\Controllers\MailController::class, 'contact'])
   ->middleware(ProtectAgainstSpam::class)
   ->name('mail.contact');
+
+Route::post('/registration', [
+  \App\Twill\Capsules\Appointments\Http\Controllers\RegistrationController::class,
+  'index',
+])
+  ->middleware(ProtectAgainstSpam::class)
+  ->name('appointment.registration');
