@@ -4,6 +4,7 @@ namespace App\Twill\Capsules\Appointments\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use A17\Twill\Facades\TwillAppSettings;
+use App\Helpers\DateHelper;
 use Longman\TelegramBot\Telegram;
 use App\Mail\Registration;
 use App\Twill\Capsules\Appointments\Models\Appointment;
@@ -33,7 +34,12 @@ class RegistrationController extends Controller
 
       $bot->sendMessage(
         TwillAppSettings::get('homepage.telegram.chat_id'),
-        'Neue Anmeldung von ' . $request->get('name')
+        'Neue Anmeldung von ' .
+          $request->get('name') .
+          ' am ' .
+          DateHelper::getLocalDate($appointment->date_start)->formatLocalized(
+            '%d.%m.%Y'
+          )
       );
     }
     if (TwillAppSettings::get('homepage.email.receiver')) {
