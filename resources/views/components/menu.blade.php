@@ -13,11 +13,12 @@
     x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
     x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-95">
-    <button x-on:click="isOpen=false" class="absolute right-4 top-4 flex justify-end p-4 md:hidden">
+    <button x-on:click="isOpen=false" class="absolute right-4 top-4 flex justify-end p-4 md:hidden" title="Open Menu">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
         stroke="currentColor" class="h-6 w-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
+      <div class="sr-only">Menü</div>
     </button>
     <ul class="flex h-full flex-col items-center justify-center space-y-4">
       @foreach ($links as $link)
