@@ -12,6 +12,7 @@
     "area17/twill": "^3.0",
     "area17/twill-image": "^1.0",
     "bepsvpt/secure-headers": "^7.4",
+    "deployer/deployer": "^7.3",
     "guzzlehttp/guzzle": "^7.2",
     "jeroendesloovere/vcard": "^1.7",
     "laravel/framework": "^10.10",

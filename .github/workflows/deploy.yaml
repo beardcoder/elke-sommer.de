@@ -1,26 +1,28 @@
-name: Deploy
+name: deploy
 
-# Trigger the workflow on push and
-# pull request events on the production branch
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-# Authenticate to the the server via ssh
-# and run our deployment script
+on: push
+
+# It is important to specify "concurrency" for the workflow,
+# to prevent concurrency between different deploys.
+concurrency: production_environment
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy to server
-        uses: appleboy/ssh-action@master
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.SSHKEY }}
-          script: 'cd /home/viking/html/elke-sommer.de && ./.bin/deploy.sh'
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Deploy
+        uses: deployphp/action@v1
+        with:
+          dep: deploy
+          private-key: ${{ secrets.PRIVATE_KEY }}
