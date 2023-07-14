@@ -23,6 +23,6 @@ window.Alpine = Alpine
 
 Alpine.start()
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   window.lazyloading = new TwillImage()
 })
