@@ -29,6 +29,7 @@
     "@fontsource/montserrat": "^5.0.4",
     "@fontsource/pt-serif": "^5.0.4",
     "@ryangjchandler/alpine-tooltip": "^1.2.0",
+    "ackee-tracker": "^5.1.0",
     "alpinejs": "^3.12.3",
     "tippy.js": "^6.3.7"
   }
