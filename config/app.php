@@ -186,6 +186,7 @@ return [
   'aliases' => Facade::defaultAliases()
     ->merge([
       'DateHelper' => App\Helpers\DateHelper::class,
+      'Redis' => Illuminate\Support\Facades\Redis::class,
     ])
     ->toArray(),
 ];
