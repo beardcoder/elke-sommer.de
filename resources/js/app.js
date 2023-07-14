@@ -13,7 +13,7 @@ import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
 
 ackeeTracker
-  .create('https://tracking.letsbenow.de')
+  .create('https://tracking.elke-sommer.de')
   .record('6d8bf6f6-33f3-472a-b07a-cf3ad394e89b')
 
 Alpine.plugin(Tooltip)
