@@ -13,7 +13,6 @@ import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
 
 ackeeTracker
-  .attributes(true)
   .create('https://tracking.elke-sommer.de')
   .record('6d8bf6f6-33f3-472a-b07a-cf3ad394e89b')
 
