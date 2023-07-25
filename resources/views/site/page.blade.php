@@ -1,12 +1,4 @@
-{{-- https://mambaui.com/components --}}
-
-@extends('site.layouts.page')
-
-@section('meta')
-  {!! seo()->for($item) !!}
-@endsection
-
-@section('content')
+<x-layout>
   <header class="relative top-0 z-40 w-full p-4">
     <div class="container mx-auto flex h-16 justify-between">
       <a rel="noopener noreferrer" href="{{ route('frontend.home') }}" aria-label="Zur Startseite" title="Zur Startseite"
@@ -22,4 +14,4 @@
   </main>
 
   <x-footer />
-@stop
+</x-layout>

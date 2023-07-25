@@ -2,21 +2,24 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleJsonRepeaters;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
-use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Linktree;
 
 class LinktreeRepository extends ModuleRepository
 {
-  use HandleMedias, HandleFiles, HandleRevisions, HandleJsonRepeaters;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
+    use HandleJsonRepeaters;
 
-  protected $jsonRepeaters = ['links'];
+    protected $jsonRepeaters = ['links'];
 
-  public function __construct(Linktree $model)
-  {
-    $this->model = $model;
-  }
+    public function __construct(Linktree $model)
+    {
+        $this->model = $model;
+    }
 }

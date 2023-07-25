@@ -84,8 +84,7 @@ return [
      *
      * If you do not want any compressor at all, set it to null.
      */
-    'database_dump_compressor' =>
-      \Spatie\DbDumper\Compressors\GzipCompressor::class,
+    'database_dump_compressor' => \Spatie\DbDumper\Compressors\GzipCompressor::class,
 
     /*
      * The file extension used for the database dump files.
@@ -237,8 +236,7 @@ return [
      * No matter how you configure it the default strategy will never
      * delete the newest backup.
      */
-    'strategy' =>
-      \Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy::class,
+    'strategy' => \Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy::class,
 
     'default_strategy' => [
       /*

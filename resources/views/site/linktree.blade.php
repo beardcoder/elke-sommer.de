@@ -1,15 +1,8 @@
-@extends('site.layouts.page')
-
 @php
   $image = TwillImage::make($item, 'avatar');
   $image->srcSetWidths([128, 256]);
 @endphp
-
-@section('meta')
-  {!! seo()->for($item) !!}
-@endsection
-
-@section('content')
+<x-layout>
   <div class="flex h-full items-center justify-center p-8 dark:bg-gray-800">
     <div
       class="flex max-w-xl flex-col justify-center rounded-xl p-6 shadow-md dark:bg-gray-900 dark:text-gray-100 sm:px-12">
@@ -55,4 +48,4 @@
       </div>
     </div>
   </div>
-@endsection
+</x-layout>
