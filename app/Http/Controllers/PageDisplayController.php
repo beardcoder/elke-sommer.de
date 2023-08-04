@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use A17\Twill\Facades\TwillAppSettings;
 use App\Models\Linktree;
 use App\Repositories\PageRepository;
-use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\View\View;
 
@@ -20,7 +19,7 @@ class PageDisplayController extends Controller
         }
 
         SEOMeta::setTitle($page->title);
-        if($page->description) {
+        if ($page->description) {
             SEOMeta::setDescription($page->description);
         }
 
@@ -34,7 +33,7 @@ class PageDisplayController extends Controller
             $page = TwillAppSettings::get('homepage.homepage.page')->first();
 
             SEOMeta::setTitle($page->title);
-            if($page->description) {
+            if ($page->description) {
                 SEOMeta::setDescription($page->description);
             }
             if ($page->published) {
@@ -51,7 +50,7 @@ class PageDisplayController extends Controller
         $linktree = Linktree::all()[0];
 
         SEOMeta::setTitle($linktree->title);
-        if($linktree->description) {
+        if ($linktree->description) {
             SEOMeta::setDescription($page->description);
         }
         if ($linktree) {
