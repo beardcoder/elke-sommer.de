@@ -8,7 +8,6 @@
     "prettier": "prettier"
   },
   "devDependencies": {
-    "@prettier/plugin-php": "^0.19.6",
     "@shufo/prettier-plugin-blade": "^1.10.1",
     "@tailwindcss/typography": "^0.5.9",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
@@ -26,8 +25,8 @@
   },
   "dependencies": {
     "@colinaut/alpinejs-plugin-simple-validate": "^1.7.21",
-    "@fontsource/montserrat": "^5.0.7",
-    "@fontsource/pt-serif": "^5.0.8",
+    "@fontsource/montserrat": "^5.0.8",
+    "@fontsource/pt-serif": "^5.0.9",
     "@ryangjchandler/alpine-tooltip": "^1.2.0",
     "ackee-tracker": "^5.1.0",
     "alpinejs": "^3.12.3",
