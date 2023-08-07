@@ -9,7 +9,12 @@
 @section('content')
   <header class="relative top-0 z-40 w-full p-4">
     <div class="container mx-auto flex h-16 justify-between">
-      <a href="{{ route('frontend.home') }}" aria-label="Zur Startseite" title="Zur Startseite" class="flex items-center p-2">
+      <a
+        class="flex items-center p-2"
+        href="{{ route('frontend.home') }}"
+        title="Zur Startseite"
+        aria-label="Zur Startseite"
+      >
         <x-logo />
       </a>
       <x-menu />
@@ -26,7 +31,10 @@
           <p class="text-2xl font-semibold md:text-3xl">Entschuldigung diese Seite ist nicht verfügbar.</p>
           <p class="mb-8 mt-4 dark:text-gray-400">
             Aber keine Sorge, du kannst viele andere Dinge auf unserer Homepage finden.</p>
-          <a href="{{ route('frontend.home') }}" class="rounded bg-primary-500 px-8 py-3 font-semibold text-white">Zurück
+          <a
+            class="rounded bg-primary-500 px-8 py-3 font-semibold text-white"
+            href="{{ route('frontend.home') }}"
+          >Zurück
             zur Startseite</a>
         </div>
       </div>

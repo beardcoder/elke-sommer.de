@@ -30,6 +30,7 @@
     "@ryangjchandler/alpine-tooltip": "^1.2.0",
     "ackee-tracker": "^5.1.0",
     "alpinejs": "^3.12.3",
+    "swiper": "^10.1.0",
     "tippy.js": "^6.3.7"
   }
 }

@@ -44,3 +44,9 @@ a {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+:root {
+  --swiper-pagination-bottom: 0;
+  --swiper-navigation-color: var(--color-primary-500);
+  --swiper-pagination-color: var(--color-primary-500);
+}

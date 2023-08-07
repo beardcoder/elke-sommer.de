@@ -16,7 +16,11 @@
       <ul class="flex flex-wrap space-x-4 sm:space-x-8 md:ml-auto">
         @foreach ($social_links as $link)
           <li>
-            <a rel="noopener noreferrer" target="_blank" href="{{ $link->input('url') }}">{{ $link->input('title') }}</a>
+            <a
+              href="{{ $link->input('url') }}"
+              rel="noopener noreferrer"
+              target="_blank"
+            >{{ $link->input('title') }}</a>
           </li>
         @endforeach
       </ul>

@@ -1,12 +1,13 @@
-@twillBlockTitle('Stats Item')
-@twillRepeaterTitle('Stats Element')
-@twillRepeaterTrigger('Element hinzufügen')
-@twillBlockIcon('text')
-@twillBlockGroup('app')
+@twillRepeaterTitle('Rezension')
+@twillRepeaterTrigger('Rezension hinzufügen')
+@twillBlockIcon('b-quote')
+@twillRepeaterGroup('app')
+@twillRepeaterTitleField('name', ['hidePrefix' => true])
 
 <x-twill::input
-  name="title"
-  label="Title"
+  name="name"
+  label="Name"
+  :required="true"
 />
 
 <x-twill::wysiwyg

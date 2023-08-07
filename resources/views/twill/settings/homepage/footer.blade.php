@@ -2,6 +2,15 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::browser label="Navigation" module-name="pages" max="3" name="pages" />
+<x-twill::browser
+  name="pages"
+  label="Navigation"
+  module-name="pages"
+  max="3"
+/>
 
-<x-twill::repeater type="social_link" name="social_links" label="Social Links" />
+<x-twill::repeater
+  name="social_links"
+  type="social_link"
+  label="Social Links"
+/>

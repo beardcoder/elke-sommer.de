@@ -1,4 +1,5 @@
 import { TwillImage } from '../../vendor/area17/twill-image'
+import './components/testimonial'
 import validate from '@colinaut/alpinejs-plugin-simple-validate'
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/700.css'
