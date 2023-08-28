@@ -8,14 +8,9 @@ import '@fontsource/pt-serif/400.css'
 import '@fontsource/pt-serif/700-italic.css'
 import '@fontsource/pt-serif/700.css'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
-import * as ackeeTracker from 'ackee-tracker'
 import Alpine from 'alpinejs'
 import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
-
-ackeeTracker
-  .create('https://tracking.elke-sommer.de')
-  .record('6d8bf6f6-33f3-472a-b07a-cf3ad394e89b')
 
 Alpine.plugin(Tooltip)
 Alpine.plugin(validate)

@@ -75,7 +75,11 @@
       ]
   }
   </script>
-
+  <script
+    async
+    src="https://tracking.letsbenow.de/script.js"
+    data-website-id="2c520521-8de5-4d8f-9b65-61a7df862ddf"
+  ></script>
   @vite('resources/css/app.css')
 </head>
 
