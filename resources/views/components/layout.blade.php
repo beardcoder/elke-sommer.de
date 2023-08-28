@@ -78,7 +78,7 @@
   <script
     async
     src="https://tracking.letsbenow.de/script.js"
-    data-website-id="2c520521-8de5-4d8f-9b65-61a7df862ddf"
+    data-website-id="394a3598-1c57-4831-89d6-fb67542acb2f"
   ></script>
   @vite('resources/css/app.css')
 </head>
