@@ -84,8 +84,9 @@
           <a
             class="block w-full rounded border px-8 py-3 font-semibold dark:border-gray-100 dark:text-gray-100"
             href="{{ route('frontend.vcard') }}"
-          >Kontakt
-            Speichern</a>
+          >
+            Kontakt Speichern
+          </a>
         </div>
       </div>
     </div>

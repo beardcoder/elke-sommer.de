@@ -47,14 +47,14 @@ class PageDisplayController extends Controller
     public function linktree(): View
     {
         /** @var \App\Models\Page $page */
-        $linktree = Linktree::all()[0];
+        $page = Linktree::all()[0];
 
-        SEOMeta::setTitle($linktree->title);
-        if ($linktree->description) {
+        SEOMeta::setTitle($page->title);
+        if ($page->description) {
             SEOMeta::setDescription($page->description);
         }
-        if ($linktree) {
-            return view('site.linktree', ['item' => $linktree]);
+        if ($page) {
+            return view('site.linktree', ['item' => $page]);
         }
 
         abort(404);
