@@ -13,14 +13,14 @@ use A17\Twill\Models\Model;
 
 class Page extends Model implements Sortable
 {
-    use HasBlocks;
-    use HasSlug;
-    use HasMedias;
-    use HasFiles;
-    use HasRevisions;
-    use HasPosition;
+  use HasBlocks;
+  use HasSlug;
+  use HasMedias;
+  use HasFiles;
+  use HasRevisions;
+  use HasPosition;
 
-    protected $fillable = ['published', 'title', 'description', 'position'];
+  protected $fillable = ['published', 'title', 'description', 'position'];
 
-    public $slugAttributes = ['title'];
+  public $slugAttributes = ['title'];
 }

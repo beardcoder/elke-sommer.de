@@ -9,33 +9,33 @@ use A17\Twill\Models\Model;
 
 class Linktree extends Model
 {
-    use HasMedias;
-    use HasFiles;
-    use HasRevisions;
+  use HasMedias;
+  use HasFiles;
+  use HasRevisions;
 
-    protected $casts = [
-      'links' => 'array',
-    ];
+  protected $casts = [
+    'links' => 'array',
+  ];
 
-    protected $fillable = [
-      'published',
-      'title',
-      'name',
-      'description',
-      'phone',
-      'email',
-      'whatsapp',
-      'links',
-    ];
+  protected $fillable = [
+    'published',
+    'title',
+    'name',
+    'description',
+    'phone',
+    'email',
+    'whatsapp',
+    'links',
+  ];
 
-    public $mediasParams = [
-      'avatar' => [
-        'default' => [
-          [
-            'name' => 'default',
-            'ratio' => 1 / 1,
-          ],
+  public $mediasParams = [
+    'avatar' => [
+      'default' => [
+        [
+          'name' => 'default',
+          'ratio' => 1 / 1,
         ],
       ],
-    ];
+    ],
+  ];
 }

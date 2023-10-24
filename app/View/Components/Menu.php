@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class Menu extends Component
 {
-    public function render(): View
-    {
-        /** @var MenuLink[] $links */
-        $links = MenuLink::published()
-          ->orderBy('position')
-          ->get()
-          ->toTree();
+  public function render(): View
+  {
+    /** @var MenuLink[] $links */
+    $links = MenuLink::published()
+      ->orderBy('position')
+      ->get()
+      ->toTree();
 
-        return view('components.menu', ['links' => $links]);
-    }
+    return view('components.menu', ['links' => $links]);
+  }
 }

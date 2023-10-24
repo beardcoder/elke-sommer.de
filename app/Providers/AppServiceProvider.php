@@ -10,44 +10,44 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-    }
+  /**
+   * Register any application services.
+   */
+  public function register(): void
+  {
+  }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        TwillNavigation::addLink(
-            NavigationLink::make()
-              ->forModule('pages')
-              ->title('Seiten')
-              ->setChildren([
-                NavigationLink::make()
-                  ->forModule('menuLinks')
-                  ->title('Navigation'),
-              ])
-        );
-        TwillNavigation::addLink(
-            NavigationLink::make()
-              ->forSingleton('linktree')
-              ->title('Linktree')
-        );
+  /**
+   * Bootstrap any application services.
+   */
+  public function boot(): void
+  {
+    TwillNavigation::addLink(
+      NavigationLink::make()
+        ->forModule('pages')
+        ->title('Seiten')
+        ->setChildren([
+          NavigationLink::make()
+            ->forModule('menuLinks')
+            ->title('Navigation'),
+        ])
+    );
+    TwillNavigation::addLink(
+      NavigationLink::make()
+        ->forSingleton('linktree')
+        ->title('Linktree')
+    );
 
-        TwillNavigation::addLink(
-            NavigationLink::make()
-              ->forModule('appointments')
-              ->title('Veranstaltungen')
-        );
+    TwillNavigation::addLink(
+      NavigationLink::make()
+        ->forModule('appointments')
+        ->title('Veranstaltungen')
+    );
 
-        TwillAppSettings::registerSettingsGroup(
-            SettingsGroup::make()
-              ->name('homepage')
-              ->label('Homepage')
-        );
-    }
+    TwillAppSettings::registerSettingsGroup(
+      SettingsGroup::make()
+        ->name('homepage')
+        ->label('Homepage')
+    );
+  }
 }

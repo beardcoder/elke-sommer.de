@@ -11,6 +11,7 @@
   "plugins": [
     "@shufo/prettier-plugin-blade",
     "@trivago/prettier-plugin-sort-imports",
+    "@prettier/plugin-php",
     "prettier-plugin-tailwindcss"
   ],
   "overrides": [

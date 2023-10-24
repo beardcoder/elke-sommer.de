@@ -10,53 +10,53 @@ use Illuminate\View\View;
 
 class PageDisplayController extends Controller
 {
-    public function show(string $slug, PageRepository $pageRepository): View
-    {
-        $page = $pageRepository->forSlug($slug);
+  public function show(string $slug, PageRepository $pageRepository): View
+  {
+    $page = $pageRepository->forSlug($slug);
 
-        if (!$page) {
-            abort(404);
-        }
+    if (!$page) {
+      abort(404);
+    }
 
-        SEOMeta::setTitle($page->title);
-        if ($page->description) {
-            SEOMeta::setDescription($page->description);
-        }
+    SEOMeta::setTitle($page->title);
+    if ($page->description) {
+      SEOMeta::setDescription($page->description);
+    }
 
+    return view('site.page', ['item' => $page]);
+  }
+
+  public function home(): View
+  {
+    if (TwillAppSettings::get('homepage.homepage.page')->isNotEmpty()) {
+      /** @var \App\Models\Page $page */
+      $page = TwillAppSettings::get('homepage.homepage.page')->first();
+
+      SEOMeta::setTitle($page->title);
+      if ($page->description) {
+        SEOMeta::setDescription($page->description);
+      }
+      if ($page->published) {
         return view('site.page', ['item' => $page]);
+      }
     }
 
-    public function home(): View
-    {
-        if (TwillAppSettings::get('homepage.homepage.page')->isNotEmpty()) {
-            /** @var \App\Models\Page $page */
-            $page = TwillAppSettings::get('homepage.homepage.page')->first();
+    abort(404);
+  }
 
-            SEOMeta::setTitle($page->title);
-            if ($page->description) {
-                SEOMeta::setDescription($page->description);
-            }
-            if ($page->published) {
-                return view('site.page', ['item' => $page]);
-            }
-        }
+  public function linktree(): View
+  {
+    /** @var \App\Models\Page $page */
+    $page = Linktree::all()[0];
 
-        abort(404);
+    SEOMeta::setTitle($page->title);
+    if ($page->description) {
+      SEOMeta::setDescription($page->description);
+    }
+    if ($page) {
+      return view('site.linktree', ['item' => $page]);
     }
 
-    public function linktree(): View
-    {
-        /** @var \App\Models\Page $page */
-        $page = Linktree::all()[0];
-
-        SEOMeta::setTitle($page->title);
-        if ($page->description) {
-            SEOMeta::setDescription($page->description);
-        }
-        if ($page) {
-            return view('site.linktree', ['item' => $page]);
-        }
-
-        abort(404);
-    }
+    abort(404);
+  }
 }
