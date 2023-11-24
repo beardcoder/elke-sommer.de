@@ -31,7 +31,7 @@ class Registration extends Mailable
   {
     return new Envelope(
       subject: '[Anmeldung] ' . $this->name,
-      replyTo: $this->email
+      replyTo: [$this->email]
     );
   }
 
