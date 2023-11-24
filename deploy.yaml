@@ -9,8 +9,8 @@ config:
   keep_releases: 2
 
 hosts:
-  viking.uber.space:
-    remote_user: viking
+  host.letsbenow.de:
+    remote_user: markus
     deploy_path: '~/html/elke-sommer.de'
 
 tasks:
