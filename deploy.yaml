@@ -34,13 +34,10 @@ tasks:
     - npm:build
 
     - deploy:publish
-    - php:restart
   npm:install:
     - run: "cd {{release_path}} && npm install --prefer-offline --no-audit --progress=false"
   npm:build:
     - run: "cd {{release_path}} && npm run build"
-  php:restart:
-    - run: "uberspace tools restart php"
   build:
     - run: uptime
 
