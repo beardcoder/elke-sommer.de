@@ -1,12 +1,4 @@
-{{-- https://mambaui.com/components --}}
-
-@extends('site.layouts.page')
-
-@section('meta')
-  {!! seo($item ?? null) !!}
-@endsection
-
-@section('content')
+<x-layout>
   <header class="relative top-0 z-40 w-full p-4">
     <div class="container mx-auto flex h-16 justify-between">
       <a
@@ -23,7 +15,9 @@
   <main class="space-y-12">
 
     <section class="flex h-full items-center dark:bg-gray-900 dark:text-gray-100 sm:p-16">
-      <div class="container mx-auto my-8 flex flex-col items-center justify-center space-y-8 px-5 text-center sm:max-w-md">
+      <div
+        class="container mx-auto my-8 flex flex-col items-center justify-center space-y-8 px-5 text-center sm:max-w-md"
+      >
         <svg
           class="h-40 w-40 dark:text-gray-600"
           xmlns="http://www.w3.org/2000/svg"
@@ -60,4 +54,4 @@
   </main>
 
   <x-footer />
-@endsection
+</x-layout>

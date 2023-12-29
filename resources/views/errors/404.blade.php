@@ -1,12 +1,4 @@
-{{-- https://mambaui.com/components --}}
-
-@extends('site.layouts.page')
-
-@section('meta')
-  {!! seo($item ?? null) !!}
-@endsection
-
-@section('content')
+<x-layout>
   <header class="relative top-0 z-40 w-full p-4">
     <div class="container mx-auto flex h-16 justify-between">
       <a
@@ -42,4 +34,4 @@
   </main>
 
   <x-footer />
-@endsection
+</x-layout>
