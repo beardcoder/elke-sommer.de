@@ -35,9 +35,9 @@ tasks:
 
     - deploy:publish
   npm:install:
-    - run: "cd {{release_path}} && npm install --prefer-offline --no-audit --progress=false"
+    - run: 'cd {{release_path}} && npm install --prefer-offline --no-audit --progress=false'
   npm:build:
-    - run: "cd {{release_path}} && npm run build"
+    - run: 'cd {{release_path}} && npm run build'
   build:
     - run: uptime
 

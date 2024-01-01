@@ -1,8 +1,9 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import flowbiteTypography from 'flowbite-typography'
+import flowbitePlugin from 'flowbite/plugin'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     './resources/**/*.blade.php',
     './resources/**/*.js',
@@ -37,8 +38,8 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite-typography'),
-    require('flowbite/plugin'),
+    flowbiteTypography,
+    flowbitePlugin,
     ({ addBase, theme }) => {
       function extractColorVars(colorObj, colorGroup = '') {
         return Object.keys(colorObj).reduce((vars, colorKey) => {
