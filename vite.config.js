@@ -15,12 +15,7 @@ export default defineConfig({
     strictPort: true,
     port: 5173,
     hmr: {
-      // TODO: Is this the best way to achieve that? 🤔
-      // Force the Vite client to connect via SSL
-      // This will also force a "https://" URL in the hot file
       protocol: 'wss',
-      // The host where the Vite dev server can be accessed
-      // This will also force this host to be written to the hot file
       host: `${process.env.DDEV_HOSTNAME}`,
     },
   },

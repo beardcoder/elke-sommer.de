@@ -25,10 +25,7 @@ class Contact extends Mailable
    */
   public function envelope(): Envelope
   {
-    return new Envelope(
-      subject: '[Nachricht] ' . $this->name,
-      replyTo: [$this->email]
-    );
+    return new Envelope(subject: '[Nachricht] ' . $this->name, replyTo: [$this->email]);
   }
 
   /**

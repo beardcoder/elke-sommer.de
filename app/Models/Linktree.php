@@ -17,16 +17,7 @@ class Linktree extends Model
     'links' => 'array',
   ];
 
-  protected $fillable = [
-    'published',
-    'title',
-    'name',
-    'description',
-    'phone',
-    'email',
-    'whatsapp',
-    'links',
-  ];
+  protected $fillable = ['published', 'title', 'name', 'description', 'phone', 'email', 'whatsapp', 'links'];
 
   public $mediasParams = [
     'avatar' => [

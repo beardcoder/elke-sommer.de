@@ -16,9 +16,7 @@ class VCardController extends Controller
     $vcard->addEmail($linktree->email);
     $vcard->addPhoneNumber($linktree->phone, 'WORK');
     $vcard->addURL('https://elke-sommer.de');
-    $vcard->addPhotoContent(
-      file_get_contents($linktree->image('avatar', 'default'))
-    );
+    $vcard->addPhotoContent(file_get_contents($linktree->image('avatar', 'default')));
 
     return $vcard->download();
   }

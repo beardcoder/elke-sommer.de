@@ -2,13 +2,11 @@
   $image = TwillImage::make($block, 'form')->crop('default');
   $formId = uniqid('form-');
 @endphp
-<section class="py-6">
-  <div
-    class="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 rounded-lg px-8 py-16 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32"
-  >
+<x-partials.blocks.wrapper>
+  <div class="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 rounded-lg py-16 md:grid-cols-2">
     <div class="flex flex-col justify-between">
       <div class="space-y-2">
-        <h2 class="font-header text-4xl font-bold leading-tight lg:text-5xl">
+        <h2 class="font-header text-4xl lg:text-5xl">
           {{ $block->input('title') }}
         </h2>
         <div class="format text-gray-400">
@@ -121,4 +119,4 @@
     @endif
 
   </div>
-</section>
+</x-partials.blocks.wrapper>

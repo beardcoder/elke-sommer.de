@@ -8,7 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply hyphens-none font-header;
+  @apply hyphens-none font-header font-normal;
 }
 
 .format h2,

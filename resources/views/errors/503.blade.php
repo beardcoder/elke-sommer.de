@@ -14,7 +14,7 @@
 
   <main class="space-y-12">
 
-    <section class="flex h-full items-center dark:bg-gray-900 dark:text-gray-100 sm:p-16">
+    <section class="flex h-full items-center sm:p-16 dark:bg-gray-900 dark:text-gray-100">
       <div
         class="container mx-auto my-8 flex flex-col items-center justify-center space-y-8 px-5 text-center sm:max-w-md"
       >

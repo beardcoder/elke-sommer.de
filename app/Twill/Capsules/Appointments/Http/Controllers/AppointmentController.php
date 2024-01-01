@@ -65,10 +65,7 @@ class AppointmentController extends BaseModuleController
             ->name('appointment_registrations')
             ->triggerText('Anmeldung hinzufügen')
             ->label('Anmeldung')
-            ->fields([
-              Input::make()->name('name'),
-              Input::make()->name('email'),
-            ]),
+            ->fields([Input::make()->name('name'), Input::make()->name('email')]),
         ])
     );
 
@@ -145,18 +142,8 @@ class AppointmentController extends BaseModuleController
       QuickFilter::make()
         ->queryString('next')
         ->label('Bevorstehende')
-        ->amount(
-          fn() => $this->repository
-            ->whereDate('date_start', '>=', date('Y-m-d G:i:s'))
-            ->count()
-        )
-        ->apply(
-          fn(Builder $builder) => $builder->whereDate(
-            'date_start',
-            '>=',
-            date('Y-m-d G:i:s')
-          )
-        )
+        ->amount(fn() => $this->repository->whereDate('date_start', '>=', date('Y-m-d G:i:s'))->count())
+        ->apply(fn(Builder $builder) => $builder->whereDate('date_start', '>=', date('Y-m-d G:i:s')))
     );
 
     $filters->add(

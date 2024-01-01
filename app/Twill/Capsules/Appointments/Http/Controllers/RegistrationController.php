@@ -23,31 +23,20 @@ class RegistrationController extends Controller
       'appointment_id' => $request->get('appointment'),
     ]);
 
-    if (
-      TwillAppSettings::get('homepage.telegram.api_key') &&
-      TwillAppSettings::get('homepage.telegram.chat_id')
-    ) {
-      $bot = new \TelegramBot\Api\BotApi(
-        TwillAppSettings::get('homepage.telegram.api_key')
-      );
+    if (TwillAppSettings::get('homepage.telegram.api_key') && TwillAppSettings::get('homepage.telegram.chat_id')) {
+      $bot = new \TelegramBot\Api\BotApi(TwillAppSettings::get('homepage.telegram.api_key'));
 
       $bot->sendMessage(
         TwillAppSettings::get('homepage.telegram.chat_id'),
         'Neue Anmeldung von ' .
           $request->get('name') .
           ' am ' .
-          DateHelper::getLocalDate($appointment->date_start)->formatLocalized(
-            '%d.%m.%Y'
-          )
+          DateHelper::getLocalDate($appointment->date_start)->formatLocalized('%d.%m.%Y')
       );
     }
     if (TwillAppSettings::get('homepage.email.receiver')) {
       Mail::to(TwillAppSettings::get('homepage.email.receiver'))->send(
-        new Registration(
-          $request->get('name'),
-          $request->get('email'),
-          $appointment
-        )
+        new Registration($request->get('name'), $request->get('email'), $appointment)
       );
     }
 

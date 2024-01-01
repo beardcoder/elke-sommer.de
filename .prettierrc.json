@@ -1,13 +1,8 @@
 {
-  "tabWidth": 2,
-  "wrapAttributes": "auto",
   "semi": false,
   "singleQuote": true,
-  "trailingComma": "all",
-  "bracketSpacing": true,
-  "jsxBracketSameLine": false,
-  "jsxSingleQuote": false,
-  "sortTailwindcssClasses": true,
+  "tabWidth": 2,
+  "printWidth": 120,
   "plugins": [
     "@shufo/prettier-plugin-blade",
     "@trivago/prettier-plugin-sort-imports",
@@ -19,6 +14,7 @@
       "files": ["*.blade.php"],
       "options": {
         "tabWidth": 2,
+        "wrapAttributes": "force-expand-multiline",
         "parser": "blade"
       }
     }

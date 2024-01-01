@@ -14,7 +14,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['PT Serif', ...fontFamily.sans],
-        header: ['Montserrat', ...fontFamily.sans],
+        header: ['Satisfy', 'script', ...fontFamily.sans],
       },
       colors: {
         primary: {

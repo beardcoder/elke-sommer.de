@@ -15,6 +15,6 @@
       ['script' => 'super'],
       ['script' => 'sub'],
       'link',
-      'clean',
+      'clean'
   ]"
 />

@@ -17,11 +17,8 @@ class Registration extends Mailable
   /**
    * Create a new message instance.
    */
-  public function __construct(
-    private string $name,
-    private string $email,
-    private Appointment $appointment
-  ) {
+  public function __construct(private string $name, private string $email, private Appointment $appointment)
+  {
   }
 
   /**
@@ -29,10 +26,7 @@ class Registration extends Mailable
    */
   public function envelope(): Envelope
   {
-    return new Envelope(
-      subject: '[Anmeldung] ' . $this->name,
-      replyTo: [$this->email]
-    );
+    return new Envelope(subject: '[Anmeldung] ' . $this->name, replyTo: [$this->email]);
   }
 
   /**
