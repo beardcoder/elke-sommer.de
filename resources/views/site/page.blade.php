@@ -1,4 +1,7 @@
 <x-layout>
+  @if (TwillAppSettings::get('homepage.homepage.wanderung'))
+    <x-wanderung />
+  @endif
   <header class="relative top-0 z-40 w-full p-4">
     <div class="container mx-auto flex h-16 justify-between">
       <a
