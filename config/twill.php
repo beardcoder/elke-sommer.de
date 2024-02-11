@@ -12,6 +12,14 @@ return [
   'block_editor' => [
     'use_twill_blocks' => [],
     'crops' => [
+      'text_image' => [
+        'default' => [
+          [
+            'name' => 'Default',
+            'ratio' => 0,
+          ],
+        ],
+      ],
       'cover' => [
         'default' => [
           [
