@@ -14,7 +14,7 @@ class PageDisplayController extends Controller
   {
     $page = $pageRepository->forSlug($slug);
 
-    if (!$page) {
+    if (!$page instanceof \A17\Twill\Models\Contracts\TwillModelContract) {
       abort(404);
     }
 

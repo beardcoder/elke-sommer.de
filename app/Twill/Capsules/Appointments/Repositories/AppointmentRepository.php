@@ -15,7 +15,7 @@ class AppointmentRepository extends ModuleRepository
     $this->model = $model;
   }
 
-  public function afterSave($model, $fields): void
+  public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $model, array $fields): void
   {
     $this->updateRepeater(
       $model,
@@ -27,7 +27,7 @@ class AppointmentRepository extends ModuleRepository
     parent::afterSave($model, $fields);
   }
 
-  public function getFormFields($object): array
+  public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $object): array
   {
     $fields = parent::getFormFields($object);
 

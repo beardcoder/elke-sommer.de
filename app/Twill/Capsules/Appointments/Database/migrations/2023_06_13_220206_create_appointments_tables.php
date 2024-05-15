@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAppointmentsTables extends Migration
 {
-  public function up()
+  public function up(): void
   {
-    Schema::create('appointments', function (Blueprint $table) {
+    Schema::create('appointments', function (Blueprint $table): void {
       // this will create an id, a "published" column, and soft delete and timestamps columns
       createDefaultTableFields($table);
 
@@ -25,7 +25,7 @@ class CreateAppointmentsTables extends Migration
       // $table->timestamp('publish_end_date')->nullable();
     });
 
-    Schema::create('appointment_registrations', function (Blueprint $table) {
+    Schema::create('appointment_registrations', function (Blueprint $table): void {
       // this will create an id, a "published" column, and soft delete and timestamps columns
       createDefaultTableFields($table);
 
@@ -34,12 +34,12 @@ class CreateAppointmentsTables extends Migration
       $table->foreignIdFor(Appointment::class)->nullable();
     });
 
-    Schema::create('appointment_revisions', function (Blueprint $table) {
+    Schema::create('appointment_revisions', function (Blueprint $table): void {
       createDefaultRevisionsTableFields($table, 'appointment');
     });
   }
 
-  public function down()
+  public function down(): void
   {
     Schema::dropIfExists('appointment_revisions');
     Schema::dropIfExists('appointments');

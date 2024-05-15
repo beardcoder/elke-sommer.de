@@ -45,8 +45,6 @@ class MenuLinkController extends BaseModuleController
    */
   protected function additionalIndexTableColumns(): TableColumns
   {
-    $table = parent::additionalIndexTableColumns();
-
-    return $table;
+    return parent::additionalIndexTableColumns();
   }
 }

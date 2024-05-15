@@ -10,8 +10,6 @@ class Appointment extends Model
 {
   use HasRevisions;
 
-  protected $dates = ['date_start', 'date_end'];
-
   protected $casts = [
     'date_start' => 'datetime',
     'date_end' => 'datetime',

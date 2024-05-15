@@ -26,10 +26,12 @@
     "telegram-bot/api": "^2.4"
   },
   "require-dev": {
+    "driftingly/rector-laravel": "^1.2",
     "ergebnis/composer-normalize": "^2.35",
     "friendsofphp/php-cs-fixer": "^3.22",
     "laravel/sail": "^1.18",
     "nunomaduro/collision": "^7.0",
+    "rector/rector": "^1.0",
     "spatie/laravel-ignition": "^2.0"
   },
   "minimum-stability": "stable",
