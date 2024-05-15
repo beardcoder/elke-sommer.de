@@ -41,7 +41,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i"
           SOURCE: "./"
-          REMOTE_HOST: viking.user.space
+          REMOTE_HOST: viking.uber.space
           REMOTE_USER: viking
           TARGET: /home/viking/html/elke-sommer.de
           EXCLUDE: ".env, .github, .git, .ddev, node_modules, storage, .env, DOCKER_ENV, output.log, Dockerfile-php-build, docker_tag"
