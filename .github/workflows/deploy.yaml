@@ -44,7 +44,7 @@ jobs:
           REMOTE_HOST: viking.uber.space
           REMOTE_USER: viking
           TARGET: /home/viking/html/elke-sommer.de
-          EXCLUDE: ".env, .github, .git, .ddev, node_modules, storage, .env, DOCKER_ENV, output.log, Dockerfile-php-build, docker_tag"
+          EXCLUDE: ".env, .github, .git, .ddev, node_modules, storage, public/storage .env, DOCKER_ENV, output.log, Dockerfile-php-build, docker_tag"
           SCRIPT_AFTER: |
             cd /home/viking/html/elke-sommer.de
             php artisan optimize:clear
