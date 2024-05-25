@@ -8,35 +8,35 @@ use App\Twill\Capsules\Appointments\Models\Appointment;
 
 class AppointmentRepository extends ModuleRepository
 {
-  use HandleRevisions;
+    use HandleRevisions;
 
-  public function __construct(Appointment $model)
-  {
-    $this->model = $model;
-  }
+    public function __construct(Appointment $model)
+    {
+        $this->model = $model;
+    }
 
-  public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $model, array $fields): void
-  {
-    $this->updateRepeater(
-      $model,
-      $fields,
-      'appointment_registrations',
-      AppointmentRegistrationRepository::class,
-      'appointment_registrations'
-    );
-    parent::afterSave($model, $fields);
-  }
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $model, array $fields): void
+    {
+        $this->updateRepeater(
+            $model,
+            $fields,
+            'appointment_registrations',
+            AppointmentRegistrationRepository::class,
+            'appointment_registrations'
+        );
+        parent::afterSave($model, $fields);
+    }
 
-  public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $object): array
-  {
-    $fields = parent::getFormFields($object);
+    public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $object): array
+    {
+        $fields = parent::getFormFields($object);
 
-    return $this->getFormFieldsForRepeater(
-      $object,
-      $fields,
-      'appointment_registrations',
-      AppointmentRegistrationRepository::class,
-      'appointment_registrations'
-    );
-  }
+        return $this->getFormFieldsForRepeater(
+            $object,
+            $fields,
+            'appointment_registrations',
+            AppointmentRegistrationRepository::class,
+            'appointment_registrations'
+        );
+    }
 }

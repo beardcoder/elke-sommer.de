@@ -8,12 +8,12 @@ use App\Models\MenuLink;
 
 class MenuLinkRepository extends ModuleRepository
 {
-  use HandleNesting;
+    use HandleNesting;
 
-  protected $relatedBrowsers = ['page'];
+    protected $relatedBrowsers = ['page'];
 
-  public function __construct(MenuLink $model)
-  {
-    $this->model = $model;
-  }
+    public function __construct(MenuLink $model)
+    {
+        $this->model = $model;
+    }
 }

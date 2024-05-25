@@ -12,14 +12,14 @@ use App\Models\Page;
 
 class PageRepository extends ModuleRepository
 {
-  use HandleBlocks;
-  use HandleSlugs;
-  use HandleMedias;
-  use HandleFiles;
-  use HandleRevisions;
+    use HandleBlocks;
+    use HandleSlugs;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
 
-  public function __construct(Page $model)
-  {
-    $this->model = $model;
-  }
+    public function __construct(Page $model)
+    {
+        $this->model = $model;
+    }
 }

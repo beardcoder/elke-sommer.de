@@ -13,53 +13,53 @@ use A17\Twill\Services\Listings\TableColumns;
 
 class PageController extends BaseModuleController
 {
-  protected $moduleName = 'pages';
+    protected $moduleName = 'pages';
 
-  /**
-   * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-   */
-  protected function setUpController(): void
-  {
-    $this->setPermalinkBase('');
-    $this->withoutLanguageInPermalink();
-  }
+    /**
+     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
+     */
+    protected function setUpController(): void
+    {
+        $this->setPermalinkBase('');
+        $this->withoutLanguageInPermalink();
+    }
 
-  /**
-   * See the table builder docs for more information. If you remove this method you can use the blade files.
-   * When using twill:module:make you can specify --bladeForm to use a blade form instead.
-   */
-  public function getForm(TwillModelContract $model): Form
-  {
-    $form = parent::getForm($model);
+    /**
+     * See the table builder docs for more information. If you remove this method you can use the blade files.
+     * When using twill:module:make you can specify --bladeForm to use a blade form instead.
+     */
+    public function getForm(TwillModelContract $model): Form
+    {
+        $form = parent::getForm($model);
 
-    $form->add(
-      Input::make()
-        ->name('description')
-        ->label('Description')
-    );
-    $form->addFieldset(
-      Fieldset::make()
-        ->id('content')
-        ->title('Inhalt')
-        ->fields([BlockEditor::make()])
-    );
+        $form->add(
+            Input::make()
+              ->name('description')
+              ->label('Description')
+        );
+        $form->addFieldset(
+            Fieldset::make()
+              ->id('content')
+              ->title('Inhalt')
+              ->fields([BlockEditor::make()])
+        );
 
-    return $form;
-  }
+        return $form;
+    }
 
-  /**
-   * This is an example and can be removed if no modifications are needed to the table.
-   */
-  protected function additionalIndexTableColumns(): TableColumns
-  {
-    $table = parent::additionalIndexTableColumns();
+    /**
+     * This is an example and can be removed if no modifications are needed to the table.
+     */
+    protected function additionalIndexTableColumns(): TableColumns
+    {
+        $table = parent::additionalIndexTableColumns();
 
-    $table->add(
-      Text::make()
-        ->field('description')
-        ->title('Description')
-    );
+        $table->add(
+            Text::make()
+              ->field('description')
+              ->title('Description')
+        );
 
-    return $table;
-  }
+        return $table;
+    }
 }

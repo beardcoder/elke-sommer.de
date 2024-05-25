@@ -26,6 +26,7 @@
     "telegram-bot/api": "^2.4"
   },
   "require-dev": {
+    "barryvdh/laravel-ide-helper": "^3.0",
     "driftingly/rector-laravel": "^1.2",
     "ergebnis/composer-normalize": "^2.35",
     "friendsofphp/php-cs-fixer": "^3.22",
@@ -60,12 +61,17 @@
   },
   "extra": {
     "laravel": {
-      "dont-discover": []
+      "dont-discover": [
+          "barryvdh/laravel-ide-helper"
+      ]
     }
   },
   "scripts": {
     "post-update-cmd": [
-      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+        "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+        "@php artisan ide-helper:generate",
+        "@php artisan ide-helper:meta"
     ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

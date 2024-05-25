@@ -11,15 +11,15 @@ use App\Models\Linktree;
 
 class LinktreeRepository extends ModuleRepository
 {
-  use HandleMedias;
-  use HandleFiles;
-  use HandleRevisions;
-  use HandleJsonRepeaters;
+    use HandleMedias;
+    use HandleFiles;
+    use HandleRevisions;
+    use HandleJsonRepeaters;
 
-  protected $jsonRepeaters = ['links'];
+    protected $jsonRepeaters = ['links'];
 
-  public function __construct(Linktree $model)
-  {
-    $this->model = $model;
-  }
+    public function __construct(Linktree $model)
+    {
+        $this->model = $model;
+    }
 }

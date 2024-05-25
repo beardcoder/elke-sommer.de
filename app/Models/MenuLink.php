@@ -10,9 +10,9 @@ use A17\Twill\Models\Model;
 
 class MenuLink extends Model implements Sortable
 {
-  use HasPosition;
-  use HasNesting;
-  use HasRelated;
+    use HasPosition;
+    use HasNesting;
+    use HasRelated;
 
-  protected $fillable = ['published', 'title', 'position'];
+    protected $fillable = ['published', 'title', 'position'];
 }

@@ -16,7 +16,7 @@ class MailController extends Controller
 
             $bot->sendMessage(
                 TwillAppSettings::get('homepage.telegram.chat_id'),
-                'Neue Nachricht von ' . $request->get('name') . "\nEmail: " . $request->get('email') . "\n" . $request->get('message')
+                'Neue Nachricht von '.$request->get('name')."\nEmail: ".$request->get('email')."\n".$request->get('message')
             );
         }
         if (TwillAppSettings::get('homepage.email.receiver')) {
