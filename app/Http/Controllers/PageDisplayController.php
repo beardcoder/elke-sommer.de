@@ -19,6 +19,7 @@ class PageDisplayController extends Controller
         }
 
         SEOMeta::setTitle($page->title);
+        SEOMeta::setCanonical($page->getFullUrl());
         if ($page->description) {
             SEOMeta::setDescription($page->description);
         }
