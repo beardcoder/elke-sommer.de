@@ -12266,6 +12266,47 @@ namespace Illuminate\Support\Facades {
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
         }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @return bool 
+         * @static 
+         */        public static function wantsTurboStream()
+        {
+                        return \Illuminate\Http\Request::wantsTurboStream();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @return bool 
+         * @static 
+         */        public static function wantsTurboStreams()
+        {
+                        return \Illuminate\Http\Request::wantsTurboStreams();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @return bool 
+         * @static 
+         */        public static function wasFromTurboNative()
+        {
+                        return \Illuminate\Http\Request::wasFromTurboNative();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @param string|null $frame
+         * @return bool 
+         * @static 
+         */        public static function wasFromTurboFrame($frame = null)
+        {
+                        return \Illuminate\Http\Request::wasFromTurboFrame($frame);
+        }
             }
             /**
      * 
@@ -12518,6 +12559,30 @@ namespace Illuminate\Support\Facades {
          */        public static function flushMacros()
         {
                         \Illuminate\Routing\ResponseFactory::flushMacros();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @param mixed $model
+         * @param string|null $action
+         * @return \HotwiredLaravel\TurboLaravel\Http\MultiplePendingTurboStreamResponse|\HotwiredLaravel\TurboLaravel\Http\PendingTurboStreamResponse 
+         * @static 
+         */        public static function turboStream($model = null, $action = null)
+        {
+                        return \Illuminate\Routing\ResponseFactory::turboStream($model, $action);
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @param mixed $view
+         * @param array $data
+         * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory 
+         * @static 
+         */        public static function turboStreamView($view, $data = [])
+        {
+                        return \Illuminate\Routing\ResponseFactory::turboStreamView($view, $data);
         }
             }
             /**
@@ -19074,6 +19139,234 @@ namespace Artesaos\SEOTools\Facades {
             }
     }
 
+namespace HotwiredLaravel\TurboLaravel\Facades {
+            /**
+     * 
+     *
+     * @see \HotwiredLaravel\TurboLaravel\Turbo
+     * @mixin \HotwiredLaravel\TurboLaravel\Turbo
+     * @method static bool shouldBroadcastToOthers
+     * @method static string domId(Model $model, string $prefix = "")
+     * @method static ?string currentRequestId()
+     */        class Turbo {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function isTurboNativeVisit()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->isTurboNativeVisit();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function setVisitingFromTurboNative()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->setVisitingFromTurboNative();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function setTurboTrackingRequestId($requestId)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->setTurboTrackingRequestId($requestId);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function currentRequestId()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->currentRequestId();
+        }
+                    /**
+         * 
+         *
+         * @param bool|\Closure $toOthers
+         * @return \Illuminate\Support\HigherOrderTapProxy|mixed 
+         * @static 
+         */        public static function broadcastToOthers($toOthers = true)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->broadcastToOthers($toOthers);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function shouldBroadcastToOthers()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->shouldBroadcastToOthers();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcaster()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Turbo $instance */
+                        return $instance->broadcaster();
+        }
+            }
+            /**
+     * 
+     *
+     * @mixin \HotwiredLaravel\TurboLaravel\Broadcasting\Factory
+     */        class TurboStream {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function withoutBroadcasts($callback)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->withoutBroadcasts($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function fake()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->fake();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastAppend($content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastAppend($content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastPrepend($content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastPrepend($content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastBefore($content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastBefore($content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastAfter($content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastAfter($content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastUpdate($content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastUpdate($content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastReplace($content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastReplace($content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastRemove($target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastRemove($target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastRefresh($channel = null)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastRefresh($channel);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function broadcastAction($action, $content = null, $target = null, $targets = null, $channel = null, $attributes = [])
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->broadcastAction($action, $content, $target, $targets, $channel, $attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function record($broadcast)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->record($broadcast);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function clearRecordedBroadcasts()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->clearRecordedBroadcasts();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function assertBroadcasted($callback)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->assertBroadcasted($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function assertBroadcastedTimes($callback, $times = 1, $message = null)
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->assertBroadcastedTimes($callback, $times, $message);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function assertNothingWasBroadcasted()
+        {
+                        /** @var \HotwiredLaravel\TurboLaravel\Broadcasting\Factory $instance */
+                        return $instance->assertNothingWasBroadcasted();
+        }
+            }
+    }
+
 namespace Intervention\Image\Facades {
             /**
      * 
@@ -19982,6 +20275,47 @@ namespace Illuminate\Http {
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
         }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @return bool 
+         * @static 
+         */        public static function wantsTurboStream()
+        {
+                        return \Illuminate\Http\Request::wantsTurboStream();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @return bool 
+         * @static 
+         */        public static function wantsTurboStreams()
+        {
+                        return \Illuminate\Http\Request::wantsTurboStreams();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @return bool 
+         * @static 
+         */        public static function wasFromTurboNative()
+        {
+                        return \Illuminate\Http\Request::wasFromTurboNative();
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @param string|null $frame
+         * @return bool 
+         * @static 
+         */        public static function wasFromTurboFrame($frame = null)
+        {
+                        return \Illuminate\Http\Request::wasFromTurboFrame($frame);
+        }
             }
     }
 
@@ -20098,6 +20432,35 @@ namespace Illuminate\Routing {
          */        public static function emailVerification()
         {
                         return \Illuminate\Routing\Router::emailVerification();
+        }
+            }
+            /**
+     * 
+     *
+     */        class ResponseFactory {
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @param mixed $model
+         * @param string|null $action
+         * @return \HotwiredLaravel\TurboLaravel\Http\MultiplePendingTurboStreamResponse|\HotwiredLaravel\TurboLaravel\Http\PendingTurboStreamResponse 
+         * @static 
+         */        public static function turboStream($model = null, $action = null)
+        {
+                        return \Illuminate\Routing\ResponseFactory::turboStream($model, $action);
+        }
+                    /**
+         * 
+         *
+         * @see \HotwiredLaravel\TurboLaravel\TurboServiceProvider::configureRequestAndResponseMacros()
+         * @param mixed $view
+         * @param array $data
+         * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory 
+         * @static 
+         */        public static function turboStreamView($view, $data = [])
+        {
+                        return \Illuminate\Routing\ResponseFactory::turboStreamView($view, $data);
         }
             }
     }
@@ -23613,6 +23976,8 @@ namespace  {
             class Twitter extends \Artesaos\SEOTools\Facades\TwitterCard {}
             class JsonLd extends \Artesaos\SEOTools\Facades\JsonLd {}
             class SEO extends \Artesaos\SEOTools\Facades\SEOTools {}
+            class Turbo extends \HotwiredLaravel\TurboLaravel\Facades\Turbo {}
+            class TurboStream extends \HotwiredLaravel\TurboLaravel\Facades\TurboStream {}
             class Image extends \Intervention\Image\Facades\Image {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
             class SEOManager extends \RalphJSmit\Laravel\SEO\Facades\SEOManager {}
