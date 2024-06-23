@@ -9,14 +9,14 @@ class CreateAppointmentsTables extends Migration
 {
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table): void {
+        Schema::create('appointments', function (Blueprint $blueprint): void {
             // this will create an id, a "published" column, and soft delete and timestamps columns
-            createDefaultTableFields($table);
+            createDefaultTableFields($blueprint);
 
             // feel free to modify the name of this column, but title is supported by default (you would need to specify the name of the column Twill should consider as your "title" column in your module controller if you change it)
-            $table->string('title', 200)->nullable();
-            $table->dateTime('date_start')->nullable();
-            $table->dateTime('date_end')->nullable();
+            $blueprint->string('title', 200)->nullable();
+            $blueprint->dateTime('date_start')->nullable();
+            $blueprint->dateTime('date_end')->nullable();
 
             // your generated model and form include a description field, to get you started, but feel free to get rid of it if you don't need it
 
@@ -25,17 +25,17 @@ class CreateAppointmentsTables extends Migration
             // $table->timestamp('publish_end_date')->nullable();
         });
 
-        Schema::create('appointment_registrations', function (Blueprint $table): void {
+        Schema::create('appointment_registrations', function (Blueprint $blueprint): void {
             // this will create an id, a "published" column, and soft delete and timestamps columns
-            createDefaultTableFields($table);
+            createDefaultTableFields($blueprint);
 
-            $table->string('name', 200)->nullable();
-            $table->string('email', 200)->nullable();
-            $table->foreignIdFor(Appointment::class)->nullable();
+            $blueprint->string('name', 200)->nullable();
+            $blueprint->string('email', 200)->nullable();
+            $blueprint->foreignIdFor(Appointment::class)->nullable();
         });
 
-        Schema::create('appointment_revisions', function (Blueprint $table): void {
-            createDefaultRevisionsTableFields($table, 'appointment');
+        Schema::create('appointment_revisions', function (Blueprint $blueprint): void {
+            createDefaultRevisionsTableFields($blueprint, 'appointment');
         });
     }
 

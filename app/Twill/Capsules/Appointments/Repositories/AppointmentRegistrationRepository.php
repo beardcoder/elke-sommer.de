@@ -7,8 +7,8 @@ use App\Twill\Capsules\Appointments\Models\AppointmentRegistration;
 
 class AppointmentRegistrationRepository extends ModuleRepository
 {
-    public function __construct(AppointmentRegistration $model)
+    public function __construct(AppointmentRegistration $appointmentRegistration)
     {
-        $this->model = $model;
+        $this->model = $appointmentRegistration;
     }
 }

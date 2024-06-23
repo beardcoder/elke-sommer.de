@@ -9,10 +9,18 @@ use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__.'/app',
+        __DIR__ . '/app',
     ])
     ->withPhpSets(php83: true)
-    ->withPreparedSets(earlyReturn: true, codeQuality: true, typeDeclarations: true, codingStyle: true, instanceOf: true)
+    ->withPreparedSets(
+        codeQuality: true,
+        codingStyle: true,
+        typeDeclarations: true,
+        naming: true,
+        instanceOf: true,
+        earlyReturn: true,
+        strictBooleans: true
+    )
     ->withSets([
         LaravelSetList::LARAVEL_100,
     ]);

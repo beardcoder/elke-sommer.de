@@ -23,9 +23,9 @@ class LinktreeController extends BaseModuleController
     }
 
     #[\Override]
-    public function getForm(TwillModelContract $model): Form
+    public function getForm(TwillModelContract $twillModelContract): Form
     {
-        $form = parent::getForm($model);
+        $form = parent::getForm($twillModelContract);
 
         $form->addFieldset(
             Fieldset::make()

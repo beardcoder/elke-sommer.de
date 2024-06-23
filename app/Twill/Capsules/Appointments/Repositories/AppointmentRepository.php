@@ -10,31 +10,31 @@ class AppointmentRepository extends ModuleRepository
 {
     use HandleRevisions;
 
-    public function __construct(Appointment $model)
+    public function __construct(Appointment $appointment)
     {
-        $this->model = $model;
+        $this->model = $appointment;
     }
 
     #[\Override]
-    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $model, array $fields): void
+    public function afterSave(\A17\Twill\Models\Contracts\TwillModelContract $twillModelContract, array $fields): void
     {
         $this->updateRepeater(
-            $model,
+            $twillModelContract,
             $fields,
             'appointment_registrations',
             AppointmentRegistrationRepository::class,
             'appointment_registrations'
         );
-        parent::afterSave($model, $fields);
+        parent::afterSave($twillModelContract, $fields);
     }
 
     #[\Override]
-    public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $object): array
+    public function getFormFields(\A17\Twill\Models\Contracts\TwillModelContract $twillModelContract): array
     {
-        $fields = parent::getFormFields($object);
+        $fields = parent::getFormFields($twillModelContract);
 
         return $this->getFormFieldsForRepeater(
-            $object,
+            $twillModelContract,
             $fields,
             'appointment_registrations',
             AppointmentRegistrationRepository::class,

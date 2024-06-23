@@ -18,8 +18,8 @@ class LinktreeRepository extends ModuleRepository
 
     protected $jsonRepeaters = ['links'];
 
-    public function __construct(Linktree $model)
+    public function __construct(Linktree $linktree)
     {
-        $this->model = $model;
+        $this->model = $linktree;
     }
 }

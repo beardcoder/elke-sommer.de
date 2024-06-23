@@ -28,9 +28,9 @@ class AppointmentController extends BaseModuleController
     }
 
     #[\Override]
-    public function getForm(TwillModelContract $model): Form
+    public function getForm(TwillModelContract $twillModelContract): Form
     {
-        $form = parent::getForm($model);
+        $form = parent::getForm($twillModelContract);
         $form->addFieldset(
             Fieldset::make()
               ->title('Datum')
@@ -70,15 +70,15 @@ class AppointmentController extends BaseModuleController
     #[\Override]
     public function getCreateForm(): Form
     {
-        $form = parent::getCreateForm();
+        $createForm = parent::getCreateForm();
 
-        $form->add(
+        $createForm->add(
             Input::make()
               ->name('title')
               ->label('Titel')
         );
 
-        $form->add(
+        $createForm->add(
             DatePicker::make()
               ->name('date_start')
               ->label('Start Datum')
@@ -86,7 +86,7 @@ class AppointmentController extends BaseModuleController
               ->required()
         );
 
-        $form->add(
+        $createForm->add(
             DatePicker::make()
               ->name('date_end')
               ->label('End Datum')
@@ -94,7 +94,7 @@ class AppointmentController extends BaseModuleController
               ->required()
         );
 
-        return $form;
+        return $createForm;
     }
 
     #[\Override]
@@ -106,8 +106,8 @@ class AppointmentController extends BaseModuleController
             Text::make()
               ->field('date_start')
               ->title('Start Datum')
-              ->customRender(fn (Appointment $model) => view('backend.table.date', [
-                  'date' => $model->date_start,
+              ->customRender(fn (Appointment $appointment) => view('backend.table.date', [
+                  'date' => $appointment->date_start,
               ])->render())
               ->sortable(true)
         );
@@ -115,8 +115,8 @@ class AppointmentController extends BaseModuleController
             Text::make()
               ->field('date_end')
               ->title('End Datum')
-              ->customRender(fn (Appointment $model) => view('backend.table.date', [
-                  'date' => $model->date_end,
+              ->customRender(fn (Appointment $appointment) => view('backend.table.date', [
+                  'date' => $appointment->date_end,
               ])->render())
               ->sortable(true)
         );

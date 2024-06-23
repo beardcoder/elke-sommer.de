@@ -12,8 +12,8 @@ class MenuLinkRepository extends ModuleRepository
 
     protected $relatedBrowsers = ['page'];
 
-    public function __construct(MenuLink $model)
+    public function __construct(MenuLink $menuLink)
     {
-        $this->model = $model;
+        $this->model = $menuLink;
     }
 }

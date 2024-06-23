@@ -24,9 +24,9 @@ class RegistrationController extends Controller
         ]);
 
         if (TwillAppSettings::get('homepage.telegram.api_key') && TwillAppSettings::get('homepage.telegram.chat_id')) {
-            $bot = new \TelegramBot\Api\BotApi(TwillAppSettings::get('homepage.telegram.api_key'));
+            $botApi = new \TelegramBot\Api\BotApi(TwillAppSettings::get('homepage.telegram.api_key'));
 
-            $bot->sendMessage(
+            $botApi->sendMessage(
                 TwillAppSettings::get('homepage.telegram.chat_id'),
                 'Neue Anmeldung von '.
                   $request->get('name').

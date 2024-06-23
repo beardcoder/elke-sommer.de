@@ -18,8 +18,8 @@ class PageRepository extends ModuleRepository
     use HandleFiles;
     use HandleRevisions;
 
-    public function __construct(Page $model)
+    public function __construct(Page $page)
     {
-        $this->model = $model;
+        $this->model = $page;
     }
 }
