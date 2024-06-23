@@ -22,3 +22,8 @@ Alpine.start()
 document.addEventListener('DOMContentLoaded', () => {
     window.lazyloading = new TwillImage()
 })
+
+document.addEventListener('turbo:load', () => {
+    window.lazyloading = new TwillImage()
+})
+
