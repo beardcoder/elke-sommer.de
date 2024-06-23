@@ -18,6 +18,7 @@ class PageController extends BaseModuleController
     /**
      * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
      */
+    #[\Override]
     protected function setUpController(): void
     {
         $this->setPermalinkBase('');
@@ -28,6 +29,7 @@ class PageController extends BaseModuleController
      * See the table builder docs for more information. If you remove this method you can use the blade files.
      * When using twill:module:make you can specify --bladeForm to use a blade form instead.
      */
+    #[\Override]
     public function getForm(TwillModelContract $model): Form
     {
         $form = parent::getForm($model);
@@ -50,6 +52,7 @@ class PageController extends BaseModuleController
     /**
      * This is an example and can be removed if no modifications are needed to the table.
      */
+    #[\Override]
     protected function additionalIndexTableColumns(): TableColumns
     {
         $table = parent::additionalIndexTableColumns();

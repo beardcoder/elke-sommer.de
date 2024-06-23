@@ -19,6 +19,7 @@ class MailController extends Controller
                 'Neue Nachricht von '.$request->get('name')."\nEmail: ".$request->get('email')."\n".$request->get('message')
             );
         }
+
         if (TwillAppSettings::get('homepage.email.receiver')) {
             Mail::to(TwillAppSettings::get('homepage.email.receiver'))->send(
                 new Contact($request->get('name'), $request->get('email'), $request->get('message'))

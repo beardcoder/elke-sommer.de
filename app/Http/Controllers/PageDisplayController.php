@@ -37,6 +37,7 @@ class PageDisplayController extends Controller
             if ($page->description) {
                 SEOMeta::setDescription($page->description);
             }
+
             if ($page->published) {
                 return view('site.page', ['item' => $page]);
             }
@@ -54,6 +55,7 @@ class PageDisplayController extends Controller
         if ($page->description) {
             SEOMeta::setDescription($page->description);
         }
+
         if ($page) {
             return view('site.linktree', ['item' => $page]);
         }

@@ -13,9 +13,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontFlash = ['current_password', 'password', 'password_confirmation'];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     */
+    #[\Override]
     public function register(): void
     {
         $this->reportable(function (\Throwable $e): void {});

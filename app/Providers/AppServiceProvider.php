@@ -10,9 +10,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+    #[\Override]
     public function register(): void
     {
         if ($this->app->isLocal()) {

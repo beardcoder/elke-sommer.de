@@ -21,18 +21,13 @@ class AppointmentController extends BaseModuleController
 {
     protected $moduleName = 'appointments';
 
-    /**
-     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-     */
+    #[\Override]
     protected function setUpController(): void
     {
         $this->disablePermalink();
     }
 
-    /**
-     * See the table builder docs for more information. If you remove this method you can use the blade files.
-     * When using twill:module:make you can specify --bladeForm to use a blade form instead.
-     */
+    #[\Override]
     public function getForm(TwillModelContract $model): Form
     {
         $form = parent::getForm($model);
@@ -72,6 +67,7 @@ class AppointmentController extends BaseModuleController
         return $form;
     }
 
+    #[\Override]
     public function getCreateForm(): Form
     {
         $form = parent::getCreateForm();
@@ -101,9 +97,7 @@ class AppointmentController extends BaseModuleController
         return $form;
     }
 
-    /**
-     * This is an example and can be removed if no modifications are needed to the table.
-     */
+    #[\Override]
     protected function additionalIndexTableColumns(): TableColumns
     {
         $table = parent::additionalIndexTableColumns();
@@ -112,28 +106,25 @@ class AppointmentController extends BaseModuleController
             Text::make()
               ->field('date_start')
               ->title('Start Datum')
-              ->customRender(function (Appointment $model) {
-                  return view('backend.table.date', [
-                      'date' => $model->date_start,
-                  ])->render();
-              })
+              ->customRender(fn (Appointment $model) => view('backend.table.date', [
+                  'date' => $model->date_start,
+              ])->render())
               ->sortable(true)
         );
         $table->push(
             Text::make()
               ->field('date_end')
               ->title('End Datum')
-              ->customRender(function (Appointment $model) {
-                  return view('backend.table.date', [
-                      'date' => $model->date_end,
-                  ])->render();
-              })
+              ->customRender(fn (Appointment $model) => view('backend.table.date', [
+                  'date' => $model->date_end,
+              ])->render())
               ->sortable(true)
         );
 
         return $table;
     }
 
+    #[\Override]
     public function quickFilters(): QuickFilters
     {
         $filters = QuickFilters::make();

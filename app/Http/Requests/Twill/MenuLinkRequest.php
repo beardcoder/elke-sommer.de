@@ -6,11 +6,13 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class MenuLinkRequest extends Request
 {
+    #[\Override]
     public function rulesForCreate()
     {
         return [];
     }
 
+    #[\Override]
     public function rulesForUpdate()
     {
         return [];

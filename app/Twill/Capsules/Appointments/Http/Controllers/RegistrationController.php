@@ -34,6 +34,7 @@ class RegistrationController extends Controller
                   DateHelper::getLocalDate($appointment->date_start)->formatLocalized('%d.%m.%Y')
             );
         }
+
         if (TwillAppSettings::get('homepage.email.receiver')) {
             Mail::to(TwillAppSettings::get('homepage.email.receiver'))->send(
                 new Registration($request->get('name'), $request->get('email'), $appointment)

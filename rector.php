@@ -11,10 +11,8 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__.'/app',
     ])
-    ->withPhpVersion(PhpVersion::PHP_83)
+    ->withPhpSets(php83: true)
+    ->withPreparedSets(earlyReturn: true, codeQuality: true, typeDeclarations: true, codingStyle: true, instanceOf: true)
     ->withSets([
-        SetList::EARLY_RETURN,
-        SetList::TYPE_DECLARATION,
-        SetList::CODE_QUALITY,
         LaravelSetList::LARAVEL_100,
     ]);

@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.48.11.
+ * Generated for Laravel 10.48.14.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -17485,6 +17485,15 @@ namespace A17\Twill\Facades {
                         /** @var \A17\Twill\TwillRoutes $instance */
                         return $instance->moduleShowWithPreview($moduleName, $routePrefix, $controllerName);
         }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getAuthRedirectPath()
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->getAuthRedirectPath();
+        }
             }
             /**
      * 
@@ -19398,10 +19407,10 @@ namespace Spatie\LaravelIgnition\Facades {
          * 
          *
          * @static 
-         */        public static function withStackFrameArguments($withStackFrameArguments = true)
+         */        public static function withStackFrameArguments($withStackFrameArguments = true, $forcePHPIniSetting = false)
         {
                         /** @var \Spatie\FlareClient\Flare $instance */
-                        return $instance->withStackFrameArguments($withStackFrameArguments);
+                        return $instance->withStackFrameArguments($withStackFrameArguments, $forcePHPIniSetting);
         }
                     /**
          * 

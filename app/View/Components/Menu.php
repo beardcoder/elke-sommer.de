@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class Menu extends Component
 {
+    #[\Override]
     public function render(): View
     {
         /** @var MenuLink[] $links */
