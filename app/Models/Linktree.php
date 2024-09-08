@@ -13,10 +13,6 @@ class Linktree extends Model
     use HasFiles;
     use HasRevisions;
 
-    protected $casts = [
-        'links' => 'array',
-    ];
-
     protected $fillable = ['published', 'title', 'name', 'description', 'phone', 'email', 'whatsapp', 'links'];
 
     public $mediasParams = [
@@ -29,4 +25,12 @@ class Linktree extends Model
             ],
         ],
     ];
+
+    #[\Override]
+    protected function casts(): array
+    {
+        return [
+            'links' => 'array',
+        ];
+    }
 }
