@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Twill\Capsules\Appointments\Models\Appointment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -17,7 +16,7 @@ class Registration extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private string $name, private string $email, private Appointment $appointment)
+    public function __construct(private string $name, private string $email)
     {
     }
 
@@ -39,7 +38,6 @@ class Registration extends Mailable
             with: [
                 'name' => $this->name,
                 'email' => $this->email,
-                'appointment' => $this->appointment,
             ]
         );
     }

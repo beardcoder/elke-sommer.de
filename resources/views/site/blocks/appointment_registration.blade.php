@@ -32,7 +32,7 @@
           @csrf
           <x-honeypot />
 
-          <label
+          {{--           <label
             class="mb-2 block text-sm font-medium text-gray-900"
             for="appointment"
           >Termin wählen *</label>
@@ -51,7 +51,7 @@
                 {{ DateHelper::getLocalDate($appointment->date_end)->formatLocalized('%H:%M') }} Uhr
               </option>
             @endforeach
-          </select>
+          </select> --}}
 
           <div>
             <label
