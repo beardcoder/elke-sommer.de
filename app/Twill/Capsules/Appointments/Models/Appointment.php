@@ -10,11 +10,6 @@ class Appointment extends Model
 {
     use HasRevisions;
 
-    protected $casts = [
-        'date_start' => 'datetime',
-        'date_end' => 'datetime',
-    ];
-
     protected $fillable = ['published', 'title', 'date_start', 'date_end'];
 
     public function appointment_registrations(): HasMany
@@ -25,5 +20,14 @@ class Appointment extends Model
     public static function findFuture()
     {
         return static::where('date_start', '>=', date('Y-m-d G:i:s'))->get();
+    }
+
+    #[\Override]
+    protected function casts(): array
+    {
+        return [
+            'date_start' => 'datetime',
+            'date_end' => 'datetime',
+        ];
     }
 }

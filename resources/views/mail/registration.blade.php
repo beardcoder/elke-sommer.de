@@ -11,18 +11,7 @@
     <div
       style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #ffffff; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);"
     >
-      <h2 style="color: #333333; margin-bottom: 20px; font-weight: 600;">Anmeldung für {{ $appointment->title }},</h2>
-
-      <h5 style="margin-top: 30px; color: #555555; margin-bottom: 10px; font-weight: 500;">Datum</h5>
-      <p style="color: #777777; margin-top: 5px;">
-        {{ DateHelper::getLocalDate($appointment->date_start)->formatLocalized('%d.%m.%Y') }}
-      </p>
-
-      <h5 style="margin-top: 30px; color: #555555; margin-bottom: 10px; font-weight: 500;">Uhrzeit</h5>
-      <p style="color: #777777; margin-top: 5px;">
-        {{ DateHelper::getLocalDate($appointment->date_start)->formatLocalized('%H:%M') }} Uhr -
-        {{ DateHelper::getLocalDate($appointment->date_end)->formatLocalized('%H:%M') }} Uhr
-      </p>
+      <h2 style="color: #333333; margin-bottom: 20px; font-weight: 600;">Anmeldung von {{ $name }},</h2>
 
       <h5 style="margin-top: 30px; color: #555555; margin-bottom: 10px; font-weight: 500;">Name</h5>
       <p style="color: #777777; margin-top: 5px;">{{ $name }}</p>

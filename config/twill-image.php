@@ -3,17 +3,6 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Placeholder Background Color
-    |--------------------------------------------------------------------------
-    |
-    | The color which should be used to fill the image space on a page.
-    | Examples: 'gray', 'transparent', 'rgba(0, 0, 0, 0.25)'
-    |
-    */
-    'background_color' => '#e3e3e3',
-
-    /*
-    |--------------------------------------------------------------------------
     | Enable Low Quality Placeholder
     |--------------------------------------------------------------------------
     |
@@ -21,6 +10,17 @@ return [
     |
     */
     'lqip' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Use image sizer element
+    |--------------------------------------------------------------------------
+    |
+    | If sets to auto, the sizer will be used if LQIP is enabled.
+    | It can be set to `true` or `false` to enable or disable.
+    |
+    */
+    'image_sizer' => 'auto',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,13 +34,46 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable JavaScript
+    | Mode
     |--------------------------------------------------------------------------
     |
-    | Tells if the JavaScript module should be used.
+    | Use inline styles for default styling or use classes instead.
+    |
+    | In the example below, classes are used for applying
+    | Tailwind CSS classes.
     |
     */
-    'js' => true,
+    'mode' => 'inline-styles', // 'inline-styles' | 'classes' | 'both'
+
+    'inline_styles' => [
+        'main' => [
+            'background-color' => '#e3e3e3',
+            'height' => '100%',
+            'margin' => 0,
+            'max-width' => 'none',
+            'padding' => 0,
+            'width' => '100%',
+            'object-fit' => 'cover',
+            'object-position' => 'center',
+        ],
+        'wrapper' => [
+            'position' => 'relative',
+            'overflow' => 'hidden',
+        ],
+        'placeholder' => [
+            'position' => 'absolute',
+            'top' => 0,
+            'right' => 0,
+            'bottom' => 0,
+            'left' => 0,
+        ],
+    ],
+
+    'classes' => [
+        'main' => ['h-full', 'm-0', 'max-w-none', 'p-0', 'w-full', 'object-cover', 'object-center'],
+        'wrapper' => ['relative', 'overflow-hidden'],
+        'placeholder' => ['absolute', 'inset-0'],
+    ],
 
     /*
     |--------------------------------------------------------------------------

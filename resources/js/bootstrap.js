@@ -1,4 +1,3 @@
-import { TwillImage } from '../../vendor/area17/twill-image'
 import './components/testimonial'
 import validate from '@colinaut/alpinejs-plugin-simple-validate'
 import '@fontsource/pt-serif/400-italic.css'
@@ -18,12 +17,3 @@ Alpine.plugin(validate)
 window.Alpine = Alpine
 
 Alpine.start()
-
-document.addEventListener('DOMContentLoaded', () => {
-    window.lazyloading = new TwillImage()
-})
-
-document.addEventListener('turbo:load', () => {
-    window.lazyloading = new TwillImage()
-})
-
