@@ -14,16 +14,24 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: Cache Composer dependencies
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: /tmp/composer-cache
-          key: "${{ runner.os }}-${{ hashFiles('**/composer.lock') }}"
-      - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          dev: no
-          args: --no-progress --no-interaction --optimize-autoloader --no-progress --ignore-platform-reqs
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Composer install
+        run: composer install --no-dev --no-ansi --no-interaction --no-progress --optimize-autoloader
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -39,7 +47,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i"
+          ARGS: "-rlgoDzvc -i --delete"
           SOURCE: "./"
           REMOTE_HOST: viking.uber.space
           REMOTE_USER: viking
