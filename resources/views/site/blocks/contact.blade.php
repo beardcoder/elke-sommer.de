@@ -25,9 +25,6 @@
         id="{{ $formId }}"
         action="{{ route('mail.contact') }}"
         method="POST"
-        x-data
-        x-validate
-        x-on:submit="$validate.submit"
       >
         @csrf
         <x-honeypot />
@@ -41,7 +38,6 @@
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
             id="name"
             name="name"
-            data-error-msg="Bitte sage mir deinen Namit damit ich weiß wie ich dich ansprechen kann"
             type="text"
             placeholder=""
             required
@@ -59,7 +55,6 @@
             name="email"
             data-error-msg="Bitte eine gültige E-Mail Adresse eingeben"
             type="email"
-            x-validate.email
             required
           >
         </div>
@@ -103,20 +98,13 @@
             />
           </div>
         @endif
-        <div
-          x-data="{ tooltip: () => !$validate.isComplete('{{ $formId }}') ? 'Bitte das Formular ausfüllen zum absenden' : '' }"
-          x-tooltip="tooltip"
-        >
           <button
             class="w-full rounded bg-primary-500 p-3 text-sm font-bold uppercase tracking-wide text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
             type="submit"
-            x-bind:disabled="!$validate.isComplete('{{ $formId }}')"
           >
             {{ $block->input('button') }}
           </button>
-          <div>
       </form>
     @endif
-
   </div>
 </x-partials.blocks.wrapper>

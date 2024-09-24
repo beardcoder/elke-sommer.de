@@ -44,7 +44,7 @@
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-      <div class="sr-only">Menü</div>
+      <span class="sr-only">Menü</span>
     </button>
     <ul class="flex h-full flex-col items-center justify-center space-y-4">
       @foreach ($links as $link)
