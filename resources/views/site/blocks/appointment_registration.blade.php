@@ -25,9 +25,6 @@
           id="{{ $formId }}"
           action="{{ route('appointment.registration') }}"
           method="POST"
-          x-data
-          x-validate
-          x-on:submit="$validate.submit"
         >
           @csrf
           <x-honeypot />
@@ -62,7 +59,7 @@
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
               id="name"
               name="name"
-              data-error-msg="Bitte sage mir deinen Namit damit ich weiß wie ich dich ansprechen kann"
+              autocomplete="name"
               type="text"
               required
             >
@@ -79,10 +76,9 @@
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
               id="email"
               name="email"
-              data-error-msg="Bitte eine gültige E-Mail Adresse eingeben"
               type="email"
+              autocomplete="email"
               placeholder="meine@mail.de"
-              x-validate.email
               required
             >
           </div>
@@ -105,7 +101,6 @@
                 class="order-1 mr-2"
                 id="privacy"
                 name="privacy"
-                data-error-msg="Bitte die Datenschutzerklärung lesen und bestätigen"
                 type="checkbox"
                 required
               />
@@ -114,7 +109,6 @@
           <button
             class="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white transition-opacity hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:cursor-not-allowed disabled:opacity-50"
             type="submit"
-            x-bind:disabled="!$validate.isComplete('{{ $formId }}')"
           >
             Jetzt anmelden
           </button>
