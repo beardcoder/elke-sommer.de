@@ -39,7 +39,7 @@
             id="name"
             name="name"
             type="text"
-            placeholder=""
+            autocomplete="name given-name family-name"
             required
           >
         </div>
@@ -53,8 +53,8 @@
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
             id="email"
             name="email"
-            data-error-msg="Bitte eine gültige E-Mail Adresse eingeben"
             type="email"
+            autocomplete="email"
             required
           >
         </div>
@@ -68,7 +68,7 @@
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
             id="message"
             name="message"
-            data-error-msg="Bitte schreibe mir wie ich dir helfen kann"
+            autocomplete="message"
             required
             rows="3"
           ></textarea>
@@ -92,7 +92,6 @@
               class="order-1 mr-2"
               id="privacy"
               name="privacy"
-              data-error-msg="Bitte die Datenschutzerklärung lesen und bestätigen"
               type="checkbox"
               required
             />
