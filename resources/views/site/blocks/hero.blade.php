@@ -18,7 +18,7 @@
   ]);
 @endphp
 
-<x-partials.blocks.wrapper class="relative -mt-24 overflow-hidden pt-24" id="'block--{{ $block->id }}">
+<x-partials.blocks.wrapper class="relative -mt-24 overflow-hidden pt-24" id="block--{{ $block->id }}">
   <div class="container relative mx-auto flex flex-col items-center px-4 py-8 md:px-10 lg:flex-row lg:px-0">
     <div class="z-10 lg:absolute lg:w-1/2">
       <h1 class="font-header text-6xl md:text-8xl md:leading-none text-primary-500">

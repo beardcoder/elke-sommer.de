@@ -1,4 +1,4 @@
-<x-partials.blocks.wrapper id="'block--{{ $block->id }}">
+<x-partials.blocks.wrapper id="block--{{ $block->id }}">
   <div class="container mx-auto mb-8 md:text-center">
     <h2 class="font-header text-4xl lg:text-5xl">{!! $block->input('title') !!}</h2>
   </div>
