@@ -26,7 +26,7 @@
     }
 @endphp
 
-<x-partials.blocks.wrapper id="{{ $block->id }}">
+<x-partials.blocks.wrapper id="'block--{{ $block->id }}">
     <div class="mx-auto max-w-screen-xl items-center gap-16 md:grid md:grid-cols-2">
         <div class="{{ $textOrder }} flex flex-col items-start font-light">
             @if ($block->input('text'))

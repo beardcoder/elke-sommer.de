@@ -2,7 +2,7 @@
   $image = TwillImage::make($block, 'form')->crop('default');
   $formId = uniqid('form-');
 @endphp
-<x-partials.blocks.wrapper id="{{ $block->id }}">
+<x-partials.blocks.wrapper id="'block--{{ $block->id }}">
   <div class="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 rounded-lg py-16 md:grid-cols-2">
     <div class="flex flex-col justify-between">
       <div class="space-y-2">

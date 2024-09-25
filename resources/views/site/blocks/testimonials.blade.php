@@ -1,4 +1,4 @@
-<x-partials.blocks.wrapper id="{{ $block->id }}">
+<x-partials.blocks.wrapper id="'block--{{ $block->id }}">
   <div class="mx-auto max-w-screen-md">
     @if ($block->input('title'))
       <div class="container mx-auto my-6 space-y-2 p-4 text-center">
