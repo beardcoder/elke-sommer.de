@@ -2,24 +2,10 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::input
-  name="title"
-  label="Title"
-/>
-<x-twill::input
-  name="text"
-  type="textarea"
-  label="Text"
-/>
+<x-twill::input name="title" label="Title" />
 
-<x-twill::browser
-  name="linkPage"
-  module-name="pages"
-  label="Seite"
-  :max="1"
-/>
+<x-twill::input name="text" type="textarea" label="Text" />
 
-<x-twill::input
-  name="linkTitle"
-  label="Link url"
-/>
+<x-twill::browser name="linkPage" module-name="pages" label="Seite" :max="1" />
+<x-twill::input name="linkTitle" label="Link Text" />
+<x-twill::input name="linkAnchor" label="Link Anker" note="Darf nicht mit einem # beginnen" prefix="#"/>

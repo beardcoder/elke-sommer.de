@@ -1,4 +1,4 @@
-<div class="swiper-slide">
+<div class="swiper-slide" id="{{ $block->id }}">
   <div class="px-16 pb-10">
     <figure class="mx-auto max-w-lg">
       <svg
