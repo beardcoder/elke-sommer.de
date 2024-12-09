@@ -1,0 +1,23 @@
+#!/bin/bash
+
+## Description: Fetch fileadmin from production and load it into current project
+## Usage: fetchproductionfiles
+## Example: "ddev fetchproductionfiles"
+
+set -o errexit pipefail nounset
+#set -x
+
+SSH_TARGET=viking@spica.uberspace.de
+REMOTE_FILEADMIN_PATH=/home/viking/html/elke-sommer.de/storage/app/public
+LOCAL_FILEADMIN_PATH=${DDEV_APPROOT}/storage/app/public
+
+echo "Fetching fileadmin from ${SSH_TARGET}:${REMOTE_FILEADMIN_PATH} to ${LOCAL_FILEADMIN_PATH}"
+
+# Create local fileadmin directory if it doesn't exist
+mkdir -p ${LOCAL_FILEADMIN_PATH}
+
+# Fetch fileadmin directory from remote server
+rsync -avz --delete ${SSH_TARGET}:${REMOTE_FILEADMIN_PATH}/ ${LOCAL_FILEADMIN_PATH}/
+
+echo "Files import completed."
+

@@ -13,7 +13,9 @@
           {!! $block->input('text') !!}
         </div>
       </div>
-      {!! $image->render(['class' => 'my-6 lg:rounded-tl-10xl lg:rounded-br-10xl rounded-tl-5xl rounded-br-5xl']) !!}
+        @if ($image instanceof \A17\Twill\Image\Models\Image)
+            {!! $image->render(['class' => 'my-6 lg:rounded-tl-10xl lg:rounded-br-10xl rounded-tl-5xl rounded-br-5xl']) !!}
+        @endif
     </div>
     @if (Session::has('success'))
       <div class="flex items-center justify-between self-start border-l-8 border-primary-500 p-6 sm:py-8">

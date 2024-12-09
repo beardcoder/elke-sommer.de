@@ -29,11 +29,13 @@
       </p>
     </div>
     <div class="w-full rounded lg:ml-auto lg:w-2/3">
-      {!! $image->render([
-          'loading' => 'eager',
-          'class' =>
-              'aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/10] lg:rounded-tl-10xl lg:rounded-br-10xl rounded-tl-5xl rounded-br-5xl'
-      ]) !!}
+        @if ($image instanceof \A17\Twill\Image\Models\Image)
+          {!! $image->render([
+              'loading' => 'eager',
+              'class' =>
+                  'aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/10] lg:rounded-tl-10xl lg:rounded-br-10xl rounded-tl-5xl rounded-br-5xl'
+          ]) !!}
+        @endif
     </div>
   </div>
 </x-partials.blocks.wrapper>

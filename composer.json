@@ -9,7 +9,7 @@
   ],
   "require": {
     "php": "^8.3",
-    "area17/twill": "^3.3",
+    "area17/twill": "^3",
     "area17/twill-image": "^2.0",
     "artesaos/seotools": "^1.3",
     "bepsvpt/secure-headers": "^7.5",

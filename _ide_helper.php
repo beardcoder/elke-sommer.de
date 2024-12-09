@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 11.24.0.
+ * Generated for Laravel 11.34.2.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -838,7 +838,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Get the service providers that have been loaded.
          *
-         * @return array<string, boolean> 
+         * @return array<string, bool> 
          * @static 
          */        public static function getLoadedProviders()
         {
@@ -878,6 +878,17 @@ namespace Illuminate\Support\Facades {
                         $instance->setDeferredServices($services);
         }
                     /**
+         * Determine if the given service is a deferred service.
+         *
+         * @param string $service
+         * @return bool 
+         * @static 
+         */        public static function isDeferredService($service)
+        {
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->isDeferredService($service);
+        }
+                    /**
          * Add an array of services to the application's deferred services.
          *
          * @param array $services
@@ -889,15 +900,15 @@ namespace Illuminate\Support\Facades {
                         $instance->addDeferredServices($services);
         }
                     /**
-         * Determine if the given service is a deferred service.
+         * Remove an array of services from the application's deferred services.
          *
-         * @param string $service
-         * @return bool 
+         * @param array $services
+         * @return void 
          * @static 
-         */        public static function isDeferredService($service)
+         */        public static function removeDeferredServices($services)
         {
                         /** @var \Illuminate\Foundation\Application $instance */
-                        return $instance->isDeferredService($service);
+                        $instance->removeDeferredServices($services);
         }
                     /**
          * Configure the real-time facade namespace.
@@ -1425,7 +1436,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Fire all of the after resolving attribute callbacks.
          *
-         * @param \ReflectionAttribute[] $abstract
+         * @param \ReflectionAttribute[] $attributes
          * @param mixed $object
          * @return void 
          * @static 
@@ -2705,17 +2716,31 @@ namespace Illuminate\Support\Facades {
                         $instance->aliasInclude($path, $alias);
         }
                     /**
-         * Register a handler for custom directives.
+         * Register a handler for custom directives, binding the handler to the compiler.
          *
          * @param string $name
          * @param callable $handler
          * @return void 
          * @throws \InvalidArgumentException
          * @static 
-         */        public static function directive($name, $handler)
+         */        public static function bindDirective($name, $handler)
         {
                         /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
-                        $instance->directive($name, $handler);
+                        $instance->bindDirective($name, $handler);
+        }
+                    /**
+         * Register a handler for custom directives.
+         *
+         * @param string $name
+         * @param callable $handler
+         * @param bool $bind
+         * @return void 
+         * @throws \InvalidArgumentException
+         * @static 
+         */        public static function directive($name, $handler, $bind = false)
+        {
+                        /** @var \Illuminate\View\Compilers\BladeCompiler $instance */
+                        $instance->directive($name, $handler, $bind);
         }
                     /**
          * Get the list of custom directives.
@@ -3414,6 +3439,16 @@ namespace Illuminate\Support\Facades {
                         $instance->assertChained($expectedChain);
         }
                     /**
+         * Assert no chained jobs was dispatched.
+         *
+         * @return void 
+         * @static 
+         */        public static function assertNothingChained()
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertNothingChained();
+        }
+                    /**
          * Assert if a job was dispatched with an empty chain based on a truth-test callback.
          *
          * @param string|\Closure $command
@@ -3467,6 +3502,16 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
                         $instance->assertNothingBatched();
+        }
+                    /**
+         * Assert that no jobs were dispatched, chained, or batched.
+         *
+         * @return void 
+         * @static 
+         */        public static function assertNothingPlaced()
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertNothingPlaced();
         }
                     /**
          * Get all of the jobs matching a truth-test callback.
@@ -3633,6 +3678,17 @@ namespace Illuminate\Support\Facades {
                         return $instance->resolve($name);
         }
                     /**
+         * Build a cache repository with the given configuration.
+         *
+         * @param array $config
+         * @return \Illuminate\Cache\Repository 
+         * @static 
+         */        public static function build($config)
+        {
+                        /** @var \Illuminate\Cache\CacheManager $instance */
+                        return $instance->build($config);
+        }
+                    /**
          * Create a new cache repository with the given implementation.
          *
          * @param \Illuminate\Contracts\Cache\Store $store
@@ -3745,10 +3801,9 @@ namespace Illuminate\Support\Facades {
                     /**
          * Retrieve an item from the cache by key.
          *
-         * @template TCacheValue
          * @param array|string $key
-         * @param \Illuminate\Cache\TCacheValue|\Illuminate\Cache\(\Closure():  TCacheValue)  $default
-         * @return \Illuminate\Cache\(TCacheValue is null ? mixed : TCacheValue)
+         * @param mixed $default
+         * @return mixed 
          * @static 
          */        public static function get($key, $default = null)
         {
@@ -3787,10 +3842,9 @@ namespace Illuminate\Support\Facades {
                     /**
          * Retrieve an item from the cache and delete it.
          *
-         * @template TCacheValue
          * @param array|string $key
-         * @param \Illuminate\Cache\TCacheValue|\Illuminate\Cache\(\Closure():  TCacheValue)  $default
-         * @return \Illuminate\Cache\(TCacheValue is null ? mixed : TCacheValue)
+         * @param mixed $default
+         * @return mixed 
          * @static 
          */        public static function pull($key, $default = null)
         {
@@ -3953,7 +4007,7 @@ namespace Illuminate\Support\Facades {
          * @template TCacheValue
          * @param string $key
          * @param \Illuminate\Cache\array{  0: \DateTimeInterface|\DateInterval|int, 1: \DateTimeInterface|\DateInterval|int }  $ttl
-         * @param \Illuminate\Cache\(callable():  TCacheValue)  $callback
+         * @param (callable(): TCacheValue) $callback
          * @param \Illuminate\Cache\array{  seconds?: int, owner?: string }|null  $lock
          * @return \Illuminate\Cache\TCacheValue 
          * @static 
@@ -4470,8 +4524,8 @@ namespace Illuminate\Support\Facades {
                     /**
          * Get many configuration values.
          *
-         * @param array $keys
-         * @return array 
+         * @param array<string|int,mixed> $keys
+         * @return array<string,mixed> 
          * @static 
          */        public static function getMany($keys)
         {
@@ -4482,7 +4536,7 @@ namespace Illuminate\Support\Facades {
          * Get the specified string configuration value.
          *
          * @param string $key
-         * @param \Illuminate\Config\(\Closure():(string|\Illuminate\Config\null))|string|null $default
+         * @param (\Closure():(string|null))|string|null $default
          * @return string 
          * @static 
          */        public static function string($key, $default = null)
@@ -4494,7 +4548,7 @@ namespace Illuminate\Support\Facades {
          * Get the specified integer configuration value.
          *
          * @param string $key
-         * @param \Illuminate\Config\(\Closure():(int|\Illuminate\Config\null))|int|null $default
+         * @param (\Closure():(int|null))|int|null $default
          * @return int 
          * @static 
          */        public static function integer($key, $default = null)
@@ -4506,7 +4560,7 @@ namespace Illuminate\Support\Facades {
          * Get the specified float configuration value.
          *
          * @param string $key
-         * @param \Illuminate\Config\(\Closure():(float|\Illuminate\Config\null))|float|null $default
+         * @param (\Closure():(float|null))|float|null $default
          * @return float 
          * @static 
          */        public static function float($key, $default = null)
@@ -4518,7 +4572,7 @@ namespace Illuminate\Support\Facades {
          * Get the specified boolean configuration value.
          *
          * @param string $key
-         * @param \Illuminate\Config\(\Closure():(bool|\Illuminate\Config\null))|bool|null $default
+         * @param (\Closure():(bool|null))|bool|null $default
          * @return bool 
          * @static 
          */        public static function boolean($key, $default = null)
@@ -4530,7 +4584,7 @@ namespace Illuminate\Support\Facades {
          * Get the specified array configuration value.
          *
          * @param string $key
-         * @param \Illuminate\Config\(\Closure():(array<array-key, mixed>|\Illuminate\Config\null))|\Illuminate\Config\array<array-key,  mixed>|null  $default
+         * @param (\Closure():(array<array-key, mixed>|null))|array<array-key, mixed>|null $default
          * @return array<array-key, mixed> 
          * @static 
          */        public static function array($key, $default = null)
@@ -4874,6 +4928,18 @@ namespace Illuminate\Support\Facades {
                         return $instance->push($key, ...$values);
         }
                     /**
+         * Pop the latest value from the key's stack.
+         *
+         * @param string $key
+         * @return mixed 
+         * @throws \RuntimeException
+         * @static 
+         */        public static function pop($key)
+        {
+                        /** @var \Illuminate\Log\Context\Repository $instance */
+                        return $instance->pop($key);
+        }
+                    /**
          * Push the given hidden values onto the key's stack.
          *
          * @param string $key
@@ -4885,6 +4951,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Log\Context\Repository $instance */
                         return $instance->pushHidden($key, ...$values);
+        }
+                    /**
+         * Pop the latest hidden value from the key's stack.
+         *
+         * @param string $key
+         * @return mixed 
+         * @throws \RuntimeException
+         * @static 
+         */        public static function popHidden($key)
+        {
+                        /** @var \Illuminate\Log\Context\Repository $instance */
+                        return $instance->popHidden($key);
         }
                     /**
          * Determine if the given value is in the given stack.
@@ -4996,9 +5074,9 @@ namespace Illuminate\Support\Facades {
          *
          * @template TWhenParameter
          * @template TWhenReturnType
-         * @param \Illuminate\Log\Context\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
-         * @param \Illuminate\Log\Context\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
-         * @param \Illuminate\Log\Context\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
+         * @param (\Closure($this): TWhenParameter)|\Illuminate\Log\Context\TWhenParameter|null $value
+         * @param (callable($this, TWhenParameter): TWhenReturnType)|null $callback
+         * @param (callable($this, TWhenParameter): TWhenReturnType)|null $default
          * @return $this|\Illuminate\Log\Context\TWhenReturnType 
          * @static 
          */        public static function when($value = null, $callback = null, $default = null)
@@ -5011,9 +5089,9 @@ namespace Illuminate\Support\Facades {
          *
          * @template TUnlessParameter
          * @template TUnlessReturnType
-         * @param \Illuminate\Log\Context\(\Closure($this):  TUnlessParameter)|TUnlessParameter|null  $value
-         * @param \Illuminate\Log\Context\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $callback
-         * @param \Illuminate\Log\Context\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $default
+         * @param (\Closure($this): TUnlessParameter)|\Illuminate\Log\Context\TUnlessParameter|null $value
+         * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $callback
+         * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $default
          * @return $this|\Illuminate\Log\Context\TUnlessReturnType 
          * @static 
          */        public static function unless($value = null, $callback = null, $default = null)
@@ -5534,6 +5612,17 @@ namespace Illuminate\Support\Facades {
                         return $instance->connection($name);
         }
                     /**
+         * Build a database connection instance from the given configuration.
+         *
+         * @param array $config
+         * @return \Illuminate\Database\MySqlConnection 
+         * @static 
+         */        public static function build($config)
+        {
+                        /** @var \Illuminate\Database\DatabaseManager $instance */
+                        return $instance->build($config);
+        }
+                    /**
          * Get a database connection instance from the given configuration.
          *
          * @param string $name
@@ -5941,7 +6030,7 @@ namespace Illuminate\Support\Facades {
          * @param string $query
          * @param array $bindings
          * @param bool $useReadPdo
-         * @return \Generator 
+         * @return \Generator<int, \stdClass> 
          * @static 
          */        public static function cursor($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
@@ -6580,8 +6669,9 @@ namespace Illuminate\Support\Facades {
                     /**
          * Set the table prefix and return the grammar.
          *
-         * @param \Illuminate\Database\Grammar $grammar
-         * @return \Illuminate\Database\Grammar 
+         * @template TGrammar of \Illuminate\Database\Grammar
+         * @param \Illuminate\Database\TGrammar $grammar
+         * @return \Illuminate\Database\TGrammar 
          * @static 
          */        public static function withTablePrefix($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
@@ -6603,18 +6693,21 @@ namespace Illuminate\Support\Facades {
          * Get the connection resolver for the given driver.
          *
          * @param string $driver
-         * @return mixed 
+         * @return \Closure|null 
          * @static 
          */        public static function getResolver($driver)
         {            //Method inherited from \Illuminate\Database\Connection         
                         return \Illuminate\Database\MySqlConnection::getResolver($driver);
         }
                     /**
-         * Execute a Closure within a transaction.
+         * 
          *
-         * @param \Closure $callback
+         * @template TReturn of mixed
+         * 
+         * Execute a Closure within a transaction.
+         * @param (\Closure(static): TReturn) $callback
          * @param int $attempts
-         * @return mixed 
+         * @return \Illuminate\Database\TReturn 
          * @throws \Throwable
          * @static 
          */        public static function transaction($callback, $attempts = 1)
@@ -6688,8 +6781,8 @@ namespace Illuminate\Support\Facades {
                     /**
          * Register an event listener with the dispatcher.
          *
-         * @param \Illuminate\Events\Queued\Closure|\Closure|string|array $events
-         * @param \Illuminate\Events\Queued\Closure|\Closure|string|array|null $listener
+         * @param \Illuminate\Events\Queued\Closure|callable|array|\Illuminate\Events\class-string|string $events
+         * @param \Illuminate\Events\Queued\Closure|callable|array|\Illuminate\Events\class-string|null $listener
          * @return void 
          * @static 
          */        public static function listen($events, $listener = null)
@@ -7572,9 +7665,9 @@ namespace Illuminate\Support\Facades {
          *
          * @template TWhenParameter
          * @template TWhenReturnType
-         * @param \Illuminate\Filesystem\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
-         * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
-         * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
+         * @param (\Closure($this): TWhenParameter)|\Illuminate\Filesystem\TWhenParameter|null $value
+         * @param (callable($this, TWhenParameter): TWhenReturnType)|null $callback
+         * @param (callable($this, TWhenParameter): TWhenReturnType)|null $default
          * @return $this|\Illuminate\Filesystem\TWhenReturnType 
          * @static 
          */        public static function when($value = null, $callback = null, $default = null)
@@ -7587,9 +7680,9 @@ namespace Illuminate\Support\Facades {
          *
          * @template TUnlessParameter
          * @template TUnlessReturnType
-         * @param \Illuminate\Filesystem\(\Closure($this):  TUnlessParameter)|TUnlessParameter|null  $value
-         * @param \Illuminate\Filesystem\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $callback
-         * @param \Illuminate\Filesystem\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $default
+         * @param (\Closure($this): TUnlessParameter)|\Illuminate\Filesystem\TUnlessParameter|null $value
+         * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $callback
+         * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $default
          * @return $this|\Illuminate\Filesystem\TUnlessReturnType 
          * @static 
          */        public static function unless($value = null, $callback = null, $default = null)
@@ -8263,6 +8356,16 @@ namespace Illuminate\Support\Facades {
                         return \Illuminate\Http\Client\Factory::response($body, $status, $headers);
         }
                     /**
+         * Create a new connection exception for use during stubbing.
+         *
+         * @param string|null $message
+         * @return \GuzzleHttp\Promise\PromiseInterface 
+         * @static 
+         */        public static function failedConnection($message = null)
+        {
+                        return \Illuminate\Http\Client\Factory::failedConnection($message);
+        }
+                    /**
          * Get an invokable object that returns a sequence of responses in order for use during stubbing.
          *
          * @param array $responses
@@ -8299,7 +8402,7 @@ namespace Illuminate\Support\Facades {
          * Stub the given URL using the given callback.
          *
          * @param string $url
-         * @param \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface|callable $callback
+         * @param \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface|callable|int|string|array $callback
          * @return \Illuminate\Http\Client\Factory 
          * @static 
          */        public static function stubUrl($url, $callback)
@@ -8319,6 +8422,16 @@ namespace Illuminate\Support\Facades {
                         return $instance->preventStrayRequests($prevent);
         }
                     /**
+         * Determine if stray requests are being prevented.
+         *
+         * @return bool 
+         * @static 
+         */        public static function preventingStrayRequests()
+        {
+                        /** @var \Illuminate\Http\Client\Factory $instance */
+                        return $instance->preventingStrayRequests();
+        }
+                    /**
          * Indicate that an exception should not be thrown if any request is not faked.
          *
          * @return \Illuminate\Http\Client\Factory 
@@ -8332,7 +8445,7 @@ namespace Illuminate\Support\Facades {
          * Record a request response pair.
          *
          * @param \Illuminate\Http\Client\Request $request
-         * @param \Illuminate\Http\Client\Response $response
+         * @param \Illuminate\Http\Client\Response|null $response
          * @return void 
          * @static 
          */        public static function recordRequestResponsePair($request, $response)
@@ -9110,7 +9223,7 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Mail\SentMessage|null html(string $html, mixed $callback)
      * @method static \Illuminate\Mail\SentMessage|null plain(string $view, array $data, mixed $callback)
      * @method static string render(string|array $view, array $data = [])
-     * @method static mixed onQueue(string $queue, \Illuminate\Contracts\Mail\Mailable $view)
+     * @method static mixed onQueue(\BackedEnum|string|null $queue, \Illuminate\Contracts\Mail\Mailable $view)
      * @method static mixed queueOn(string $queue, \Illuminate\Contracts\Mail\Mailable $view)
      * @method static mixed laterOn(string $queue, \DateTimeInterface|\DateInterval|int $delay, \Illuminate\Contracts\Mail\Mailable $view)
      * @method static \Symfony\Component\Mailer\Transport\TransportInterface getSymfonyTransport()
@@ -9145,6 +9258,17 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Mail\MailManager $instance */
                         return $instance->driver($driver);
+        }
+                    /**
+         * Build a new mailer instance.
+         *
+         * @param array $config
+         * @return \Illuminate\Mail\Mailer 
+         * @static 
+         */        public static function build($config)
+        {
+                        /** @var \Illuminate\Mail\MailManager $instance */
+                        return $instance->build($config);
         }
                     /**
          * Create a new transport instance.
@@ -10711,7 +10835,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Register a named limiter configuration.
          *
-         * @param string $name
+         * @param \BackedEnum|\UnitEnum|string $name
          * @param \Closure $callback
          * @return \Illuminate\Cache\RateLimiter 
          * @static 
@@ -10723,7 +10847,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Get the given named rate limiter.
          *
-         * @param string $name
+         * @param \BackedEnum|\UnitEnum|string $name
          * @return \Closure|null 
          * @static 
          */        public static function limiter($name)
@@ -11723,6 +11847,7 @@ namespace Illuminate\Support\Facades {
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
          * @param string|resource|null $content The raw body data
+         * @throws BadRequestException When the URI is invalid
          * @static 
          */        public static function create($uri, $method = 'GET', $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
@@ -11757,8 +11882,8 @@ namespace Illuminate\Support\Facades {
          * 
          * You should only list the reverse proxies that you manage directly.
          *
-         * @param array $proxies A list of trusted proxies, the string 'REMOTE_ADDR' will be replaced with $_SERVER['REMOTE_ADDR']
-         * @param int $trustedHeaderSet A bit field of Request::HEADER_*, to set which headers to trust from your proxies
+         * @param array $proxies A list of trusted proxies, the string 'REMOTE_ADDR' will be replaced with $_SERVER['REMOTE_ADDR'] and 'PRIVATE_SUBNETS' by IpUtils::PRIVATE_SUBNETS
+         * @param \Symfony\Component\HttpFoundation\int-mask-of<Request::HEADER_*> $trustedHeaderSet A bit field to set which headers to trust from your proxies
          * @static 
          */        public static function setTrustedProxies($proxies, $trustedHeaderSet)
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
@@ -12704,122 +12829,6 @@ namespace Illuminate\Support\Facades {
                         return $instance->bearerToken();
         }
                     /**
-         * Determine if the request contains a given input item key.
-         *
-         * @param string|array $key
-         * @return bool 
-         * @static 
-         */        public static function exists($key)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->exists($key);
-        }
-                    /**
-         * Determine if the request contains a given input item key.
-         *
-         * @param string|array $key
-         * @return bool 
-         * @static 
-         */        public static function has($key)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->has($key);
-        }
-                    /**
-         * Determine if the request contains any of the given inputs.
-         *
-         * @param string|array $keys
-         * @return bool 
-         * @static 
-         */        public static function hasAny($keys)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->hasAny($keys);
-        }
-                    /**
-         * Apply the callback if the request contains the given input item key.
-         *
-         * @param string $key
-         * @param callable $callback
-         * @param callable|null $default
-         * @return $this|mixed 
-         * @static 
-         */        public static function whenHas($key, $callback, $default = null)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->whenHas($key, $callback, $default);
-        }
-                    /**
-         * Determine if the request contains a non-empty value for an input item.
-         *
-         * @param string|array $key
-         * @return bool 
-         * @static 
-         */        public static function filled($key)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->filled($key);
-        }
-                    /**
-         * Determine if the request contains an empty value for an input item.
-         *
-         * @param string|array $key
-         * @return bool 
-         * @static 
-         */        public static function isNotFilled($key)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->isNotFilled($key);
-        }
-                    /**
-         * Determine if the request contains a non-empty value for any of the given inputs.
-         *
-         * @param string|array $keys
-         * @return bool 
-         * @static 
-         */        public static function anyFilled($keys)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->anyFilled($keys);
-        }
-                    /**
-         * Apply the callback if the request contains a non-empty value for the given input item key.
-         *
-         * @param string $key
-         * @param callable $callback
-         * @param callable|null $default
-         * @return $this|mixed 
-         * @static 
-         */        public static function whenFilled($key, $callback, $default = null)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->whenFilled($key, $callback, $default);
-        }
-                    /**
-         * Determine if the request is missing a given input item key.
-         *
-         * @param string|array $key
-         * @return bool 
-         * @static 
-         */        public static function missing($key)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->missing($key);
-        }
-                    /**
-         * Apply the callback if the request is missing the given input item key.
-         *
-         * @param string $key
-         * @param callable $callback
-         * @param callable|null $default
-         * @return $this|mixed 
-         * @static 
-         */        public static function whenMissing($key, $callback, $default = null)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->whenMissing($key, $callback, $default);
-        }
-                    /**
          * Get the keys for all of the input and files.
          *
          * @return array 
@@ -12853,126 +12862,15 @@ namespace Illuminate\Support\Facades {
                         return $instance->input($key, $default);
         }
                     /**
-         * Retrieve input from the request as a Stringable instance.
-         *
-         * @param string $key
-         * @param mixed $default
-         * @return \Illuminate\Support\Stringable 
-         * @static 
-         */        public static function str($key, $default = null)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->str($key, $default);
-        }
-                    /**
-         * Retrieve input from the request as a Stringable instance.
-         *
-         * @param string $key
-         * @param mixed $default
-         * @return \Illuminate\Support\Stringable 
-         * @static 
-         */        public static function string($key, $default = null)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->string($key, $default);
-        }
-                    /**
-         * Retrieve input as a boolean value.
-         * 
-         * Returns true when value is "1", "true", "on", and "yes". Otherwise, returns false.
-         *
-         * @param string|null $key
-         * @param bool $default
-         * @return bool 
-         * @static 
-         */        public static function boolean($key = null, $default = false)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->boolean($key, $default);
-        }
-                    /**
-         * Retrieve input as an integer value.
-         *
-         * @param string $key
-         * @param int $default
-         * @return int 
-         * @static 
-         */        public static function integer($key, $default = 0)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->integer($key, $default);
-        }
-                    /**
-         * Retrieve input as a float value.
-         *
-         * @param string $key
-         * @param float $default
-         * @return float 
-         * @static 
-         */        public static function float($key, $default = 0.0)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->float($key, $default);
-        }
-                    /**
-         * Retrieve input from the request as a Carbon instance.
-         *
-         * @param string $key
-         * @param string|null $format
-         * @param string|null $tz
-         * @return \Illuminate\Support\Carbon|null 
-         * @throws \Carbon\Exceptions\InvalidFormatException
-         * @static 
-         */        public static function date($key, $format = null, $tz = null)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->date($key, $format, $tz);
-        }
-                    /**
-         * Retrieve input from the request as an enum.
-         *
-         * @template TEnum
-         * @param string $key
-         * @param \Illuminate\Http\class-string<TEnum> $enumClass
-         * @return \Illuminate\Http\TEnum|null 
-         * @static 
-         */        public static function enum($key, $enumClass)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->enum($key, $enumClass);
-        }
-                    /**
-         * Retrieve input from the request as a collection.
+         * Retrieve input from the request as a Fluent object instance.
          *
          * @param array|string|null $key
-         * @return \Illuminate\Support\Collection 
+         * @return \Illuminate\Support\Fluent 
          * @static 
-         */        public static function collect($key = null)
+         */        public static function fluent($key = null)
         {
                         /** @var \Illuminate\Http\Request $instance */
-                        return $instance->collect($key);
-        }
-                    /**
-         * Get a subset containing the provided keys with values from the input data.
-         *
-         * @param array|mixed $keys
-         * @return array 
-         * @static 
-         */        public static function only($keys)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->only($keys);
-        }
-                    /**
-         * Get all of the input except for a specified array of items.
-         *
-         * @param array|mixed $keys
-         * @return array 
-         * @static 
-         */        public static function except($keys)
-        {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->except($keys);
+                        return $instance->fluent($key);
         }
                     /**
          * Retrieve a query string item from the request.
@@ -13075,6 +12973,257 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->dd(...$args);
+        }
+                    /**
+         * Determine if the data contains a given key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */        public static function exists($key)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->exists($key);
+        }
+                    /**
+         * Determine if the data contains a given key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */        public static function has($key)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->has($key);
+        }
+                    /**
+         * Determine if the instance contains any of the given keys.
+         *
+         * @param string|array $keys
+         * @return bool 
+         * @static 
+         */        public static function hasAny($keys)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->hasAny($keys);
+        }
+                    /**
+         * Apply the callback if the instance contains the given key.
+         *
+         * @param string $key
+         * @param callable $callback
+         * @param callable|null $default
+         * @return $this|mixed 
+         * @static 
+         */        public static function whenHas($key, $callback, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->whenHas($key, $callback, $default);
+        }
+                    /**
+         * Determine if the instance contains a non-empty value for the given key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */        public static function filled($key)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->filled($key);
+        }
+                    /**
+         * Determine if the instance contains an empty value for the given key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */        public static function isNotFilled($key)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->isNotFilled($key);
+        }
+                    /**
+         * Determine if the instance contains a non-empty value for any of the given keys.
+         *
+         * @param string|array $keys
+         * @return bool 
+         * @static 
+         */        public static function anyFilled($keys)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->anyFilled($keys);
+        }
+                    /**
+         * Apply the callback if the instance contains a non-empty value for the given key.
+         *
+         * @param string $key
+         * @param callable $callback
+         * @param callable|null $default
+         * @return $this|mixed 
+         * @static 
+         */        public static function whenFilled($key, $callback, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->whenFilled($key, $callback, $default);
+        }
+                    /**
+         * Determine if the instance is missing a given key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */        public static function missing($key)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->missing($key);
+        }
+                    /**
+         * Apply the callback if the instance is missing the given key.
+         *
+         * @param string $key
+         * @param callable $callback
+         * @param callable|null $default
+         * @return $this|mixed 
+         * @static 
+         */        public static function whenMissing($key, $callback, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->whenMissing($key, $callback, $default);
+        }
+                    /**
+         * Retrieve data from the instnce as a Stringable instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Illuminate\Support\Stringable 
+         * @static 
+         */        public static function str($key, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->str($key, $default);
+        }
+                    /**
+         * Retrieve data from the instance as a Stringable instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Illuminate\Support\Stringable 
+         * @static 
+         */        public static function string($key, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->string($key, $default);
+        }
+                    /**
+         * Retrieve data as a boolean value.
+         * 
+         * Returns true when value is "1", "true", "on", and "yes". Otherwise, returns false.
+         *
+         * @param string|null $key
+         * @param bool $default
+         * @return bool 
+         * @static 
+         */        public static function boolean($key = null, $default = false)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->boolean($key, $default);
+        }
+                    /**
+         * Retrieve data as an integer value.
+         *
+         * @param string $key
+         * @param int $default
+         * @return int 
+         * @static 
+         */        public static function integer($key, $default = 0)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->integer($key, $default);
+        }
+                    /**
+         * Retrieve data as a float value.
+         *
+         * @param string $key
+         * @param float $default
+         * @return float 
+         * @static 
+         */        public static function float($key, $default = 0.0)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->float($key, $default);
+        }
+                    /**
+         * Retrieve data from the instance as a Carbon instance.
+         *
+         * @param string $key
+         * @param string|null $format
+         * @param string|null $tz
+         * @return \Illuminate\Support\Carbon|null 
+         * @throws \Carbon\Exceptions\InvalidFormatException
+         * @static 
+         */        public static function date($key, $format = null, $tz = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->date($key, $format, $tz);
+        }
+                    /**
+         * Retrieve data from the instance as an enum.
+         *
+         * @template TEnum of \BackedEnum
+         * @param string $key
+         * @param \Illuminate\Http\class-string<TEnum> $enumClass
+         * @return \Illuminate\Http\TEnum|null 
+         * @static 
+         */        public static function enum($key, $enumClass)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->enum($key, $enumClass);
+        }
+                    /**
+         * Retrieve data from the instance as an array of enums.
+         *
+         * @template TEnum of \BackedEnum
+         * @param string $key
+         * @param \Illuminate\Http\class-string<TEnum> $enumClass
+         * @return \Illuminate\Http\TEnum[] 
+         * @static 
+         */        public static function enums($key, $enumClass)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->enums($key, $enumClass);
+        }
+                    /**
+         * Retrieve data from the instance as a collection.
+         *
+         * @param array|string|null $key
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */        public static function collect($key = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->collect($key);
+        }
+                    /**
+         * Get a subset containing the provided keys with values from the instance data.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */        public static function only($keys)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->only($keys);
+        }
+                    /**
+         * Get all of the data except for a specified array of items.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */        public static function except($keys)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->except($keys);
         }
                     /**
          * Register a custom macro.
@@ -13382,7 +13531,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Create a new redirect response to a named route.
          *
-         * @param string $route
+         * @param \BackedEnum|string $route
          * @param mixed $parameters
          * @param int $status
          * @param array $headers
@@ -14418,8 +14567,8 @@ namespace Illuminate\Support\Facades {
                     /**
          * Call the given Closure with this instance then return the instance.
          *
-         * @param \Illuminate\Routing\(callable($this):  mixed)|null  $callback
-         * @return \Illuminate\Routing\($callback is null ? \Illuminate\Support\HigherOrderTapProxy : $this)
+         * @param (callable($this): mixed)|null $callback
+         * @return ($callback is null ? \Illuminate\Support\HigherOrderTapProxy : $this)
          * @static 
          */        public static function tap($callback = null)
         {
@@ -14494,6 +14643,68 @@ namespace Illuminate\Support\Facades {
             /**
      * 
      *
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes withoutOverlapping(int $expiresAt = 1440)
+     * @method static void mergeAttributes(\Illuminate\Console\Scheduling\Event $event)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes user(string $user)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes environments(array|mixed $environments)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes evenInMaintenanceMode()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes onOneServer()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes runInBackground()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes when(\Closure|bool $callback)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes skip(\Closure|bool $callback)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes name(string $description)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes description(string $description)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes cron(string $expression)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes between(string $startTime, string $endTime)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes unlessBetween(string $startTime, string $endTime)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everySecond()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTwoSeconds()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFiveSeconds()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTenSeconds()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFifteenSeconds()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTwentySeconds()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyThirtySeconds()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyMinute()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTwoMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyThreeMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFourMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFiveMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTenMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFifteenMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyThirtyMinutes()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes hourly()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes hourlyAt(array|string|int $offset)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyOddHour(array|string|int $offset = 0)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTwoHours(array|string|int $offset = 0)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyThreeHours(array|string|int $offset = 0)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFourHours(array|string|int $offset = 0)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everySixHours(array|string|int $offset = 0)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes daily()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes at(string $time)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes dailyAt(string $time)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes twiceDaily(int $first = 1, int $second = 13)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes twiceDailyAt(int $first = 1, int $second = 13, int $offset = 0)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes weekdays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes weekends()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes mondays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes tuesdays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes wednesdays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes thursdays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes fridays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes saturdays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes sundays()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes weekly()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes weeklyOn(array|mixed $dayOfWeek, string $time = '0:0')
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes monthly()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes monthlyOn(int $dayOfMonth = 1, string $time = '0:0')
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes twiceMonthly(int $first = 1, int $second = 16, string $time = '0:0')
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes lastDayOfMonth(string $time = '0:0')
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes quarterly()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes quarterlyOn(int $dayOfQuarter = 1, string $time = '0:0')
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes yearly()
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes yearlyOn(int $month = 1, int|string $dayOfMonth = 1, string $time = '0:0')
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes days(array|mixed $days)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes timezone(\DateTimeZone|string $timezone)
      * @see \Illuminate\Console\Scheduling\Schedule
      */        class Schedule {
                     /**
@@ -14544,6 +14755,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Console\Scheduling\Schedule $instance */
                         return $instance->exec($command, $parameters);
+        }
+                    /**
+         * Create new schedule group.
+         *
+         * @param \Illuminate\Console\Scheduling\Event $event
+         * @return void 
+         * @throws \RuntimeException
+         * @static 
+         */        public static function group($events)
+        {
+                        /** @var \Illuminate\Console\Scheduling\Schedule $instance */
+                        $instance->group($events);
         }
                     /**
          * Compile array input for a command.
@@ -14644,6 +14867,19 @@ namespace Illuminate\Support\Facades {
         {
                         \Illuminate\Console\Scheduling\Schedule::flushMacros();
         }
+                    /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */        public static function macroCall($method, $parameters)
+        {
+                        /** @var \Illuminate\Console\Scheduling\Schedule $instance */
+                        return $instance->macroCall($method, $parameters);
+        }
             }
             /**
      * 
@@ -14671,6 +14907,17 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         return $instance->dropDatabaseIfExists($name);
+        }
+                    /**
+         * Determine if the given table exists.
+         *
+         * @param string $table
+         * @return bool 
+         * @static 
+         */        public static function hasTable($table)
+        {
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->hasTable($table);
         }
                     /**
          * Get the tables for the database.
@@ -14783,17 +15030,6 @@ namespace Illuminate\Support\Facades {
          */        public static function morphUsingUlids()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         \Illuminate\Database\Schema\MySqlBuilder::morphUsingUlids();
-        }
-                    /**
-         * Determine if the given table exists.
-         *
-         * @param string $table
-         * @return bool 
-         * @static 
-         */        public static function hasTable($table)
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->hasTable($table);
         }
                     /**
          * Determine if the given view exists.
@@ -16065,6 +16301,19 @@ namespace Illuminate\Support\Facades {
                         return $instance->assertExists($path, $content);
         }
                     /**
+         * Assert that the number of files in path equals the expected count.
+         *
+         * @param string $path
+         * @param int $count
+         * @param bool $recursive
+         * @return \Illuminate\Filesystem\LocalFilesystemAdapter 
+         * @static 
+         */        public static function assertCount($path, $count, $recursive = false)
+        {            //Method inherited from \Illuminate\Filesystem\FilesystemAdapter         
+                        /** @var \Illuminate\Filesystem\LocalFilesystemAdapter $instance */
+                        return $instance->assertCount($path, $count, $recursive);
+        }
+                    /**
          * Assert that the given file or directory does not exist.
          *
          * @param string|array $path
@@ -16572,9 +16821,9 @@ namespace Illuminate\Support\Facades {
          *
          * @template TWhenParameter
          * @template TWhenReturnType
-         * @param \Illuminate\Filesystem\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
-         * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
-         * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
+         * @param (\Closure($this): TWhenParameter)|\Illuminate\Filesystem\TWhenParameter|null $value
+         * @param (callable($this, TWhenParameter): TWhenReturnType)|null $callback
+         * @param (callable($this, TWhenParameter): TWhenReturnType)|null $default
          * @return $this|\Illuminate\Filesystem\TWhenReturnType 
          * @static 
          */        public static function when($value = null, $callback = null, $default = null)
@@ -16587,9 +16836,9 @@ namespace Illuminate\Support\Facades {
          *
          * @template TUnlessParameter
          * @template TUnlessReturnType
-         * @param \Illuminate\Filesystem\(\Closure($this):  TUnlessParameter)|TUnlessParameter|null  $value
-         * @param \Illuminate\Filesystem\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $callback
-         * @param \Illuminate\Filesystem\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $default
+         * @param (\Closure($this): TUnlessParameter)|\Illuminate\Filesystem\TUnlessParameter|null $value
+         * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $callback
+         * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $default
          * @return $this|\Illuminate\Filesystem\TUnlessReturnType 
          * @static 
          */        public static function unless($value = null, $callback = null, $default = null)
@@ -16910,7 +17159,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Format the array of URL parameters.
          *
-         * @param mixed|array $parameters
+         * @param mixed $parameters
          * @return array 
          * @static 
          */        public static function formatParameters($parameters)
@@ -16985,6 +17234,17 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Routing\UrlGenerator $instance */
                         $instance->forceScheme($scheme);
+        }
+                    /**
+         * Force the use of the HTTPS scheme for all generated URLs.
+         *
+         * @param bool $force
+         * @return void 
+         * @static 
+         */        public static function forceHttps($force = true)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        $instance->forceHttps($force);
         }
                     /**
          * Set the forced root URL.
@@ -18275,6 +18535,17 @@ namespace Illuminate\Support\Facades {
                         return $instance->withEntryPoints($entryPoints);
         }
                     /**
+         * Merge additional Vite entry points with the current set.
+         *
+         * @param array $entryPoints
+         * @return \Illuminate\Foundation\Vite 
+         * @static 
+         */        public static function mergeEntryPoints($entryPoints)
+        {
+                        /** @var \Illuminate\Foundation\Vite $instance */
+                        return $instance->mergeEntryPoints($entryPoints);
+        }
+                    /**
          * Set the filename for the manifest file.
          *
          * @param string $filename
@@ -18331,7 +18602,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Use the given callback to resolve attributes for script tags.
          *
-         * @param \Illuminate\Foundation\(callable(string,  string, ?array, ?array): array)|array  $attributes
+         * @param (callable(string, string, ?array, ?array): array)|array $attributes
          * @return \Illuminate\Foundation\Vite 
          * @static 
          */        public static function useScriptTagAttributes($attributes)
@@ -18342,7 +18613,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Use the given callback to resolve attributes for style tags.
          *
-         * @param \Illuminate\Foundation\(callable(string,  string, ?array, ?array): array)|array  $attributes
+         * @param (callable(string, string, ?array, ?array): array)|array $attributes
          * @return \Illuminate\Foundation\Vite 
          * @static 
          */        public static function useStyleTagAttributes($attributes)
@@ -18353,7 +18624,7 @@ namespace Illuminate\Support\Facades {
                     /**
          * Use the given callback to resolve attributes for preload tags.
          *
-         * @param \Illuminate\Foundation\(callable(string,  string, ?array, ?array): (array|false))|array|false  $attributes
+         * @param (callable(string, string, ?array, ?array): (array|false))|array|false $attributes
          * @return \Illuminate\Foundation\Vite 
          * @static 
          */        public static function usePreloadTagAttributes($attributes)
@@ -18521,240 +18792,69 @@ namespace A17\Twill\Facades {
             /**
      * 
      *
-     */        class TwillCapsules {
+     */        class TwillUtil {
                     /**
          * 
          *
          * @static 
-         */        public static function registerPackageCapsule($name, $namespace, $path, $singular = null, $enabled = true, $automaticNavigation = true)
+         */        public static function hasRepeaterIdFor($frontEndId)
         {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->registerPackageCapsule($name, $namespace, $path, $singular, $enabled, $automaticNavigation);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function registerCapsule($capsule)
-        {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->registerCapsule($capsule);
-        }
-                    /**
-         * Generates a non package capsule object.
-         *
-         * @static 
-         */        public static function makeProjectCapsule($name)
-        {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->makeProjectCapsule($name);
-        }
-                    /**
-         * 
-         *
-         * @throws \A17\Twill\Exceptions\NoCapsuleFoundException
-         * @static 
-         */        public static function getCapsuleForModule($module)
-        {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->getCapsuleForModule($module);
-        }
-                    /**
-         * 
-         *
-         * @throws \A17\Twill\Exceptions\NoCapsuleFoundException
-         * @static 
-         */        public static function getCapsuleForModel($model)
-        {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->getCapsuleForModel($model);
-        }
-                    /**
-         * 
-         *
-         * @return \A17\Twill\Collection<Capsule> 
-         * @static 
-         */        public static function getRegisteredCapsules()
-        {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->getRegisteredCapsules();
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->hasRepeaterIdFor($frontEndId);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function loadProjectCapsules()
+         */        public static function registerRepeaterId($frontEndId, $dbId)
         {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->loadProjectCapsules();
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->registerRepeaterId($frontEndId, $dbId);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function capsuleNamespace($capsuleName, $type = null)
+         */        public static function hasBlockIdFor($frontEndId)
         {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->capsuleNamespace($capsuleName, $type);
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->hasBlockIdFor($frontEndId);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function capsuleNamespaceToPath($namespace, $capsuleNamespace, $rootPath)
+         */        public static function registerBlockId($frontEndId, $dbId)
         {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->capsuleNamespaceToPath($namespace, $capsuleNamespace, $rootPath);
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->registerBlockId($frontEndId, $dbId);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function getProjectCapsulesPath()
+         */        public static function clearTempStore()
         {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->getProjectCapsulesPath();
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->clearTempStore();
         }
                     /**
          * 
          *
          * @static 
-         */        public static function getAutoloader()
+         */        public static function parseInternalLinks($content)
         {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->getAutoloader();
-        }
-                    /**
-         * 
-         *
-         * @return \A17\Twill\class-string<Model> 
-         * @static 
-         */        public static function guessRelatedModelClass($related, $model)
-        {
-                        /** @var \A17\Twill\TwillCapsules $instance */
-                        return $instance->guessRelatedModelClass($related, $model);
-        }
-            }
-            /**
-     * 
-     *
-     */        class TwillRoutes {
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getModuleRouteFromRegistry($module)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->getModuleRouteFromRegistry($module);
-        }
-                    /**
-         * Only useful for testing purposes.
-         *
-         * @static 
-         */        public static function addToRouteRegistry($slug, $prefix)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->addToRouteRegistry($slug, $prefix);
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->parseInternalLinks($content);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function buildModuleRoutes($slug, $options = [], $resource_options = [], $resource = true)
+         */        public static function syncUsingPrimaryKey($relation, $ids, $detaching = true)
         {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->buildModuleRoutes($slug, $options, $resource_options, $resource);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function registerRoutes($router, $groupOptions, $middlewares, $supportSubdomainRouting, $namespace, $routesFile, $instant = false)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->registerRoutes($router, $groupOptions, $middlewares, $supportSubdomainRouting, $namespace, $routesFile, $instant);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function registerRoutePatterns()
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->registerRoutePatterns();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getRouteGroupOptions()
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->getRouteGroupOptions();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getRouteMiddleware($middleware = null)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->getRouteMiddleware($middleware);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function supportSubdomainRouting()
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->supportSubdomainRouting();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function registerCapsuleRoutes($router, $capsule)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->registerCapsuleRoutes($router, $capsule);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function singleton($slug, $options = [], $resource_options = [], $resource = true)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->singleton($slug, $options, $resource_options, $resource);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function module($slug, $options = [], $resource_options = [], $resource = true)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->module($slug, $options, $resource_options, $resource);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function moduleShowWithPreview($moduleName, $routePrefix = null, $controllerName = null)
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->moduleShowWithPreview($moduleName, $routePrefix, $controllerName);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getAuthRedirectPath()
-        {
-                        /** @var \A17\Twill\TwillRoutes $instance */
-                        return $instance->getAuthRedirectPath();
+                        /** @var \A17\Twill\TwillUtil $instance */
+                        return $instance->syncUsingPrimaryKey($relation, $ids, $detaching);
         }
             }
             /**
@@ -18911,69 +19011,345 @@ namespace A17\Twill\Facades {
          * Gets all the crop configs, also those of component blocks.
          *
          * @static 
-         */        public static function getAllCropConfigs()
+         */        public static function getAllCropConfigs($prefixKey = false)
         {
                         /** @var \A17\Twill\TwillBlocks $instance */
-                        return $instance->getAllCropConfigs();
+                        return $instance->getAllCropConfigs($prefixKey);
         }
             }
             /**
      * 
      *
-     */        class TwillUtil {
+     */        class TwillRoutes {
                     /**
          * 
          *
          * @static 
-         */        public static function hasRepeaterIdFor($frontEndId)
+         */        public static function getModuleRouteFromRegistry($module)
         {
-                        /** @var \A17\Twill\TwillUtil $instance */
-                        return $instance->hasRepeaterIdFor($frontEndId);
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->getModuleRouteFromRegistry($module);
+        }
+                    /**
+         * Only useful for testing purposes.
+         *
+         * @static 
+         */        public static function addToRouteRegistry($slug, $prefix)
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->addToRouteRegistry($slug, $prefix);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function registerRepeaterId($frontEndId, $dbId)
+         */        public static function buildModuleRoutes($slug, $options = [], $resource_options = [], $resource = true)
         {
-                        /** @var \A17\Twill\TwillUtil $instance */
-                        return $instance->registerRepeaterId($frontEndId, $dbId);
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->buildModuleRoutes($slug, $options, $resource_options, $resource);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function hasBlockIdFor($frontEndId)
+         */        public static function registerRoutes($router, $groupOptions, $middlewares, $supportSubdomainRouting, $namespace, $routesFile, $instant = false)
         {
-                        /** @var \A17\Twill\TwillUtil $instance */
-                        return $instance->hasBlockIdFor($frontEndId);
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->registerRoutes($router, $groupOptions, $middlewares, $supportSubdomainRouting, $namespace, $routesFile, $instant);
         }
                     /**
          * 
          *
          * @static 
-         */        public static function registerBlockId($frontEndId, $dbId)
+         */        public static function registerRoutePatterns()
         {
-                        /** @var \A17\Twill\TwillUtil $instance */
-                        return $instance->registerBlockId($frontEndId, $dbId);
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->registerRoutePatterns();
         }
                     /**
          * 
          *
          * @static 
-         */        public static function clearTempStore()
+         */        public static function getRouteGroupOptions()
         {
-                        /** @var \A17\Twill\TwillUtil $instance */
-                        return $instance->clearTempStore();
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->getRouteGroupOptions();
         }
                     /**
          * 
          *
          * @static 
-         */        public static function parseInternalLinks($content)
+         */        public static function getRouteMiddleware($middleware = null)
         {
-                        /** @var \A17\Twill\TwillUtil $instance */
-                        return $instance->parseInternalLinks($content);
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->getRouteMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function supportSubdomainRouting()
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->supportSubdomainRouting();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function registerCapsuleRoutes($router, $capsule)
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->registerCapsuleRoutes($router, $capsule);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function singleton($slug, $options = [], $resource_options = [], $resource = true)
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->singleton($slug, $options, $resource_options, $resource);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function module($slug, $options = [], $resource_options = [], $resource = true)
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->module($slug, $options, $resource_options, $resource);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function moduleShowWithPreview($moduleName, $routePrefix = null, $controllerName = null)
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->moduleShowWithPreview($moduleName, $routePrefix, $controllerName);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getAuthRedirectPath()
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->getAuthRedirectPath();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function isTwillRequest()
+        {
+                        /** @var \A17\Twill\TwillRoutes $instance */
+                        return $instance->isTwillRequest();
+        }
+            }
+            /**
+     * 
+     *
+     */        class TwillCapsules {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function registerPackageCapsule($name, $namespace, $path, $singular = null, $enabled = true, $automaticNavigation = true)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->registerPackageCapsule($name, $namespace, $path, $singular, $enabled, $automaticNavigation);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function registerCapsule($capsule)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->registerCapsule($capsule);
+        }
+                    /**
+         * Generates a non package capsule object.
+         *
+         * @static 
+         */        public static function makeProjectCapsule($name)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->makeProjectCapsule($name);
+        }
+                    /**
+         * 
+         *
+         * @throws \A17\Twill\Exceptions\NoCapsuleFoundException
+         * @static 
+         */        public static function getCapsuleForModule($module)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->getCapsuleForModule($module);
+        }
+                    /**
+         * 
+         *
+         * @throws \A17\Twill\Exceptions\NoCapsuleFoundException
+         * @static 
+         */        public static function getCapsuleForModel($model)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->getCapsuleForModel($model);
+        }
+                    /**
+         * 
+         *
+         * @return \A17\Twill\Collection<Capsule> 
+         * @static 
+         */        public static function getRegisteredCapsules()
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->getRegisteredCapsules();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function loadProjectCapsules()
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->loadProjectCapsules();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function capsuleNamespace($capsuleName, $type = null)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->capsuleNamespace($capsuleName, $type);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function capsuleNamespaceToPath($namespace, $capsuleNamespace, $rootPath)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->capsuleNamespaceToPath($namespace, $capsuleNamespace, $rootPath);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getProjectCapsulesPath()
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->getProjectCapsulesPath();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getAutoloader()
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->getAutoloader();
+        }
+                    /**
+         * 
+         *
+         * @return \A17\Twill\class-string<Model> 
+         * @static 
+         */        public static function guessRelatedModelClass($related, $model)
+        {
+                        /** @var \A17\Twill\TwillCapsules $instance */
+                        return $instance->guessRelatedModelClass($related, $model);
+        }
+            }
+            /**
+     * 
+     *
+     */        class TwillNavigation {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function addLink($link)
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->addLink($link);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function addSecondaryNavigationForCurrentRequest($link)
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->addSecondaryNavigationForCurrentRequest($link);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getSecondaryRequestLinks()
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->getSecondaryRequestLinks();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getActiveSecondaryNavigationLink()
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->getActiveSecondaryNavigationLink();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function addTertiaryNavigationForCurrentRequest($link)
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->addTertiaryNavigationForCurrentRequest($link);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getTertiaryRequestLinks()
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->getTertiaryRequestLinks();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getActivePrimaryNavigationLink()
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->getActivePrimaryNavigationLink();
+        }
+                    /**
+         * 
+         *
+         * @return array<string, array<int, NavigationLink>> 
+         * @static 
+         */        public static function buildNavigationTree()
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->buildNavigationTree();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function clear()
+        {
+                        /** @var \A17\Twill\TwillNavigation $instance */
+                        return $instance->clear();
         }
             }
             /**
@@ -19071,93 +19447,6 @@ namespace A17\Twill\Facades {
         {
                         /** @var \A17\Twill\TwillAppSettings $instance */
                         return $instance->getBlockServiceForGroupAndSection($group, $section);
-        }
-            }
-            /**
-     * 
-     *
-     */        class TwillNavigation {
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function addLink($link)
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->addLink($link);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function addSecondaryNavigationForCurrentRequest($link)
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->addSecondaryNavigationForCurrentRequest($link);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getSecondaryRequestLinks()
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->getSecondaryRequestLinks();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getActiveSecondaryNavigationLink()
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->getActiveSecondaryNavigationLink();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function addTertiaryNavigationForCurrentRequest($link)
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->addTertiaryNavigationForCurrentRequest($link);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getTertiaryRequestLinks()
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->getTertiaryRequestLinks();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function getActivePrimaryNavigationLink()
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->getActivePrimaryNavigationLink();
-        }
-                    /**
-         * 
-         *
-         * @return array<string, array<int, NavigationLink>> 
-         * @static 
-         */        public static function buildNavigationTree()
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->buildNavigationTree();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */        public static function clear()
-        {
-                        /** @var \A17\Twill\TwillNavigation $instance */
-                        return $instance->clear();
         }
             }
             /**
@@ -19267,6 +19556,318 @@ namespace A17\Twill\Image\Facades {
     }
 
 namespace Artesaos\SEOTools\Facades {
+            /**
+     * SEOTools is a facade for the `SEOTools` implementation access.
+     *
+     * @see \Artesaos\SEOTools\Contracts\SEOTools
+     */        class SEOTools {
+                    /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\MetaTags 
+         * @static 
+         */        public static function metatags()
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->metatags();
+        }
+                    /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\OpenGraph 
+         * @static 
+         */        public static function opengraph()
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->opengraph();
+        }
+                    /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\TwitterCards 
+         * @static 
+         */        public static function twitter()
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->twitter();
+        }
+                    /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\JsonLd 
+         * @static 
+         */        public static function jsonLd()
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->jsonLd();
+        }
+                    /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\JsonLdMulti 
+         * @static 
+         */        public static function jsonLdMulti()
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->jsonLdMulti();
+        }
+                    /**
+         * Setup title for all seo providers.
+         *
+         * @param string $title
+         * @param bool $appendDefault
+         * @return static 
+         * @static 
+         */        public static function setTitle($title, $appendDefault = true)
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->setTitle($title, $appendDefault);
+        }
+                    /**
+         * Setup description for all seo providers.
+         *
+         * @param string $description
+         * @return static 
+         * @static 
+         */        public static function setDescription($description)
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->setDescription($description);
+        }
+                    /**
+         * Sets the canonical URL.
+         *
+         * @param string $url
+         * @return static 
+         * @static 
+         */        public static function setCanonical($url)
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->setCanonical($url);
+        }
+                    /**
+         * Add one or more images urls.
+         *
+         * @param array|string $urls
+         * @return static 
+         * @static 
+         */        public static function addImages($urls)
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->addImages($urls);
+        }
+                    /**
+         * Get current title from metatags.
+         *
+         * @param bool $session
+         * @return string 
+         * @static 
+         */        public static function getTitle($session = false)
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->getTitle($session);
+        }
+                    /**
+         * Generate from all seo providers.
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */        public static function generate($minify = false)
+        {
+                        /** @var \Artesaos\SEOTools\SEOTools $instance */
+                        return $instance->generate($minify);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @param-closure-this static  $macro
+         * @return void 
+         * @static 
+         */        public static function macro($name, $macro)
+        {
+                        \Artesaos\SEOTools\SEOTools::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */        public static function mixin($mixin, $replace = true)
+        {
+                        \Artesaos\SEOTools\SEOTools::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */        public static function hasMacro($name)
+        {
+                        return \Artesaos\SEOTools\SEOTools::hasMacro($name);
+        }
+                    /**
+         * Flush the existing macros.
+         *
+         * @return void 
+         * @static 
+         */        public static function flushMacros()
+        {
+                        \Artesaos\SEOTools\SEOTools::flushMacros();
+        }
+            }
+            /**
+     * JsonLd is a facade for the `JsonLd` implementation access.
+     *
+     * @see \Artesaos\SEOTools\Contracts\JsonLd
+     */        class JsonLd {
+                    /**
+         * Check if all attribute are empty
+         *
+         * @return static 
+         * @static 
+         */        public static function isEmpty()
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->isEmpty();
+        }
+                    /**
+         * Generates linked data script tag.
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */        public static function generate($minify = false)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->generate($minify);
+        }
+                    /**
+         * 
+         *
+         * @return string[]|string[][] 
+         * @static 
+         */        public static function convertToArray()
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->convertToArray();
+        }
+                    /**
+         * 
+         *
+         * @param string $key
+         * @param string|array $value
+         * @return static 
+         * @static 
+         */        public static function addValue($key, $value)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->addValue($key, $value);
+        }
+                    /**
+         * 
+         *
+         * @param array $values
+         * @return static 
+         * @static 
+         */        public static function addValues($values)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->addValues($values);
+        }
+                    /**
+         * 
+         *
+         * @param string $type
+         * @return static 
+         * @static 
+         */        public static function setType($type)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setType($type);
+        }
+                    /**
+         * 
+         *
+         * @param string $title
+         * @return static 
+         * @static 
+         */        public static function setTitle($title)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setTitle($title);
+        }
+                    /**
+         * 
+         *
+         * @param string $site
+         * @return static 
+         * @static 
+         */        public static function setSite($site)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setSite($site);
+        }
+                    /**
+         * 
+         *
+         * @param string $description
+         * @return static 
+         * @static 
+         */        public static function setDescription($description)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setDescription($description);
+        }
+                    /**
+         * 
+         *
+         * @param string|null|bool $url
+         * @return static 
+         * @static 
+         */        public static function setUrl($url)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setUrl($url);
+        }
+                    /**
+         * 
+         *
+         * @param string|array $images
+         * @return static 
+         * @static 
+         */        public static function setImages($images)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setImages($images);
+        }
+                    /**
+         * 
+         *
+         * @param string|array $image
+         * @return static 
+         * @static 
+         */        public static function addImage($image)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->addImage($image);
+        }
+                    /**
+         * {@inheritdoc}
+         *
+         * @static 
+         */        public static function setImage($image)
+        {
+                        /** @var \Artesaos\SEOTools\JsonLd $instance */
+                        return $instance->setImage($image);
+        }
+            }
             /**
      * SEOMeta is a facade for the `MetaTags` implementation access.
      *
@@ -19618,6 +20219,125 @@ namespace Artesaos\SEOTools\Facades {
         }
             }
             /**
+     * TwitterCard is a facade for the `TwitterCards` implementation access.
+     *
+     * @see \Artesaos\SEOTools\Contracts\TwitterCards
+     */        class TwitterCard {
+                    /**
+         * 
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */        public static function generate($minify = false)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->generate($minify);
+        }
+                    /**
+         * 
+         *
+         * @param string $key
+         * @param string|array $value
+         * @return static 
+         * @static 
+         */        public static function addValue($key, $value)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->addValue($key, $value);
+        }
+                    /**
+         * 
+         *
+         * @param string $title
+         * @return static 
+         * @static 
+         */        public static function setTitle($title)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setTitle($title);
+        }
+                    /**
+         * 
+         *
+         * @param string $type
+         * @return static 
+         * @static 
+         */        public static function setType($type)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setType($type);
+        }
+                    /**
+         * 
+         *
+         * @param string $site
+         * @return static 
+         * @static 
+         */        public static function setSite($site)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setSite($site);
+        }
+                    /**
+         * 
+         *
+         * @param string $description
+         * @return static 
+         * @static 
+         */        public static function setDescription($description)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setDescription($description);
+        }
+                    /**
+         * 
+         *
+         * @param string $url
+         * @return static 
+         * @static 
+         */        public static function setUrl($url)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setUrl($url);
+        }
+                    /**
+         * 
+         *
+         * @deprecated use setImage($image) instead
+         * @param string|array $image
+         * @return static 
+         * @static 
+         */        public static function addImage($image)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->addImage($image);
+        }
+                    /**
+         * 
+         *
+         * @deprecated use setImage($image) instead
+         * @param string|array $images
+         * @return static 
+         * @static 
+         */        public static function setImages($images)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setImages($images);
+        }
+                    /**
+         * 
+         *
+         * @param $image
+         * @return \Artesaos\SEOTools\Contracts\TwitterCards 
+         * @static 
+         */        public static function setImage($image)
+        {
+                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
+                        return $instance->setImage($image);
+        }
+            }
+            /**
      * OpenGraph is a facade for the `OpenGraph` implementation access.
      *
      * @see \Artesaos\SEOTools\Contracts\OpenGraph
@@ -19902,437 +20622,6 @@ namespace Artesaos\SEOTools\Facades {
         {
                         /** @var \Artesaos\SEOTools\OpenGraph $instance */
                         return $instance->setSiteName($name);
-        }
-            }
-            /**
-     * TwitterCard is a facade for the `TwitterCards` implementation access.
-     *
-     * @see \Artesaos\SEOTools\Contracts\TwitterCards
-     */        class TwitterCard {
-                    /**
-         * 
-         *
-         * @param bool $minify
-         * @return string 
-         * @static 
-         */        public static function generate($minify = false)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->generate($minify);
-        }
-                    /**
-         * 
-         *
-         * @param string $key
-         * @param string|array $value
-         * @return static 
-         * @static 
-         */        public static function addValue($key, $value)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->addValue($key, $value);
-        }
-                    /**
-         * 
-         *
-         * @param string $title
-         * @return static 
-         * @static 
-         */        public static function setTitle($title)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setTitle($title);
-        }
-                    /**
-         * 
-         *
-         * @param string $type
-         * @return static 
-         * @static 
-         */        public static function setType($type)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setType($type);
-        }
-                    /**
-         * 
-         *
-         * @param string $site
-         * @return static 
-         * @static 
-         */        public static function setSite($site)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setSite($site);
-        }
-                    /**
-         * 
-         *
-         * @param string $description
-         * @return static 
-         * @static 
-         */        public static function setDescription($description)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setDescription($description);
-        }
-                    /**
-         * 
-         *
-         * @param string $url
-         * @return static 
-         * @static 
-         */        public static function setUrl($url)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setUrl($url);
-        }
-                    /**
-         * 
-         *
-         * @deprecated use setImage($image) instead
-         * @param string|array $image
-         * @return static 
-         * @static 
-         */        public static function addImage($image)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->addImage($image);
-        }
-                    /**
-         * 
-         *
-         * @deprecated use setImage($image) instead
-         * @param string|array $images
-         * @return static 
-         * @static 
-         */        public static function setImages($images)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setImages($images);
-        }
-                    /**
-         * 
-         *
-         * @param $image
-         * @return \Artesaos\SEOTools\Contracts\TwitterCards 
-         * @static 
-         */        public static function setImage($image)
-        {
-                        /** @var \Artesaos\SEOTools\TwitterCards $instance */
-                        return $instance->setImage($image);
-        }
-            }
-            /**
-     * JsonLd is a facade for the `JsonLd` implementation access.
-     *
-     * @see \Artesaos\SEOTools\Contracts\JsonLd
-     */        class JsonLd {
-                    /**
-         * Check if all attribute are empty
-         *
-         * @return static 
-         * @static 
-         */        public static function isEmpty()
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->isEmpty();
-        }
-                    /**
-         * Generates linked data script tag.
-         *
-         * @param bool $minify
-         * @return string 
-         * @static 
-         */        public static function generate($minify = false)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->generate($minify);
-        }
-                    /**
-         * 
-         *
-         * @return string[]|string[][] 
-         * @static 
-         */        public static function convertToArray()
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->convertToArray();
-        }
-                    /**
-         * 
-         *
-         * @param string $key
-         * @param string|array $value
-         * @return static 
-         * @static 
-         */        public static function addValue($key, $value)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->addValue($key, $value);
-        }
-                    /**
-         * 
-         *
-         * @param array $values
-         * @return static 
-         * @static 
-         */        public static function addValues($values)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->addValues($values);
-        }
-                    /**
-         * 
-         *
-         * @param string $type
-         * @return static 
-         * @static 
-         */        public static function setType($type)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setType($type);
-        }
-                    /**
-         * 
-         *
-         * @param string $title
-         * @return static 
-         * @static 
-         */        public static function setTitle($title)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setTitle($title);
-        }
-                    /**
-         * 
-         *
-         * @param string $site
-         * @return static 
-         * @static 
-         */        public static function setSite($site)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setSite($site);
-        }
-                    /**
-         * 
-         *
-         * @param string $description
-         * @return static 
-         * @static 
-         */        public static function setDescription($description)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setDescription($description);
-        }
-                    /**
-         * 
-         *
-         * @param string|null|bool $url
-         * @return static 
-         * @static 
-         */        public static function setUrl($url)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setUrl($url);
-        }
-                    /**
-         * 
-         *
-         * @param string|array $images
-         * @return static 
-         * @static 
-         */        public static function setImages($images)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setImages($images);
-        }
-                    /**
-         * 
-         *
-         * @param string|array $image
-         * @return static 
-         * @static 
-         */        public static function addImage($image)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->addImage($image);
-        }
-                    /**
-         * {@inheritdoc}
-         *
-         * @static 
-         */        public static function setImage($image)
-        {
-                        /** @var \Artesaos\SEOTools\JsonLd $instance */
-                        return $instance->setImage($image);
-        }
-            }
-            /**
-     * SEOTools is a facade for the `SEOTools` implementation access.
-     *
-     * @see \Artesaos\SEOTools\Contracts\SEOTools
-     */        class SEOTools {
-                    /**
-         * 
-         *
-         * @return \Artesaos\SEOTools\Contracts\MetaTags 
-         * @static 
-         */        public static function metatags()
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->metatags();
-        }
-                    /**
-         * 
-         *
-         * @return \Artesaos\SEOTools\Contracts\OpenGraph 
-         * @static 
-         */        public static function opengraph()
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->opengraph();
-        }
-                    /**
-         * 
-         *
-         * @return \Artesaos\SEOTools\Contracts\TwitterCards 
-         * @static 
-         */        public static function twitter()
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->twitter();
-        }
-                    /**
-         * 
-         *
-         * @return \Artesaos\SEOTools\Contracts\JsonLd 
-         * @static 
-         */        public static function jsonLd()
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->jsonLd();
-        }
-                    /**
-         * 
-         *
-         * @return \Artesaos\SEOTools\Contracts\JsonLdMulti 
-         * @static 
-         */        public static function jsonLdMulti()
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->jsonLdMulti();
-        }
-                    /**
-         * Setup title for all seo providers.
-         *
-         * @param string $title
-         * @param bool $appendDefault
-         * @return static 
-         * @static 
-         */        public static function setTitle($title, $appendDefault = true)
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->setTitle($title, $appendDefault);
-        }
-                    /**
-         * Setup description for all seo providers.
-         *
-         * @param string $description
-         * @return static 
-         * @static 
-         */        public static function setDescription($description)
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->setDescription($description);
-        }
-                    /**
-         * Sets the canonical URL.
-         *
-         * @param string $url
-         * @return static 
-         * @static 
-         */        public static function setCanonical($url)
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->setCanonical($url);
-        }
-                    /**
-         * Add one or more images urls.
-         *
-         * @param array|string $urls
-         * @return static 
-         * @static 
-         */        public static function addImages($urls)
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->addImages($urls);
-        }
-                    /**
-         * Get current title from metatags.
-         *
-         * @param bool $session
-         * @return string 
-         * @static 
-         */        public static function getTitle($session = false)
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->getTitle($session);
-        }
-                    /**
-         * Generate from all seo providers.
-         *
-         * @param bool $minify
-         * @return string 
-         * @static 
-         */        public static function generate($minify = false)
-        {
-                        /** @var \Artesaos\SEOTools\SEOTools $instance */
-                        return $instance->generate($minify);
-        }
-                    /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @param-closure-this static  $macro
-         * @return void 
-         * @static 
-         */        public static function macro($name, $macro)
-        {
-                        \Artesaos\SEOTools\SEOTools::macro($name, $macro);
-        }
-                    /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @param bool $replace
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */        public static function mixin($mixin, $replace = true)
-        {
-                        \Artesaos\SEOTools\SEOTools::mixin($mixin, $replace);
-        }
-                    /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */        public static function hasMacro($name)
-        {
-                        return \Artesaos\SEOTools\SEOTools::hasMacro($name);
-        }
-                    /**
-         * Flush the existing macros.
-         *
-         * @return void 
-         * @static 
-         */        public static function flushMacros()
-        {
-                        \Artesaos\SEOTools\SEOTools::flushMacros();
         }
             }
     }
@@ -21400,6 +21689,16 @@ namespace Spatie\LaravelIgnition\Facades {
                     /**
          * 
          *
+         * @param \Spatie\FlareClient\class-string $exceptionClass
+         * @static 
+         */        public static function overrideGrouping($exceptionClass, $type = 'exception_message_and_class')
+        {
+                        /** @var \Spatie\FlareClient\Flare $instance */
+                        return $instance->overrideGrouping($exceptionClass, $type);
+        }
+                    /**
+         * 
+         *
          * @static 
          */        public static function version()
         {
@@ -22317,7 +22616,7 @@ namespace  {
                             /**
              * Add a basic where clause to the query.
              *
-             * @param \Illuminate\Database\Eloquent\(\Closure(static):  mixed)|string|array|\Illuminate\Contracts\Database\Query\Expression  $column
+             * @param (\Closure(static): mixed)|string|array|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
              * @param string $boolean
@@ -22331,7 +22630,7 @@ namespace  {
                             /**
              * Add a basic where clause to the query, and return the first result.
              *
-             * @param \Illuminate\Database\Eloquent\(\Closure(static):  mixed)|string|array|\Illuminate\Contracts\Database\Query\Expression  $column
+             * @param (\Closure(static): mixed)|string|array|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
              * @param string $boolean
@@ -22345,7 +22644,7 @@ namespace  {
                             /**
              * Add an "or where" clause to the query.
              *
-             * @param \Illuminate\Database\Eloquent\(\Closure(static):  mixed)|array|string|\Illuminate\Contracts\Database\Query\Expression  $column
+             * @param (\Closure(static): mixed)|array|string|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
              * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -22358,7 +22657,7 @@ namespace  {
                             /**
              * Add a basic "where not" clause to the query.
              *
-             * @param \Illuminate\Database\Eloquent\(\Closure(static):  mixed)|string|array|\Illuminate\Contracts\Database\Query\Expression  $column
+             * @param (\Closure(static): mixed)|string|array|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
              * @param string $boolean
@@ -22372,7 +22671,7 @@ namespace  {
                             /**
              * Add an "or where not" clause to the query.
              *
-             * @param \Illuminate\Database\Eloquent\(\Closure(static):  mixed)|array|string|\Illuminate\Contracts\Database\Query\Expression  $column
+             * @param (\Closure(static): mixed)|array|string|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
              * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -22432,7 +22731,7 @@ namespace  {
              *
              * @param mixed $id
              * @param array|string $columns
-             * @return \Illuminate\Database\Eloquent\($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel|null)
+             * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel|null)
              * @static 
              */            public static function find($id, $columns = [])
             {
@@ -22456,7 +22755,7 @@ namespace  {
              *
              * @param mixed $id
              * @param array|string $columns
-             * @return \Illuminate\Database\Eloquent\($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel)
+             * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel)
              * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<TModel>
              * @static 
              */            public static function findOrFail($id, $columns = [])
@@ -22469,7 +22768,7 @@ namespace  {
              *
              * @param mixed $id
              * @param array|string $columns
-             * @return \Illuminate\Database\Eloquent\($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel)
+             * @return ($id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>) ? \Illuminate\Database\Eloquent\Collection<int, TModel> : TModel)
              * @static 
              */            public static function findOrNew($id, $columns = [])
             {
@@ -22481,9 +22780,9 @@ namespace  {
              *
              * @template TValue
              * @param mixed $id
-             * @param \Illuminate\Database\Eloquent\(\Closure():  TValue)|list<string>|string  $columns
-             * @param \Illuminate\Database\Eloquent\(\Closure():  TValue)|null  $callback
-             * @return \Illuminate\Database\Eloquent\( $id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>)
+             * @param (\Closure(): TValue)|\Illuminate\Database\Eloquent\list<string>|string $columns
+             * @param (\Closure(): TValue)|null $callback
+             * @return ( $id is (\Illuminate\Contracts\Support\Arrayable<array-key, mixed>|array<mixed>)
              *     ? \Illuminate\Database\Eloquent\Collection<int, TModel>
              *     : TModel|TValue
              * )
@@ -22557,8 +22856,8 @@ namespace  {
              * Execute the query and get the first result or call a callback.
              *
              * @template TValue
-             * @param \Illuminate\Database\Eloquent\(\Closure():  TValue)|list<string>  $columns
-             * @param \Illuminate\Database\Eloquent\(\Closure():  TValue)|null  $callback
+             * @param (\Closure(): TValue)|\Illuminate\Database\Eloquent\list<string> $columns
+             * @param (\Closure(): TValue)|null $callback
              * @return \Illuminate\Database\Eloquent\TModel|\Illuminate\Database\Eloquent\TValue 
              * @static 
              */            public static function firstOr($columns = [], $callback = null)
@@ -22748,6 +23047,17 @@ namespace  {
                                 return $instance->create($attributes);
             }
                             /**
+             * Save a new model and return the instance without raising model events.
+             *
+             * @param array $attributes
+             * @return \Illuminate\Database\Eloquent\TModel 
+             * @static 
+             */            public static function createQuietly($attributes = [])
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->createQuietly($attributes);
+            }
+                            /**
              * Save a new model and return the instance. Allow mass-assignment.
              *
              * @param array $attributes
@@ -22828,7 +23138,7 @@ namespace  {
                             /**
              * Set the relationships that should be eager loaded while removing any previously added eager loading specifications.
              *
-             * @param \Illuminate\Database\Eloquent\array<array-key, array|(\Closure(\Illuminate\Database\Eloquent\Relations\Relation<*,*,*>):  mixed)|string>|string  $relations
+             * @param array<array-key, array|(\Closure(\Illuminate\Database\Eloquent\Relations\Relation<*,*,*>): mixed)|string>|string $relations
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */            public static function withOnly($relations)
@@ -23021,7 +23331,7 @@ namespace  {
              * Chunk the results of the query.
              *
              * @param int $count
-             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>,  int): mixed  $callback
+             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>, int):  mixed  $callback
              * @return bool 
              * @static 
              */            public static function chunk($count, $callback)
@@ -23045,7 +23355,7 @@ namespace  {
                             /**
              * Execute a callback over each item while chunking.
              *
-             * @param \Illuminate\Database\Eloquent\callable(TValue,  int): mixed  $callback
+             * @param \Illuminate\Database\Eloquent\callable(TValue, int):  mixed  $callback
              * @param int $count
              * @return bool 
              * @throws \RuntimeException
@@ -23059,7 +23369,7 @@ namespace  {
              * Chunk the results of a query by comparing IDs.
              *
              * @param int $count
-             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>,  int): mixed  $callback
+             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>, int):  mixed  $callback
              * @param string|null $column
              * @param string|null $alias
              * @return bool 
@@ -23073,7 +23383,7 @@ namespace  {
              * Chunk the results of a query by comparing IDs in descending order.
              *
              * @param int $count
-             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>,  int): mixed  $callback
+             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>, int):  mixed  $callback
              * @param string|null $column
              * @param string|null $alias
              * @return bool 
@@ -23087,7 +23397,7 @@ namespace  {
              * Chunk the results of a query by comparing IDs in a given order.
              *
              * @param int $count
-             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>,  int): mixed  $callback
+             * @param \Illuminate\Database\Eloquent\callable(\Illuminate\Support\Collection<int, TValue>, int):  mixed  $callback
              * @param string|null $column
              * @param string|null $alias
              * @param bool $descending
@@ -23102,7 +23412,7 @@ namespace  {
                             /**
              * Execute a callback over each item while chunking by ID.
              *
-             * @param \Illuminate\Database\Eloquent\callable(TValue,  int): mixed  $callback
+             * @param \Illuminate\Database\Eloquent\callable(TValue, int):  mixed  $callback
              * @param int $count
              * @param string|null $column
              * @param string|null $alias
@@ -23193,9 +23503,9 @@ namespace  {
              *
              * @template TWhenParameter
              * @template TWhenReturnType
-             * @param \Illuminate\Database\Eloquent\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
-             * @param \Illuminate\Database\Eloquent\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
-             * @param \Illuminate\Database\Eloquent\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
+             * @param (\Closure($this): TWhenParameter)|\Illuminate\Database\Eloquent\TWhenParameter|null $value
+             * @param (callable($this, TWhenParameter): TWhenReturnType)|null $callback
+             * @param (callable($this, TWhenParameter): TWhenReturnType)|null $default
              * @return $this|\Illuminate\Database\Eloquent\TWhenReturnType 
              * @static 
              */            public static function when($value = null, $callback = null, $default = null)
@@ -23208,9 +23518,9 @@ namespace  {
              *
              * @template TUnlessParameter
              * @template TUnlessReturnType
-             * @param \Illuminate\Database\Eloquent\(\Closure($this):  TUnlessParameter)|TUnlessParameter|null  $value
-             * @param \Illuminate\Database\Eloquent\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $callback
-             * @param \Illuminate\Database\Eloquent\(callable($this,  TUnlessParameter): TUnlessReturnType)|null  $default
+             * @param (\Closure($this): TUnlessParameter)|\Illuminate\Database\Eloquent\TUnlessParameter|null $value
+             * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $callback
+             * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $default
              * @return $this|\Illuminate\Database\Eloquent\TUnlessReturnType 
              * @static 
              */            public static function unless($value = null, $callback = null, $default = null)
@@ -23221,7 +23531,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param string $operator
              * @param int $count
              * @param string $boolean
@@ -23237,7 +23547,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query with an "or".
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param string $operator
              * @param int $count
              * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -23250,7 +23560,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param string $boolean
              * @param \Closure|null $callback
              * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -23263,7 +23573,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query with an "or".
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
              */            public static function orDoesntHave($relation)
@@ -23274,7 +23584,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query with where clauses.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|null $callback
              * @param string $operator
              * @param int $count
@@ -23290,7 +23600,7 @@ namespace  {
              * 
              * Also load the relationship with same condition.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|null $callback
              * @param string $operator
              * @param int $count
@@ -23304,7 +23614,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query with where clauses and an "or".
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|null $callback
              * @param string $operator
              * @param int $count
@@ -23318,7 +23628,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query with where clauses.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|null $callback
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
@@ -23330,7 +23640,7 @@ namespace  {
                             /**
              * Add a relationship count / exists condition to the query with where clauses and an "or".
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|null $callback
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 
@@ -23454,7 +23764,7 @@ namespace  {
                             /**
              * Add a basic where clause to a relationship query.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
@@ -23468,7 +23778,7 @@ namespace  {
                             /**
              * Add an "or where" clause to a relationship query.
              *
-             * @param \Illuminate\Database\Eloquent\Relations\Relation<*,  *, *>|string  $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
              * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
              * @param mixed $operator
              * @param mixed $value
@@ -23572,7 +23882,7 @@ namespace  {
                                 return $instance->whereBelongsTo($related, $relationshipName, $boolean);
             }
                             /**
-             * Add an "BelongsTo" relationship with an "or where" clause to the query.
+             * Add a "BelongsTo" relationship with an "or where" clause to the query.
              *
              * @param \Illuminate\Database\Eloquent\Model $related
              * @param string|null $relationshipName
@@ -25898,19 +26208,19 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class DateHelper extends \App\Helpers\DateHelper {}
-            class TwillCapsules extends \A17\Twill\Facades\TwillCapsules {}
-            class TwillRoutes extends \A17\Twill\Facades\TwillRoutes {}
-            class TwillBlocks extends \A17\Twill\Facades\TwillBlocks {}
             class TwillUtil extends \A17\Twill\Facades\TwillUtil {}
-            class TwillAppSettings extends \A17\Twill\Facades\TwillAppSettings {}
+            class TwillBlocks extends \A17\Twill\Facades\TwillBlocks {}
+            class TwillRoutes extends \A17\Twill\Facades\TwillRoutes {}
+            class TwillCapsules extends \A17\Twill\Facades\TwillCapsules {}
             class TwillNavigation extends \A17\Twill\Facades\TwillNavigation {}
+            class TwillAppSettings extends \A17\Twill\Facades\TwillAppSettings {}
             class TwillPermissions extends \A17\Twill\Facades\TwillPermissions {}
             class TwillImage extends \A17\Twill\Image\Facades\TwillImage {}
-            class SEOMeta extends \Artesaos\SEOTools\Facades\SEOMeta {}
-            class OpenGraph extends \Artesaos\SEOTools\Facades\OpenGraph {}
-            class Twitter extends \Artesaos\SEOTools\Facades\TwitterCard {}
-            class JsonLd extends \Artesaos\SEOTools\Facades\JsonLd {}
             class SEO extends \Artesaos\SEOTools\Facades\SEOTools {}
+            class JsonLd extends \Artesaos\SEOTools\Facades\JsonLd {}
+            class SEOMeta extends \Artesaos\SEOTools\Facades\SEOMeta {}
+            class Twitter extends \Artesaos\SEOTools\Facades\TwitterCard {}
+            class OpenGraph extends \Artesaos\SEOTools\Facades\OpenGraph {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Turbo extends \HotwiredLaravel\TurboLaravel\Facades\Turbo {}
             class TurboStream extends \HotwiredLaravel\TurboLaravel\Facades\TurboStream {}
