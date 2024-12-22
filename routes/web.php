@@ -14,7 +14,7 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 |
 */
 
-Route::middleware(['cacheable'])->group(function () {
+Route::middleware(['cacheResponse'])->group(function () {
     Route::get('linktree', [App\Http\Controllers\PageDisplayController::class, 'linktree'])->name('frontend.linktree');
     Route::get('vcard', [App\Http\Controllers\VCardController::class, 'index'])->name('frontend.vcard');
     Route::get('/', [App\Http\Controllers\PageDisplayController::class, 'home'])->name('frontend.home');
