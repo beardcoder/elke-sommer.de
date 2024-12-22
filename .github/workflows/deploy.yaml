@@ -49,7 +49,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i --delete"
           SOURCE: "./"
-          REMOTE_HOST: elke-sommer.de
+          REMOTE_HOST: host.letsbenow.de
           REMOTE_USER: elke-sommer
           TARGET: /home/elke-sommer/htdocs/elke-sommer.de
           EXCLUDE: ".env, .github, .git, .ddev, node_modules, storage, public/storage .env, DOCKER_ENV, output.log, Dockerfile-php-build, docker_tag"
