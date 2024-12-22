@@ -12,7 +12,7 @@
     "area17/twill": "^3",
     "area17/twill-image": "^2.0",
     "artesaos/seotools": "^1.3",
-    "bepsvpt/secure-headers": "^7.5",
+    "bepsvpt/secure-headers": "^8.0",
     "deployer/deployer": "^7.4",
     "guzzlehttp/guzzle": "^7.9",
     "hotwired-laravel/turbo-laravel": "^2.1",
