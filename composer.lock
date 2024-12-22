@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "def3937a5ffc06184d0c77dd08016918",
+  "content-hash": "41f1aa842638841b9940c35c8e8e2be6",
   "packages": [
     {
       "name": "area17/twill",
@@ -6987,6 +6987,77 @@
         }
       ],
       "time": "2024-12-02T08:30:17+00:00"
+    },
+    {
+      "name": "spatie/laravel-varnish",
+      "version": "2.10.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/spatie/laravel-varnish.git",
+        "reference": "6520cf01f78dd987b339cd6eec9abd026470fc2a"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/spatie/laravel-varnish/zipball/6520cf01f78dd987b339cd6eec9abd026470fc2a",
+        "reference": "6520cf01f78dd987b339cd6eec9abd026470fc2a",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/console": "^8.73|^9.0|^10.0|^11.0",
+        "illuminate/http": "^8.73|^9.0|^10.0|^11.0",
+        "php": "^7.4|^8.0"
+      },
+      "require-dev": {
+        "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0",
+        "pestphp/pest": "^1.22|^2.34",
+        "phpunit/phpunit": "^9.5|^10.5"
+      },
+      "type": "library",
+      "extra": {
+        "laravel": {
+          "providers": [
+            "Spatie\\Varnish\\VarnishServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Spatie\\Varnish\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Freek Van der Herten",
+          "email": "freek@spatie.be",
+          "homepage": "https://spatie.be",
+          "role": "Developer"
+        }
+      ],
+      "description": "Making Varnish and Laravel play nice together",
+      "homepage": "https://github.com/spatie/laravel-varnish",
+      "keywords": [
+        "laravel-varnish",
+        "spatie"
+      ],
+      "support": {
+        "issues": "https://github.com/spatie/laravel-varnish/issues",
+        "source": "https://github.com/spatie/laravel-varnish/tree/2.10.0"
+      },
+      "funding": [
+        {
+          "url": "https://spatie.be/open-source/support-us",
+          "type": "custom"
+        },
+        {
+          "url": "https://github.com/spatie",
+          "type": "github"
+        }
+      ],
+      "time": "2024-02-29T09:13:47+00:00"
     },
     {
       "name": "spatie/laravel-view-models",
