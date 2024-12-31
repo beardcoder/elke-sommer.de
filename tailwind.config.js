@@ -1,6 +1,6 @@
-import flowbiteTypography from 'flowbite-typography'
 import flowbitePlugin from 'flowbite/plugin'
 import { fontFamily } from 'tailwindcss/defaultTheme'
+import tailwindTypografie from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -38,8 +38,8 @@ export default {
     },
   },
   plugins: [
-    flowbiteTypography,
     flowbitePlugin,
+    tailwindTypografie,
     ({ addBase, theme }) => {
       function extractColorVars(colorObj, colorGroup = '') {
         return Object.keys(colorObj).reduce((vars, colorKey) => {

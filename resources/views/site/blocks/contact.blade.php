@@ -9,7 +9,7 @@
         <h2 class="font-header text-4xl lg:text-5xl">
           {{ $block->input('title') }}
         </h2>
-        <div class="format text-gray-400">
+        <div class="prose text-gray-400">
           {!! $block->input('text') !!}
         </div>
       </div>
@@ -77,26 +77,26 @@
         </div>
 
         @if (count($block->getRelated('privacy')) >= 1)
-          <div class="flex flex-row flex-wrap">
-            <label
-              class="order-2 text-sm"
-              for="privacy"
-            >
-              <span>Ich habe die</span>
-              <a
-                class="underline"
-                href="{{ route('frontend.page', [$block->getRelated('privacy')[0]->slug]) }}"
-                target="_blank"
-              >Datenschatzerklärung</a>
-              <span>gelesen *</span>
-            </label>
+          <div class="flex items-center mb-4">
             <input
-              class="order-1 mr-2"
+              class="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               id="privacy"
               name="privacy"
               type="checkbox"
               required
             />
+            <label
+              class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              for="privacy"
+            >
+              <span>Ich habe die</span>
+              <a
+                class="text-primary-600 underline"
+                href="{{ route('frontend.page', [$block->getRelated('privacy')[0]->slug]) }}"
+                target="_blank"
+              >Datenschatzerklärung</a>
+              <span>gelesen *</span>
+            </label>
           </div>
         @endif
           <button

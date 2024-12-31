@@ -30,7 +30,7 @@
     <div class="mx-auto max-w-screen-xl items-center gap-16 md:grid md:grid-cols-2">
         <div class="{{ $textOrder }} flex flex-col items-start font-light">
             @if ($block->input('text'))
-                <div class="format lg:format-lg mb-4">
+                <div class="prose lg:prose-lg mb-4">
                     {!! $block->wysiwyg('text') !!}
                 </div>
             @endif

@@ -15,7 +15,7 @@
           class="mb-4 flex border-t-4 border-green-300 bg-green-50 p-4 text-green-800"
           role="alert"
         >
-          <div class="format ml-3">
+          <div class="prose ml-3">
             {!! $block->input('success') !!}
           </div>
         </div>
@@ -34,7 +34,7 @@
             for="appointment"
           >Termin wählen *</label>
           <select
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
             id="appointment"
             name="appointment"
             data-error-msg="Bitte einen Termin auswählen"
@@ -84,9 +84,16 @@
           </div>
 
           @if (count($block->getRelated('privacy')) >= 1)
-            <div class="flex flex-row flex-wrap">
+            <div class="flex items-center mb-4">
+              <input
+                class="w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                id="privacy"
+                name="privacy"
+                type="checkbox"
+                required
+              />
               <label
-                class="order-2 text-sm"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 for="privacy"
               >
                 <span>Ich habe die</span>
@@ -97,13 +104,6 @@
                 >Datenschatzerklärung</a>
                 <span>gelesen *</span>
               </label>
-              <input
-                class="order-1 mr-2"
-                id="privacy"
-                name="privacy"
-                type="checkbox"
-                required
-              />
             </div>
           @endif
           <button
