@@ -10,7 +10,7 @@
 <x-twill::wysiwyg
   name="text"
   :toolbar-options="[
-      ['header' => [3, 4, 5, 6, false]],
+      ['header' => [2, 3, 4, 5, 6, false]],
       'bold',
       'italic',
       'underline',
