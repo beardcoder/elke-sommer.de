@@ -25,30 +25,30 @@ class AppServiceProvider extends ServiceProvider
     {
         TwillNavigation::addLink(
             NavigationLink::make()
-              ->forModule('pages')
-              ->title('Seiten')
-              ->setChildren([
-                  NavigationLink::make()
-                    ->forModule('menuLinks')
-                    ->title('Navigation'),
-              ])
+                ->forModule('pages')
+                ->title('Seiten')
+                ->setChildren([
+                    NavigationLink::make()
+                        ->forModule('menuLinks')
+                        ->title('Navigation'),
+                ])
         );
         TwillNavigation::addLink(
             NavigationLink::make()
-              ->forSingleton('linktree')
-              ->title('Linktree')
+                ->forSingleton('linktree')
+                ->title('Linktree')
         );
 
         TwillNavigation::addLink(
             NavigationLink::make()
-              ->forModule('appointments')
-              ->title('Veranstaltungen')
+                ->forModule('appointments')
+                ->title('Veranstaltungen')
         );
 
         TwillAppSettings::registerSettingsGroup(
             SettingsGroup::make()
-              ->name('homepage')
-              ->label('Homepage')
+                ->name('homepage')
+                ->label('Homepage')
         );
     }
 }
