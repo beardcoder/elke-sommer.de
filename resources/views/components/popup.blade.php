@@ -4,20 +4,33 @@ $image = $block->image('image');
 
 @push('scripts')
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', () => {
-      const lastExecutionTime = sessionStorage.getItem('popup');
-      const now = new Date().getTime();
+      document.addEventListener('DOMContentLoaded', () => {
+          const lastExecutionTime = sessionStorage.getItem('popup');
+          const now = new Date().getTime();
 
-      if (lastExecutionTime === null || now - lastExecutionTime > 300_000) {
-        const modalEl = document.getElementById('popup');
-        const popup = new Modal(modalEl, {
-          placement: 'center'
-        });
+          if (lastExecutionTime === null || now - lastExecutionTime > 300_000) {
+              setTimeout(() => {
+                  const modalEl = document.getElementById('popup');
+                  if (!modalEl) return;
 
-        sessionStorage.setItem('popup', now);
-        popup.show();
-      }
-    })
+                  const popup = new Modal(modalEl, {
+                      placement: 'center',
+                      backdrop: 'dynamic',
+                      closable: true,
+                  });
+
+                  popup.show();
+
+                  modalEl.querySelectorAll('[data-dismiss-target]').forEach((dismissButton) => {
+                      dismissButton.addEventListener('click', () => {
+                          popup.hide();
+                      });
+                  });
+
+                  sessionStorage.setItem('popup', now);
+              }, 5000); // Verzögerung von 5 Sekunden
+          }
+      });
   </script>
 @endpush
 
@@ -30,7 +43,8 @@ $image = $block->image('image');
       <button
         type="button"
         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center absolute top-2 right-2"
-        data-modal-hide="popup"
+        data-dismiss-target="#popup"
+        aria-label="Close"
       >
         <svg
           class="w-3 h-3"

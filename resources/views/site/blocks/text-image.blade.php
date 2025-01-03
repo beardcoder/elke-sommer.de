@@ -27,18 +27,34 @@
 @endphp
 
 <x-partials.blocks.wrapper id="block--{{ $block->id }}">
-    <div class="mx-auto max-w-screen-xl items-center gap-16 md:grid md:grid-cols-2">
-        <div class="{{ $textOrder }} flex flex-col items-start font-light">
-            @if ($block->input('text'))
-                <div class="prose lg:prose-lg mb-4">
-                    {!! $block->wysiwyg('text') !!}
+    <div class="mx-auto max-w-screen-xl">
+        @if ($block->input('text') && !$block->hasImage('text_image', 'default'))
+            <div class="flex justify-center items-center min-h-screen">
+                <div class="flex flex-col items-start font-light text-center">
+                    <div class="prose lg:prose-lg mb-4">
+                        {!! $block->wysiwyg('text') !!}
+                    </div>
                 </div>
-            @endif
-        </div>
-        @if ($block->hasImage('text_image', 'default'))
-            <div class="{{ $imageOrder }} mt-8 gap-4">
-                <div>
-                    {!! $image->render() !!}
+            </div>
+        @elseif ($block->hasImage('text_image', 'default') && !$block->input('text'))
+            <div class="flex justify-center items-center min-h-screen">
+                <div class="mt-8 gap-4">
+                    <div>
+                        {!! $image->render() !!}
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="items-center gap-16 md:grid md:grid-cols-2">
+                <div class="{{ $textOrder }} flex flex-col items-start font-light">
+                    <div class="prose lg:prose-lg mb-4">
+                        {!! $block->wysiwyg('text') !!}
+                    </div>
+                </div>
+                <div class="{{ $imageOrder }} mt-8 gap-4">
+                    <div>
+                        {!! $image->render() !!}
+                    </div>
                 </div>
             </div>
         @endif
