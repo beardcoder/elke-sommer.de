@@ -2,10 +2,9 @@
 @twillBlockIcon('image-text')
 @twillBlockGroup('app')
 
-<x-twill::input name="title" label="Title" />
+<x-twill::input label="Title" name="title" />
 
 <x-twill::wysiwyg
-    name="text"
     :toolbar-options="[
         ['header' => [2, 3, 4, 5, 6, false]],
         'bold',
@@ -22,13 +21,14 @@
         'table',
     ]"
     label="Text"
+    name="text"
 />
 
-<x-twill::medias name="text_image" label="Bild" />
+<x-twill::medias label="Bild" name="text_image" />
 
 <x-twill::select
-    name="position"
-    label="Bild Position"
-    default="right"
     :options="[['value' => 'right', 'label' => 'Rechts'], ['value' => 'left', 'label' => 'Links']]"
+    default="right"
+    label="Bild Position"
+    name="position"
 />

@@ -3,12 +3,12 @@
 @twillBlockGroup('app')
 
 <x-twill::input
-    name="chat_id"
-    label="Chat ID"
     :required="true"
+    label="Chat ID"
+    name="chat_id"
 />
 <x-twill::input
-    name="api_key"
-    label="API Key"
     :required="true"
+    label="API Key"
+    name="api_key"
 />

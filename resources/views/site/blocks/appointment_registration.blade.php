@@ -17,9 +17,9 @@
                 </div>
             @else
                 <form
+                    action="{{ route('appointment.registration') }}"
                     class="space-y-4 md:space-y-6"
                     id="{{ $formId }}"
-                    action="{{ route('appointment.registration') }}"
                     method="POST"
                 >
                     @csrf
@@ -27,12 +27,12 @@
                     <div>
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="name">Name *</label>
                         <input
+                            autocomplete="name"
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                             id="name"
                             name="name"
-                            autocomplete="name"
-                            type="text"
                             required
+                            type="text"
                         >
                     </div>
 
@@ -41,13 +41,13 @@
                             Deine E-Mail Adresse *
                         </label>
                         <input
+                            autocomplete="email"
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
                             id="email"
                             name="email"
-                            type="email"
-                            autocomplete="email"
                             placeholder="meine@mail.de"
                             required
+                            type="email"
                         >
                     </div>
 
@@ -57,8 +57,8 @@
                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                                 id="privacy"
                                 name="privacy"
-                                type="checkbox"
                                 required
+                                type="checkbox"
                             />
                             <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="privacy">
                                 <span>Ich habe die</span>

@@ -3,9 +3,6 @@
 @twillBlockGroup('app')
 
 <x-twill::wysiwyg
-    name="html"
-    label="Text"
-    placeholder="Text"
     :toolbar-options="[
         ['header' => [2, 3, 4, 5, 6, false]],
         'bold',
@@ -17,4 +14,7 @@
         'link',
         'clean',
     ]"
+    label="Text"
+    name="html"
+    placeholder="Text"
 />

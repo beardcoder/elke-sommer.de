@@ -23,9 +23,9 @@
             </div>
         @else
             <form
+                action="{{ route('mail.contact') }}"
                 class="space-y-6"
                 id="{{ $formId }}"
-                action="{{ route('mail.contact') }}"
                 method="POST"
             >
                 @csrf
@@ -34,34 +34,34 @@
                 <div>
                     <label class="mb-2 block text-sm font-medium text-gray-900" for="name">Name *</label>
                     <input
+                        autocomplete="name given-name family-name"
                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                         id="name"
                         name="name"
-                        type="text"
-                        autocomplete="name given-name family-name"
                         required
+                        type="text"
                     >
                 </div>
 
                 <div>
                     <label class="mb-2 block text-sm font-medium text-gray-900" for="email">Email *</label>
                     <input
+                        autocomplete="email"
                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                         id="email"
                         name="email"
-                        type="email"
-                        autocomplete="email"
                         required
+                        type="email"
                     >
                 </div>
 
                 <div>
                     <label class="mb-2 block text-sm font-medium text-gray-900" for="message">Nachricht *</label>
                     <textarea
+                        autocomplete="message"
                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
                         id="message"
                         name="message"
-                        autocomplete="message"
                         required
                         rows="3"
                     ></textarea>
@@ -73,8 +73,8 @@
                             class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                             id="privacy"
                             name="privacy"
-                            type="checkbox"
                             required
+                            type="checkbox"
                         />
                         <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="privacy">
                             <span>Ich habe die</span>

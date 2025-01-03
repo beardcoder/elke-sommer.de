@@ -2,8 +2,8 @@
 @twillBlockIcon('slideshow')
 @twillBlockGroup('app')
 
-<x-twill::input name="title" label="Titel" />
+<x-twill::input label="Titel" name="title" />
 
-<x-twill::input name="description" label="Beschreibung" />
+<x-twill::input label="Beschreibung" name="description" />
 
 <x-twill::repeater type="testimonial" />

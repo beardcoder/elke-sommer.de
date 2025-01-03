@@ -3,8 +3,8 @@
         <figure class="mx-auto max-w-lg">
             <svg
                 class="mx-auto mb-3 h-12 text-gray-400"
-                viewBox="0 0 24 27"
                 fill="none"
+                viewBox="0 0 24 27"
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <path

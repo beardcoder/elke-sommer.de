@@ -3,17 +3,17 @@
 @twillBlockGroup('app')
 
 <x-twill::input
-    name="receiver"
+    :required="true"
     label="Empfänger"
-    :required="true"
+    name="receiver"
 />
 <x-twill::input
-    name="receiver_name"
+    :required="true"
     label="Empfänger Name"
-    :required="true"
+    name="receiver_name"
 />
 <x-twill::input
-    name="success"
-    label="Erfolgsnachricht"
     :required="true"
+    label="Erfolgsnachricht"
+    name="success"
 />

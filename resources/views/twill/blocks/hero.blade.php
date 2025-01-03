@@ -2,17 +2,17 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::input name="title" label="Titel" />
+<x-twill::input label="Titel" name="title" />
 <x-twill::input
+    label="Text"
     name="text"
     type="textarea"
-    label="Text"
 />
 <x-twill::browser
-    name="link"
-    module-name="pages"
-    label="Link"
     :max="1"
+    label="Link"
+    module-name="pages"
+    name="link"
 />
 
-<x-twill::medias name="cover" label="Cover Bild" />
+<x-twill::medias label="Cover Bild" name="cover" />

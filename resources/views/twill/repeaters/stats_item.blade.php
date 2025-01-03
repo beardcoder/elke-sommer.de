@@ -4,12 +4,9 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::input name="title" label="Title" />
+<x-twill::input label="Title" name="title" />
 
 <x-twill::wysiwyg
-    name="text"
-    label="Text"
-    placeholder="Text"
     :toolbar-options="[
         'bold',
         'italic',
@@ -20,4 +17,7 @@
         'link',
         'clean',
     ]"
+    label="Text"
+    name="text"
+    placeholder="Text"
 />

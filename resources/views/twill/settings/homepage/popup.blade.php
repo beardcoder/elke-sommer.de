@@ -2,6 +2,6 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::checkbox name="active" label="Aktivieren" />
+<x-twill::checkbox label="Aktivieren" name="active" />
 
-<x-twill::medias name="image" label="Bild" />
+<x-twill::medias label="Bild" name="image" />

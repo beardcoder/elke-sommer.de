@@ -6,7 +6,7 @@
         {!! JsonLd::generate() !!}
 
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
 
         <link
             href="/apple-touch-icon.png"
@@ -14,25 +14,25 @@
             sizes="180x180"
         >
         <link
-            type="image/png"
             href="/favicon-32x32.png"
             rel="icon"
             sizes="32x32"
+            type="image/png"
         >
         <link
-            type="image/png"
             href="/favicon-16x16.png"
             rel="icon"
             sizes="16x16"
+            type="image/png"
         >
         <link href="/site.webmanifest" rel="manifest">
         <link
+            color="#5bbad5"
             href="/safari-pinned-tab.svg"
             rel="mask-icon"
-            color="#5bbad5"
         >
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="theme-color" content="#ffffff">
+        <meta content="#ffffff" name="msapplication-TileColor">
+        <meta content="#ffffff" name="theme-color">
 
         <script type="application/ld+json">
   {

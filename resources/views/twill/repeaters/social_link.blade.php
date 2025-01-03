@@ -4,9 +4,9 @@
 @twillBlockIcon('link')
 @twillBlockGroup('app')
 
-<x-twill::input name="title" label="Titel" />
+<x-twill::input label="Titel" name="title" />
 <x-twill::input
+    label="URL"
     name="url"
     type="url"
-    label="URL"
 />

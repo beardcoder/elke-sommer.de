@@ -2,10 +2,10 @@
     <header class="relative top-0 z-40 w-full p-4">
         <div class="container mx-auto flex h-16 justify-between">
             <a
+                aria-label="Zur Startseite"
                 class="flex items-center p-2"
                 href="{{ route('frontend.home') }}"
                 title="Zur Startseite"
-                aria-label="Zur Startseite"
             >
                 <x-logo />
             </a>
