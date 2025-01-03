@@ -18,8 +18,8 @@ class EventRepository extends ModuleRepository
     use HandleFiles;
     use HandleRevisions;
 
-    public function __construct(Event $model)
+    public function __construct(Event $event)
     {
-        $this->model = $model;
+        $this->model = $event;
     }
 }

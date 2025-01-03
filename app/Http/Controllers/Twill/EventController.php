@@ -22,13 +22,15 @@ class EventController extends BaseModuleController
     /**
      * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
      */
+    #[\Override]
     protected function setUpController(): void
     {
     }
 
-    public function getForm(TwillModelContract $model): Form
+    #[\Override]
+    public function getForm(TwillModelContract $twillModelContract): Form
     {
-        $form = parent::getForm($model);
+        $form = parent::getForm($twillModelContract);
 
         $form->add(
             Input::make()->type('textarea')->name('description')->label('Beschreibung')->required()
@@ -46,7 +48,7 @@ class EventController extends BaseModuleController
                 ->default(EventStatus::Scheduled->value)
                 ->options(
                     Options::make([
-                        collect(EventStatus::cases())->map(fn ($status) => Option::make($status->value, $status->name))->toArray(),
+                        collect(EventStatus::cases())->map(fn ($status): Option => Option::make($status->value, $status->name))->toArray(),
                     ])
                 )
         );
@@ -58,7 +60,7 @@ class EventController extends BaseModuleController
                 ->default(EventAttendedMode::Offline->value)
                 ->options(
                     Options::make([
-                        collect(EventAttendedMode::cases())->map(fn ($status) => Option::make($status->value, $status->name))->toArray(),
+                        collect(EventAttendedMode::cases())->map(fn ($status): Option => Option::make($status->value, $status->name))->toArray(),
                     ])
                 )
         );
@@ -69,6 +71,7 @@ class EventController extends BaseModuleController
     /**
      * This is an example and can be removed if no modifications are needed to the table.
      */
+    #[\Override]
     protected function additionalIndexTableColumns(): TableColumns
     {
         $table = parent::additionalIndexTableColumns();

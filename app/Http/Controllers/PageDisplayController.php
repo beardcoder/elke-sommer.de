@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use A17\Twill\Facades\TwillAppSettings;
+use A17\Twill\Models\Contracts\TwillModelContract;
 use App\Models\Linktree;
+use App\Models\Page;
 use App\Repositories\PageRepository;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\View\View;
@@ -14,7 +16,7 @@ class PageDisplayController extends Controller
     {
         $page = $pageRepository->forSlug($slug);
 
-        if (!$page instanceof \A17\Twill\Models\Contracts\TwillModelContract) {
+        if (!$page instanceof TwillModelContract) {
             abort(404);
         }
 
@@ -30,7 +32,7 @@ class PageDisplayController extends Controller
     public function home(): View
     {
         if (TwillAppSettings::get('homepage.homepage.page')->isNotEmpty()) {
-            /** @var \App\Models\Page $page */
+            /** @var Page $page */
             $page = TwillAppSettings::get('homepage.homepage.page')->first();
 
             SEOMeta::setTitle($page->title);
@@ -48,7 +50,7 @@ class PageDisplayController extends Controller
 
     public function linktree(): View
     {
-        /** @var \App\Models\Page $page */
+        /** @var Page $page */
         $page = Linktree::all()[0];
 
         SEOMeta::setTitle($page->title);

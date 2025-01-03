@@ -8,6 +8,7 @@ use App\Enums\EventStatus;
 
 class EventRequest extends Request
 {
+    #[\Override]
     public function rulesForCreate()
     {
         return [
@@ -15,6 +16,7 @@ class EventRequest extends Request
         ];
     }
 
+    #[\Override]
     public function rulesForUpdate()
     {
         return [

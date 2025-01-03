@@ -39,8 +39,12 @@ class Event extends Model implements Sortable
         'name',
     ];
 
-    protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-    ];
+    #[\Override]
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+        ];
+    }
 }
