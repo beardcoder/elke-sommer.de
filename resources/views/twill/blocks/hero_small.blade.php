@@ -2,15 +2,6 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::input
-  name="title"
-  label="Title"
-/>
-<x-twill::input
-  name="text"
-  label="Text"
-/>
-<x-twill::medias
-  name="cover_small"
-  label="Cover Bild"
-/>
+<x-twill::input name="title" label="Title" />
+<x-twill::input name="text" label="Text" />
+<x-twill::medias name="cover_small" label="Cover Bild" />

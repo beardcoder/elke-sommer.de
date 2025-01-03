@@ -1,55 +1,40 @@
 <!doctype html>
-<html
-  class="h-full"
-  lang="{{ app()->getLocale() }}"
->
+<html class="h-full" lang="{{ app()->getLocale() }}">
 
-<head>
-  {!! SEOMeta::generate() !!}
-  {!! JsonLd::generate() !!}
+    <head>
+        {!! SEOMeta::generate() !!}
+        {!! JsonLd::generate() !!}
 
-  <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link
-    href="/apple-touch-icon.png"
-    rel="apple-touch-icon"
-    sizes="180x180"
-  >
-  <link
-    type="image/png"
-    href="/favicon-32x32.png"
-    rel="icon"
-    sizes="32x32"
-  >
-  <link
-    type="image/png"
-    href="/favicon-16x16.png"
-    rel="icon"
-    sizes="16x16"
-  >
-  <link
-    href="/site.webmanifest"
-    rel="manifest"
-  >
-  <link
-    href="/safari-pinned-tab.svg"
-    rel="mask-icon"
-    color="#5bbad5"
-  >
-  <meta
-    name="msapplication-TileColor"
-    content="#ffffff"
-  >
-  <meta
-    name="theme-color"
-    content="#ffffff"
-  >
+        <link
+            href="/apple-touch-icon.png"
+            rel="apple-touch-icon"
+            sizes="180x180"
+        >
+        <link
+            type="image/png"
+            href="/favicon-32x32.png"
+            rel="icon"
+            sizes="32x32"
+        >
+        <link
+            type="image/png"
+            href="/favicon-16x16.png"
+            rel="icon"
+            sizes="16x16"
+        >
+        <link href="/site.webmanifest" rel="manifest">
+        <link
+            href="/safari-pinned-tab.svg"
+            rel="mask-icon"
+            color="#5bbad5"
+        >
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="theme-color" content="#ffffff">
 
-  <script type="application/ld+json">
+        <script type="application/ld+json">
   {
       "@context": "http://schema.org/",
       "@type": "LocalBusiness",
@@ -75,20 +60,20 @@
       ]
   }
   </script>
-  <script
-    async
-    src="https://tracking.letsbenow.de/script.js"
-    data-website-id="1c879ac3-bf33-44fb-9a5d-e84bca57c39d"
-  ></script>
-  @vite('resources/css/app.css')
-</head>
+        <script
+            async
+            src="https://tracking.letsbenow.de/script.js"
+            data-website-id="1c879ac3-bf33-44fb-9a5d-e84bca57c39d"
+        ></script>
+        @vite('resources/css/app.css')
+    </head>
 
-<body class="h-full font-sans">
+    <body class="h-full font-sans">
 
-  {{ $slot }}
+        {{ $slot }}
 
-  @vite(['resources/js/app.js'])
-  @stack('scripts')
-</body>
+        @vite(['resources/js/app.js'])
+        @stack('scripts')
+    </body>
 
 </html>
