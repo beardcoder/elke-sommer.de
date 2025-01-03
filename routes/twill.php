@@ -11,3 +11,5 @@ TwillRoutes::module('menuLinks');
 TwillRoutes::singleton('linktree');
 TwillRoutes::module('menuLinks');
 TwillRoutes::module('menuLinks');
+
+TwillRoutes::module('events');

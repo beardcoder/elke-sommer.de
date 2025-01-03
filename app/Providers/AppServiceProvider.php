@@ -11,12 +11,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     #[\Override]
-    public function register(): void
-    {
-        if ($this->app->isLocal()) {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-        }
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -37,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
             NavigationLink::make()
                 ->forSingleton('linktree')
                 ->title('Linktree')
+        );
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forModule('events')
         );
 
         TwillAppSettings::registerSettingsGroup(
