@@ -20,6 +20,14 @@ return [
                     ],
                 ],
             ],
+            'image' => [
+                'default' => [
+                    [
+                        'name' => 'Default',
+                        'ratio' => 0,
+                    ],
+                ],
+            ],
             'cover' => [
                 'default' => [
                     [

@@ -7,8 +7,3 @@
   label="Select the homepage"
   module-name="pages"
 />
-
-<x-twill::checkbox
-  name="wanderung"
-  label="Wanderung Popup"
-/>
