@@ -62,19 +62,10 @@
     "preferred-install": "dist",
     "sort-packages": true
   },
-  "extra": {
-    "laravel": {
-      "dont-discover": [
-        "barryvdh/laravel-ide-helper"
-      ]
-    }
-  },
   "scripts": {
     "post-update-cmd": [
       "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-      "@php artisan ide-helper:generate",
-      "@php artisan ide-helper:meta"
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate"
     ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
