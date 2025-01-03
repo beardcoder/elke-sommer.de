@@ -3,10 +3,6 @@
 return [
     'capsules' => [
         'list' => [
-            [
-                'name' => 'Appointments',
-                'enabled' => true,
-            ],
         ],
     ],
     'block_editor' => [

@@ -1,6 +1,5 @@
 @php
   $formId = uniqid('form-');
-  $appointments = App\Twill\Capsules\Appointments\Models\Appointment::findFuture();
 @endphp
 
 <section id="registration_form">
@@ -28,28 +27,6 @@
         >
           @csrf
           <x-honeypot />
-
-          {{--           <label
-            class="mb-2 block text-sm font-medium text-gray-900"
-            for="appointment"
-          >Termin wählen *</label>
-          <select
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-            id="appointment"
-            name="appointment"
-            data-error-msg="Bitte einen Termin auswählen"
-            required
-          >
-            @foreach ($appointments as $appointment)
-              <option value="{{ $appointment->id }}">
-                {{ $appointment->title }} am
-                {{ DateHelper::getLocalDate($appointment->date_start)->formatLocalized('%d.%m.%Y') }} von
-                {{ DateHelper::getLocalDate($appointment->date_start)->formatLocalized('%H:%M') }} Uhr -
-                {{ DateHelper::getLocalDate($appointment->date_end)->formatLocalized('%H:%M') }} Uhr
-              </option>
-            @endforeach
-          </select> --}}
-
           <div>
             <label
               class="mb-2 block text-sm font-medium text-gray-900"

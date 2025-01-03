@@ -27,6 +27,23 @@
 @endphp
 
 <x-partials.blocks.wrapper id="block--{{ $block->id }}">
+    <div class="mx-auto max-w-screen-xl items-center gap-16 md:grid md:grid-cols-2">
+        @if ($block->input('text'))
+            <div class="{{ $textOrder }} flex flex-col items-start font-light">
+                    <div class="prose lg:prose-lg mb-4">
+                        {!! $block->wysiwyg('text') !!}
+                    </div>
+            </div>
+        @endif
+        @if ($block->hasImage('text_image', 'default'))
+            <div class="{{ $imageOrder }} mt-8 gap-4">
+                <div>
+                    {!! $image->render() !!}
+                </div>
+            </div>
+        @endif
+    </div>
+
     <div class="mx-auto max-w-screen-xl">
         @if ($block->input('text') && !$block->hasImage('text_image', 'default'))
             <div class="flex justify-center items-center min-h-screen">
