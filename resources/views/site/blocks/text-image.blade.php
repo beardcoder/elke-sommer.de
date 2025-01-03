@@ -29,7 +29,7 @@
 <x-partials.blocks.wrapper id="block--{{ $block->id }}">
     <div class="mx-auto max-w-screen-xl">
         @if ($block->input('text') && !$block->hasImage('text_image', 'default'))
-            <div class="flex justify-center items-center min-h-screen">
+            <div class="flex justify-center items-center">
                 <div class="flex flex-col items-start font-light text-center">
                     <div class="prose lg:prose-lg mb-4">
                         {!! $block->wysiwyg('text') !!}
@@ -37,7 +37,7 @@
                 </div>
             </div>
         @elseif ($block->hasImage('text_image', 'default') && !$block->input('text'))
-            <div class="flex justify-center items-center min-h-screen max-w-xl mx-auto">
+            <div class="flex justify-center items-center max-w-xl mx-auto">
                 <div class="mt-8 gap-4">
                     <div>
                         {!! $image->render() !!}
