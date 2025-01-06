@@ -2,14 +2,18 @@
 @twillBlockIcon('text')
 @twillBlockGroup('app')
 
-<x-twill::input
+<x-twill::time-picker
     :required="true"
-    label="Öffnet"
+    :time24Hr="true"
+    :allowInput="true"
     name="opens"
+    label="Öffnet"
 />
 
-<x-twill::input
+<x-twill::time-picker
     :required="true"
-    label="Schließt"
+    :time24Hr="true"
+    :allowInput="true"
     name="closes"
+    label="Schließt"
 />
