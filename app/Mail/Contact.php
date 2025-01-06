@@ -16,8 +16,11 @@ class Contact extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private $name, private $email, private $text)
-    {
+    public function __construct(
+        private $name,
+        private $email,
+        private $text,
+    ) {
     }
 
     /**

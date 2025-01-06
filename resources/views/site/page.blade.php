@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :jsonLd="$jsonLd">
     @if (TwillAppSettings::get('homepage.popup.active'))
         <x-popup :block="TwillAppSettings::getGroupDataForSectionAndName('homepage', 'popup')" />
     @endif

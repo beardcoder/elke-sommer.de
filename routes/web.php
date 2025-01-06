@@ -15,9 +15,9 @@ Route::middleware(['cacheResponse'])->group(function () {
 });
 
 Route::post('/mail', [MailController::class, 'contact'])
-  ->middleware(ProtectAgainstSpam::class)
-  ->name('mail.contact');
+    ->middleware(ProtectAgainstSpam::class)
+    ->name('mail.contact');
 
 Route::post('/registration', [RegistrationController::class, 'index'])
-  ->middleware(ProtectAgainstSpam::class)
-  ->name('appointment.registration');
+    ->middleware(ProtectAgainstSpam::class)
+    ->name('appointment.registration');

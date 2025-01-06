@@ -20,6 +20,10 @@ class Event extends Model implements Sortable
     use HasRevisions;
     use HasPosition;
 
+    public $slugAttributes = [
+        'name',
+    ];
+
     protected $fillable = [
         'published',
         'name',
@@ -33,10 +37,6 @@ class Event extends Model implements Sortable
         'end_date',
         'event_status',
         'attended_mode',
-    ];
-
-    public $slugAttributes = [
-        'name',
     ];
 
     #[\Override]

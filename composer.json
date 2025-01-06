@@ -25,6 +25,7 @@
     "spatie/laravel-honeypot": "^4.5",
     "spatie/laravel-responsecache": "^7.6",
     "spatie/laravel-sitemap": "^7.2",
+    "spatie/schema-org": "^3.23",
     "telegram-bot/api": "^2.5"
   },
   "require-dev": {
@@ -36,7 +37,8 @@
     "laravel/sail": "^1.31",
     "nunomaduro/collision": "^8.4",
     "rector/rector": "^1.2",
-    "spatie/laravel-ignition": "^2.8"
+    "spatie/laravel-ignition": "^2.8",
+    "symplify/easy-coding-standard": "^12.5"
   },
   "minimum-stability": "stable",
   "prefer-stable": true,

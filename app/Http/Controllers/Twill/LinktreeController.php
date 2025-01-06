@@ -17,69 +17,69 @@ class LinktreeController extends BaseModuleController
     protected $moduleName = 'linktrees';
 
     #[\Override]
-    protected function setUpController(): void
-    {
-        $this->disablePermalink();
-    }
-
-    #[\Override]
     public function getForm(TwillModelContract $twillModelContract): Form
     {
         $form = parent::getForm($twillModelContract);
 
         $form->addFieldset(
             Fieldset::make()
-              ->title('Persönlich')
-              ->fields([
-                  Medias::make()
-                    ->name('avatar')
-                    ->label('Avatar')
-                    ->max(1),
-                  Input::make()
-                    ->name('name')
-                    ->label('Name'),
-                  Input::make()
-                    ->name('description')
-                    ->label('Bescheibung')
-                    ->type('textarea'),
-              ])
+                ->title('Persönlich')
+                ->fields([
+                    Medias::make()
+                        ->name('avatar')
+                        ->label('Avatar')
+                        ->max(1),
+                    Input::make()
+                        ->name('name')
+                        ->label('Name'),
+                    Input::make()
+                        ->name('description')
+                        ->label('Bescheibung')
+                        ->type('textarea'),
+                ])
         );
 
         $form->addFieldset(
             Fieldset::make()
-              ->title('Kontakt')
-              ->fields([
-                  Input::make()
-                    ->name('phone')
-                    ->label('Telefonnummer'),
-                  Input::make()
-                    ->name('email')
-                    ->label('E-Mail')
-                    ->type('email'),
-                  Input::make()
-                    ->name('whatsapp')
-                    ->label('Whatsapp')
-                    ->type('url'),
-              ])
+                ->title('Kontakt')
+                ->fields([
+                    Input::make()
+                        ->name('phone')
+                        ->label('Telefonnummer'),
+                    Input::make()
+                        ->name('email')
+                        ->label('E-Mail')
+                        ->type('email'),
+                    Input::make()
+                        ->name('whatsapp')
+                        ->label('Whatsapp')
+                        ->type('url'),
+                ])
         );
         $form->addFieldset(
             Fieldset::make()
-              ->title('Links')
-              ->fields([
-                  InlineRepeater::make()
-                    ->name('links')
-                    ->fields([
-                        Input::make()
-                          ->name('title')
-                          ->label('Titel'),
-                        Input::make()
-                          ->name('url')
-                          ->type('url'),
-                    ]),
-              ])
+                ->title('Links')
+                ->fields([
+                    InlineRepeater::make()
+                        ->name('links')
+                        ->fields([
+                            Input::make()
+                                ->name('title')
+                                ->label('Titel'),
+                            Input::make()
+                                ->name('url')
+                                ->type('url'),
+                        ]),
+                ])
         );
 
         return $form;
+    }
+
+    #[\Override]
+    protected function setUpController(): void
+    {
+        $this->disablePermalink();
     }
 
     #[\Override]
@@ -89,8 +89,8 @@ class LinktreeController extends BaseModuleController
 
         $table->add(
             Text::make()
-              ->field('description')
-              ->title('Description')
+                ->field('description')
+                ->title('Description')
         );
 
         return $table;

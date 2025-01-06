@@ -16,16 +16,6 @@ class PageController extends BaseModuleController
     protected $moduleName = 'pages';
 
     /**
-     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-     */
-    #[\Override]
-    protected function setUpController(): void
-    {
-        $this->setPermalinkBase('');
-        $this->withoutLanguageInPermalink();
-    }
-
-    /**
      * See the table builder docs for more information. If you remove this method you can use the blade files.
      * When using twill:module:make you can specify --bladeForm to use a blade form instead.
      */
@@ -36,17 +26,27 @@ class PageController extends BaseModuleController
 
         $form->add(
             Input::make()
-              ->name('description')
-              ->label('Description')
+                ->name('description')
+                ->label('Description')
         );
         $form->addFieldset(
             Fieldset::make()
-              ->id('content')
-              ->title('Inhalt')
-              ->fields([BlockEditor::make()])
+                ->id('content')
+                ->title('Inhalt')
+                ->fields([BlockEditor::make()])
         );
 
         return $form;
+    }
+
+    /**
+     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
+     */
+    #[\Override]
+    protected function setUpController(): void
+    {
+        $this->setPermalinkBase('');
+        $this->withoutLanguageInPermalink();
     }
 
     /**
@@ -59,8 +59,8 @@ class PageController extends BaseModuleController
 
         $table->add(
             Text::make()
-              ->field('description')
-              ->title('Description')
+                ->field('description')
+                ->title('Description')
         );
 
         return $table;

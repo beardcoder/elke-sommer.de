@@ -3,7 +3,7 @@
 
     <head>
         {!! SEOMeta::generate() !!}
-        {!! JsonLd::generate() !!}
+        {!! $jsonLd !!}
 
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -33,33 +33,6 @@
         >
         <meta content="#ffffff" name="msapplication-TileColor">
         <meta content="#ffffff" name="theme-color">
-
-        <script type="application/ld+json">
-  {
-      "@context": "http://schema.org/",
-      "@type": "LocalBusiness",
-      "name": "Personal Coaching & Entspannung",
-      "image": "",
-      "telephone": "01624650294",
-      "url": "https://elke-sommer.de/",
-      "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Ahornstraße 15",
-          "addressLocality": "Rain",
-          "addressRegion": "Bayern",
-          "postalCode": "94369",
-          "addressCountry": "Germany"
-      },
-      "openingHoursSpecification": [
-          {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              "opens": "09:00",
-              "closes": "20:00"
-          }
-      ]
-  }
-  </script>
         <script
             async
             src="https://tracking.letsbenow.de/script.js"

@@ -20,7 +20,7 @@ class Page extends Model implements Sortable
     use HasRevisions;
     use HasPosition;
 
-    protected $fillable = ['published', 'title', 'description', 'position'];
-
     public $slugAttributes = ['title'];
+
+    protected $fillable = ['published', 'title', 'description', 'position'];
 }

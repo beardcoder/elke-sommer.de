@@ -9,6 +9,8 @@ use App\Models\Page;
 use App\Repositories\PageRepository;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\View\View;
+use Spatie\SchemaOrg\DayOfWeek;
+use Spatie\SchemaOrg\Schema;
 
 class PageDisplayController extends Controller
 {
@@ -26,7 +28,10 @@ class PageDisplayController extends Controller
             SEOMeta::setDescription($page->description);
         }
 
-        return view('site.page', ['item' => $page]);
+        return view('site.page', [
+            'item' => $page,
+            'jsonLd' => $this->jsonLd(),
+        ]);
     }
 
     public function home(): View
@@ -41,7 +46,10 @@ class PageDisplayController extends Controller
             }
 
             if ($page->published) {
-                return view('site.page', ['item' => $page]);
+                return view('site.page', [
+                    'item' => $page,
+                    'jsonLd' => $this->jsonLd(),
+                ]);
             }
         }
 
@@ -59,9 +67,59 @@ class PageDisplayController extends Controller
         }
 
         if ($page) {
-            return view('site.linktree', ['item' => $page]);
+            return view('site.linktree', [
+                'item' => $page,
+                'jsonLd' => $this->jsonLd(),
+            ]);
         }
 
         abort(404);
+    }
+
+    private function jsonLd()
+    {
+        /** @var \Illuminate\Database\Eloquent\Collection $sameAsLinks */
+        $sameAsLinks = TwillAppSettings::get('structureddata.sameAs.links');
+
+        $business = Schema::healthAndBeautyBusiness()
+            ->name(TwillAppSettings::get('structureddata.localBusiness.name'))
+            ->url(TwillAppSettings::get('structureddata.localBusiness.url'))
+            ->description(TwillAppSettings::get('structureddata.localBusiness.description'))
+            ->telephone(TwillAppSettings::get('structureddata.localBusiness.telephone'))
+            ->email(TwillAppSettings::get('structureddata.localBusiness.email'))
+            ->logo(TwillAppSettings::get('structureddata.localBusiness.logo'))
+            ->priceRange(TwillAppSettings::get('structureddata.localBusiness.priceRange'))
+            ->image([TwillAppSettings::get('structureddata.localBusiness.image')])
+            ->address(
+                Schema::postalAddress()
+                    ->streetAddress(TwillAppSettings::get('structureddata.postalAddress.streetAddress'))
+                    ->addressLocality(TwillAppSettings::get('structureddata.postalAddress.addressLocality'))
+                    ->postalCode(TwillAppSettings::get('structureddata.postalAddress.postalCode'))
+                    ->addressCountry('DE')
+            )
+            ->geo(
+                Schema::geoCoordinates()
+                    ->latitude(TwillAppSettings::get('structureddata.geoCoordinates.latitude'))
+                    ->longitude(TwillAppSettings::get('structureddata.geoCoordinates.longitude'))
+            )
+            ->openingHoursSpecification(
+                Schema::openingHoursSpecification()
+                    ->dayOfWeek([
+                        DayOfWeek::Monday,
+                        DayOfWeek::Thursday,
+                        DayOfWeek::Wednesday,
+                        DayOfWeek::Tuesday,
+                        DayOfWeek::Friday,
+                    ])
+                    ->opens(TwillAppSettings::get('structureddata.openingHoursSpecification.opens'))
+                    ->closes(TwillAppSettings::get('structureddata.openingHoursSpecification.closes'))
+            )
+            ->sameAs(array_map(static fn ($link) => $link['content']['url'], $sameAsLinks->toArray()));
+
+        if (TwillAppSettings::get('structureddata.localBusiness.active')) {
+            return $business->toScript();
+        }
+
+        return '';
     }
 }

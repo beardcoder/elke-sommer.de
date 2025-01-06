@@ -19,14 +19,6 @@ class EventController extends BaseModuleController
 {
     protected $moduleName = 'events';
 
-    /**
-     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-     */
-    #[\Override]
-    protected function setUpController(): void
-    {
-    }
-
     #[\Override]
     public function getForm(TwillModelContract $twillModelContract): Form
     {
@@ -66,6 +58,14 @@ class EventController extends BaseModuleController
         );
 
         return $form;
+    }
+
+    /**
+     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
+     */
+    #[\Override]
+    protected function setUpController(): void
+    {
     }
 
     /**

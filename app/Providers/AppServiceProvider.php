@@ -45,5 +45,11 @@ class AppServiceProvider extends ServiceProvider
                 ->name('homepage')
                 ->label('Homepage')
         );
+
+        TwillAppSettings::registerSettingsGroup(
+            SettingsGroup::make()
+                ->name('structureddata')
+                ->label('Strukturierte Daten')
+        );
     }
 }

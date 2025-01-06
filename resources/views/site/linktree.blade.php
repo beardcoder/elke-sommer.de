@@ -2,7 +2,7 @@
     $image = TwillImage::make($item, 'avatar');
     $image->srcSetWidths([128, 256]);
 @endphp
-<x-layout>
+<x-layout :jsonLd="$jsonLd">
     <div class="flex h-full items-center justify-center p-8 dark:bg-gray-800">
         <div
             class="flex max-w-xl flex-col justify-center rounded-xl p-6 shadow-md dark:bg-gray-900 dark:text-gray-100 sm:px-12">

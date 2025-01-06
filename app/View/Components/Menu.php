@@ -13,10 +13,12 @@ class Menu extends Component
     {
         /** @var MenuLink[] $links */
         $links = MenuLink::published()
-          ->orderBy('position')
-          ->get()
-          ->toTree();
+            ->orderBy('position')
+            ->get()
+            ->toTree();
 
-        return view('components.menu', ['links' => $links]);
+        return view('components.menu', [
+            'links' => $links,
+        ]);
     }
 }

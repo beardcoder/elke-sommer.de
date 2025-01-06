@@ -16,8 +16,10 @@ class Registration extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private string $name, private string $email)
-    {
+    public function __construct(
+        private string $name,
+        private string $email,
+    ) {
     }
 
     /**

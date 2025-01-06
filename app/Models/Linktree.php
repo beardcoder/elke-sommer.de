@@ -13,8 +13,6 @@ class Linktree extends Model
     use HasFiles;
     use HasRevisions;
 
-    protected $fillable = ['published', 'title', 'name', 'description', 'phone', 'email', 'whatsapp', 'links'];
-
     public $mediasParams = [
         'avatar' => [
             'default' => [
@@ -25,6 +23,8 @@ class Linktree extends Model
             ],
         ],
     ];
+
+    protected $fillable = ['published', 'title', 'name', 'description', 'phone', 'email', 'whatsapp', 'links'];
 
     #[\Override]
     protected function casts(): array
