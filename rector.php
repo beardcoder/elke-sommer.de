@@ -19,4 +19,9 @@ return RectorConfig::configure()
       earlyReturn: true,
       strictBooleans: true
   )
-  ->withSets([LaravelSetList::LARAVEL_110, LaravelLevelSetList::UP_TO_LARAVEL_110]);
+  ->withSets([
+      LaravelSetList::LARAVEL_CODE_QUALITY,
+      LaravelSetList::LARAVEL_COLLECTION,
+      LaravelSetList::LARAVEL_110,
+      LaravelLevelSetList::UP_TO_LARAVEL_110
+  ]);

@@ -8,6 +8,7 @@ use App\Models\Linktree;
 use App\Models\Page;
 use App\Repositories\PageRepository;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 use Spatie\SchemaOrg\DayOfWeek;
 use Spatie\SchemaOrg\Schema;
@@ -76,17 +77,16 @@ class PageDisplayController extends Controller
         abort(404);
     }
 
-    private function jsonLd()
+    private function jsonLd(): string
     {
-
         if (!TwillAppSettings::get('structureddata.localBusiness.active')) {
             return '';
         }
 
-        /** @var \Illuminate\Database\Eloquent\Collection $sameAsLinks */
+        /** @var Collection $sameAsLinks */
         $sameAsLinks = TwillAppSettings::get('structureddata.sameAs.links');
 
-        $business = Schema::healthAndBeautyBusiness()
+        $healthAndBeautyBusiness = Schema::healthAndBeautyBusiness()
             ->name(TwillAppSettings::get('structureddata.localBusiness.name'))
             ->url(TwillAppSettings::get('structureddata.localBusiness.url'))
             ->description(TwillAppSettings::get('structureddata.localBusiness.description'))
@@ -119,8 +119,8 @@ class PageDisplayController extends Controller
                     ->opens(TwillAppSettings::get('structureddata.openingHoursSpecification.opens'))
                     ->closes(TwillAppSettings::get('structureddata.openingHoursSpecification.closes'))
             )
-            ->sameAs(array_map(static fn($link) => $link['content']['url'], $sameAsLinks->toArray()));
+            ->sameAs(array_map(static fn ($link): mixed => $link['content']['url'], $sameAsLinks->toArray()));
 
-        return $business->toScript();
+        return $healthAndBeautyBusiness->toScript();
     }
 }
