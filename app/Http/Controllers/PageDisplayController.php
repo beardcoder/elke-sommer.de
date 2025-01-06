@@ -78,6 +78,11 @@ class PageDisplayController extends Controller
 
     private function jsonLd()
     {
+
+        if (!TwillAppSettings::get('structureddata.localBusiness.active')) {
+            return '';
+        }
+
         /** @var \Illuminate\Database\Eloquent\Collection $sameAsLinks */
         $sameAsLinks = TwillAppSettings::get('structureddata.sameAs.links');
 
@@ -114,12 +119,8 @@ class PageDisplayController extends Controller
                     ->opens(TwillAppSettings::get('structureddata.openingHoursSpecification.opens'))
                     ->closes(TwillAppSettings::get('structureddata.openingHoursSpecification.closes'))
             )
-            ->sameAs(array_map(static fn ($link) => $link['content']['url'], $sameAsLinks->toArray()));
+            ->sameAs(array_map(static fn($link) => $link['content']['url'], $sameAsLinks->toArray()));
 
-        if (TwillAppSettings::get('structureddata.localBusiness.active')) {
-            return $business->toScript();
-        }
-
-        return '';
+        return $business->toScript();
     }
 }
