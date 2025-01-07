@@ -22,6 +22,7 @@
     "laravel/tinker": "^2.9",
     "ralphjsmit/laravel-seo": "^1.6",
     "sentry/sentry-laravel": "^4.10",
+    "spatie/crawler": "^8.4",
     "spatie/laravel-honeypot": "^4.5",
     "spatie/laravel-responsecache": "^7.6",
     "spatie/laravel-sitemap": "^7.2",
