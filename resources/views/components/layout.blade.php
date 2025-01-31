@@ -3,7 +3,7 @@
 
     <head>
         {!! SEOMeta::generate() !!}
-        {!! $jsonLd !!}
+        {!! isset($jsonLd) ?? $jsonLd !!}
 
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
