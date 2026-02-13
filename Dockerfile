@@ -15,12 +15,6 @@ USER www-data
 # Copy application code
 COPY --chown=www-data:www-data . .
 
-# Copy Composer vendor from build stage
-COPY --chown=www-data:www-data --from=vendor /app/vendor vendor
-
-# Built assets overlay
-COPY --from=assets --chown=www-data:www-data /app/public/build ./public/build
-
 # Update and Optimize autoloader
 RUN composer install \
           --no-dev \
