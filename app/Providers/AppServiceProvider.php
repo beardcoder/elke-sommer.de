@@ -6,6 +6,7 @@ use A17\Twill\Facades\TwillAppSettings;
 use A17\Twill\Facades\TwillNavigation;
 use A17\Twill\Services\Settings\SettingsGroup;
 use A17\Twill\View\Components\Navigation\NavigationLink;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         TwillNavigation::addLink(
             NavigationLink::make()
                 ->forModule('pages')
