@@ -1,4 +1,4 @@
-ARG PHP_IMAGE=serversideup/php:8.4-fpm-nginx
+ARG PHP_IMAGE=serversideup/php:8.4-frankenphp
 
 # ----------------------------
 # 3) Production image
