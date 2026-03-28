@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Linktree;
 use JeroenDesloovere\VCard\VCard;
+use Symfony\Component\HttpFoundation\Response;
 
 class VCardController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         $linktree = Linktree::all()[0];
 

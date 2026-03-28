@@ -10,7 +10,7 @@ use Illuminate\View\Component;
 class Footer extends Component
 {
     #[\Override]
-    public function render(): View|\Closure|string
+    public function render(): View
     {
         /** @var Page[] $links */
         $links = TwillAppSettings::get('homepage.footer.pages');

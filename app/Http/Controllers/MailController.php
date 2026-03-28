@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use A17\Twill\Facades\TwillAppSettings;
 use App\Mail\Contact;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use TelegramBot\Api\BotApi;
 
 class MailController extends Controller
 {
-    public function contact(Request $request)
+    public function contact(Request $request): RedirectResponse
     {
         if (TwillAppSettings::get('homepage.telegram.api_key') && TwillAppSettings::get('homepage.telegram.chat_id')) {
             $botApi = new BotApi(TwillAppSettings::get('homepage.telegram.api_key'));

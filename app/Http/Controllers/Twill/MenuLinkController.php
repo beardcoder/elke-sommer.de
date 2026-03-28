@@ -7,6 +7,7 @@ use A17\Twill\Models\Contracts\TwillModelContract;
 use A17\Twill\Services\Forms\Fields\Browser;
 use A17\Twill\Services\Forms\Form;
 use A17\Twill\Services\Listings\TableColumns;
+use App\Models\Page;
 
 class MenuLinkController extends BaseModuleController
 {
@@ -16,10 +17,6 @@ class MenuLinkController extends BaseModuleController
 
     protected $nestedItemsDepth = 1;
 
-    /**
-     * See the table builder docs for more information. If you remove this method you can use the blade files.
-     * When using twill:module:make you can specify --bladeForm to use a blade form instead.
-     */
     #[\Override]
     public function getForm(TwillModelContract $twillModelContract): Form
     {
@@ -34,9 +31,6 @@ class MenuLinkController extends BaseModuleController
         return $form;
     }
 
-    /**
-     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-     */
     #[\Override]
     protected function setUpController(): void
     {
@@ -44,9 +38,6 @@ class MenuLinkController extends BaseModuleController
         $this->enableReorder();
     }
 
-    /**
-     * This is an example and can be removed if no modifications are needed to the table.
-     */
     #[\Override]
     protected function additionalIndexTableColumns(): TableColumns
     {

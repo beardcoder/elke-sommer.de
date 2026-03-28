@@ -15,10 +15,6 @@ class PageController extends BaseModuleController
 {
     protected $moduleName = 'pages';
 
-    /**
-     * See the table builder docs for more information. If you remove this method you can use the blade files.
-     * When using twill:module:make you can specify --bladeForm to use a blade form instead.
-     */
     #[\Override]
     public function getForm(TwillModelContract $twillModelContract): Form
     {
@@ -39,9 +35,6 @@ class PageController extends BaseModuleController
         return $form;
     }
 
-    /**
-     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-     */
     #[\Override]
     protected function setUpController(): void
     {
@@ -49,9 +42,6 @@ class PageController extends BaseModuleController
         $this->withoutLanguageInPermalink();
     }
 
-    /**
-     * This is an example and can be removed if no modifications are needed to the table.
-     */
     #[\Override]
     protected function additionalIndexTableColumns(): TableColumns
     {

@@ -13,26 +13,17 @@ class Registration extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct(
-        private string $name,
-        private string $email,
+        private readonly string $name,
+        private readonly string $email,
     ) {
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(subject: '[Anmeldung] '.$this->name, replyTo: [$this->email]);
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(

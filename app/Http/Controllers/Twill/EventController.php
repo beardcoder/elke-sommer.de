@@ -60,17 +60,11 @@ class EventController extends BaseModuleController
         return $form;
     }
 
-    /**
-     * This method can be used to enable/disable defaults. See setUpController in the docs for available options.
-     */
     #[\Override]
     protected function setUpController(): void
     {
     }
 
-    /**
-     * This is an example and can be removed if no modifications are needed to the table.
-     */
     #[\Override]
     protected function additionalIndexTableColumns(): TableColumns
     {

@@ -9,7 +9,7 @@ use App\Enums\EventStatus;
 class EventRequest extends Request
 {
     #[\Override]
-    public function rulesForCreate()
+    public function rulesForCreate(): array
     {
         return [
             'title' => 'required|string|max:255',
@@ -17,7 +17,7 @@ class EventRequest extends Request
     }
 
     #[\Override]
-    public function rulesForUpdate()
+    public function rulesForUpdate(): array
     {
         return [
             'title' => 'required|string|max:255',

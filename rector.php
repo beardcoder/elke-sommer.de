@@ -8,7 +8,7 @@ use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
   ->withPaths([__DIR__.'/app'])
-  ->withPhpSets(php83: true)
+  ->withPhpSets(php84: true)
   ->withImportNames()
   ->withPreparedSets(
       codeQuality: true,

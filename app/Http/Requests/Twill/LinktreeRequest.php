@@ -7,13 +7,13 @@ use A17\Twill\Http\Requests\Admin\Request;
 class LinktreeRequest extends Request
 {
     #[\Override]
-    public function rulesForCreate()
+    public function rulesForCreate(): array
     {
         return [];
     }
 
     #[\Override]
-    public function rulesForUpdate()
+    public function rulesForUpdate(): array
     {
         return [];
     }

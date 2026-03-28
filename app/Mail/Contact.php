@@ -13,27 +13,18 @@ class Contact extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct(
-        private $name,
-        private $email,
-        private $text,
+        private readonly string $name,
+        private readonly string $email,
+        private readonly string $text,
     ) {
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(subject: '[Nachricht] '.$this->name, replyTo: [$this->email]);
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
