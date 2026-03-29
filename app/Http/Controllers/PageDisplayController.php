@@ -19,7 +19,7 @@ class PageDisplayController extends Controller
     {
         $page = $pageRepository->forSlug($slug);
 
-        if (!$page instanceof TwillModelContract) {
+        if (! $page instanceof TwillModelContract) {
             abort(404);
         }
 
@@ -79,7 +79,7 @@ class PageDisplayController extends Controller
 
     private function jsonLd(): string
     {
-        if (!TwillAppSettings::get('structureddata.localBusiness.active')) {
+        if (! TwillAppSettings::get('structureddata.localBusiness.active')) {
             return '';
         }
 

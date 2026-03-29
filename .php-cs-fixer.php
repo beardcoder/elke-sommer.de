@@ -9,11 +9,13 @@ return $config
     ->setRules([
         '@PSR2' => true,
         '@Symfony' => true,
-        'no_unused_imports' => true, // Entfernt unbenutzte Importe
+        'no_unused_imports' => true,
+        'yoda_style' => false,
+        'not_operator_with_successor_space' => true,
         'global_namespace_import' => [
-            'import_classes' => false, // Verhindert Import von globalen Klassen
-            'import_functions' => false, // Verhindert Import von globalen Funktionen
-            'import_constants' => false, // Verhindert Import von globalen Konstanten
+            'import_classes' => false,
+            'import_functions' => false,
+            'import_constants' => false,
         ],
     ])
     ->setFinder(

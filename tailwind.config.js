@@ -1,6 +1,6 @@
+import tailwindTypografie from '@tailwindcss/typography'
 import flowbitePlugin from 'flowbite/plugin'
 import { fontFamily } from 'tailwindcss/defaultTheme'
-import tailwindTypografie from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
 export default {
