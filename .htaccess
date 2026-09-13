@@ -1,0 +1,26 @@
+# Statische Platzhalter-Seite - alle Anfragen landen auf der Startseite.
+# (Apache; bei nginx entsprechend "try_files" bzw. eine Rewrite-Regel setzen.)
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Vorhandene Dateien direkt ausliefern
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # Alte Seiten-URLs (z. B. /coaching) dauerhaft auf die Startseite umleiten
+    RewriteRule ^.+$ / [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "no-referrer"
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
